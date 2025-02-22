@@ -22,7 +22,7 @@ class CreateFeeStructuresTable extends Migration
             $table->integer('student_category_id')->unsigned()->nullable();
 
             $table->decimal('amount')->unsigned()->nullable();
-            $table->enum ('amount_type', ['Yearly', 'Monthly', 'Half Yearly', 'Quarterly'])->default('fixed');
+            $table->enum ('amount_type', ['Yearly', 'Monthly', 'Half Yearly', 'Quarterly'])->default(null)->nullable();
                
             $table->boolean('is_emi_allowed')->default(0)->unsigned();
             

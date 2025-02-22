@@ -47,7 +47,7 @@
         </div>
         <!-- Spinner End -->
 
-
+        
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5 py-lg-0">
             <a href="index.html" class="navbar-brand">
@@ -74,66 +74,67 @@
                     </div>
                     <a href="#contact" class="nav-item nav-link">Contact Us</a>
                 </div>
-                <a href="" class="btn btn-primary rounded-pill px-3 d-none d-lg-block">Shin In<i class="fa fa-arrow-right ms-3"></i></a>
+                @if (Route::has('login'))
+                    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                        @auth
+                            <a wire:navigate href="{{ url('/dashboard') }}"
+                                class="btn btn-primary rounded-pill px-3 d-none d-lg-block">Dashboard
+                            </a>
+                        @else
+                            <a wire:navigate href="{{ route('login') }}"
+                                class="btn btn-primary rounded-pill px-3 d-none d-lg-block">Log in</a>
+
+                            @if (Route::has('register'))
+                                {{-- <a wire:navigate href="{{ route('login') }}"
+                                    class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a> --}}
+                            @endif
+                        @endauth
+                    </div>
+                @endif
+                {{-- <a href="" class="btn btn-primary rounded-pill px-3 d-none d-lg-block">Shin In<i class="fa fa-arrow-right ms-3"></i></a> --}}
             </div>
         </nav>
         <!-- Navbar End -->
 
 
         <!-- Carousel Start -->
+        @php
+        function highlightEnglishMedium($text) {
+            return str_replace('English Medium', '<span style="color: #008CBA;">English Medium</span>', $text); // or $text;
+        }
+        @endphp
         <div class="container-fluid p-0 mb-5">
             <div class="owl-carousel header-carousel position-relative">
+                {{-- {{ json_encode($uiscreendesigns->where('ui_section_id', 1) )}} --}}
+                @php $section = $uiscreendesigns->where('ui_section_id', 1);  @endphp {{-- The Carausel  --}}
+                {{ $section->first()->section->name }}
+                @foreach($section->unique('ui_entity_id') as $entity)
+                    {{-- xx{{ $entity->id }} --}}
+                    @php  $myentity = $uiscreendesigns->where('ui_entity_id', $entity->ui_entity_id); @endphp
+
+                    {{-- xx================== {{ json_encode($myentity->where('ui_section_id', 1)->where('ui_entity_id', $entity->ui_entity_id)    ) }} =====================yy --}}
                 
-                <div class="owl-carousel-item position-relative">
-                    <img class="img-fluid" src="img/carousel-1.jpg" alt="">
-                    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(0, 0, 0, .2);">
-                        <div class="container">
-                            <div class="row justify-content-start">
-                                <div class="col-10 col-lg-8">
-                                    <h1 class="display-2 text-white animated slideInDown mb-4"><span class="text-primary me-3">Little Flower School</span><br/>The Best Primary <span style="color: #008CBA;">English Medium</span> School For Your Child</h1>
-                                    <p class="fs-5 fw-medium text-white mb-4 pb-2">Welcome to Little Flower School, where we believe in nurturing young minds and fostering a love for learning in a vibrant and inclusive environment. .</p>
-                                    {{-- <a href="" class="btn btn-primary rounded-pill py-sm-3 px-sm-5 me-3 animated slideInLeft">Learn More</a> --}}
-                                    <!-- Add this anchor or button where you want the trigger to appear -->
-                                    <a href="#" class="btn btn-primary rounded-pill py-sm-3 px-sm-5 me-3 animated slideInLeft" data-bs-toggle="modal" data-bs-target="#urgentNoticeModal">Learn More</a>
-                                    <a href="" class="btn btn-dark rounded-pill py-sm-3 px-sm-5 animated slideInRight">Our Classes</a>
+                    <div class="owl-carousel-item position-relative">
+                        <img class="img-fluid" src="{{ $entity->img_ref_1}}" alt="">
+                        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(0, 0, 0, .2);">
+                            <div class="container">
+                                <div class="row justify-content-start">
+                                    <div class="col-10 col-lg-8">
+                                        <h1 class="display-2 text-white animated slideInDown mb-4"><span class="text-primary me-3 drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)]">{{ $entity->title }}</span><br/>{!! highlightEnglishMedium($entity->sub_title) !!}</h1>
+                                        <p class="fs-5 fw-medium text-white mb-4 pb-2">{{ $entity->details }}</p>
+                                        {{-- <a href="" class="btn btn-primary rounded-pill py-sm-3 px-sm-5 me-3 animated slideInLeft">Learn More</a> --}}
+                                        <!-- Add this anchor or button where you want the trigger to appear -->
+                                        <a href="#" class="btn btn-primary rounded-pill py-sm-3 px-sm-5 me-3 animated slideInLeft" data-bs-toggle="modal" data-bs-target="#urgentNoticeModal">Learn More</a>
+                                        <a href="" class="btn btn-dark rounded-pill py-sm-3 px-sm-5 animated slideInRight">Our Classes</a>
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
 
-                <div class="owl-carousel-item position-relative">
-                    <img class="img-fluid" src="img/carousel-1.jpg" alt="">
-                    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(0, 0, 0, .2);">
-                        <div class="container">
-                            <div class="row justify-content-start">
-                                <div class="col-10 col-lg-8">
-                                    <h1 class="display-2 text-white animated slideInDown mb-4"><span class="text-primary me-3">Little Flower School</span><br/>The Best Primary <span style="color: #008CBA;">English Medium</span> School For Your Child</h1>
-                                    <p class="fs-5 fw-medium text-white mb-4 pb-2">Our curriculum is designed to meet the diverse needs of our students, focusing on a holistic approach to education. We offer a comprehensive program.</p>
-                                    <a href="" class="btn btn-primary rounded-pill py-sm-3 px-sm-5 me-3 animated slideInLeft">Learn More</a>
-                                    <a href="" class="btn btn-dark rounded-pill py-sm-3 px-sm-5 animated slideInRight">Our Classes</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="owl-carousel-item position-relative">
-                    <img class="img-fluid" src="img/carousel-2.jpg" alt="">
-                    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(0, 0, 0, .2);">
-                        <div class="container">
-                            <div class="row justify-content-start">
-                                <div class="col-10 col-lg-8">
-                                    <h1 class="display-2 text-white animated slideInDown mb-4"><span class="text-primary me-3">Little Flower School</span><br/>The Best Primary <span style="color: #008CBA;">English Medium</span> School For Your Child</h1>
-                                    <p class="fs-5 fw-medium text-white mb-4 pb-2">Our vision is to create a community of lifelong learners who are confident, curious, and compassionate. We aim to equip our students with the knowledge and skills they need to thrive in an ever-changing world..</p>
-                                    <a href="" class="btn btn-primary rounded-pill py-sm-3 px-sm-5 me-3 animated slideInLeft">Learn More</a>
-                                    <a href="" class="btn btn-dark rounded-pill py-sm-3 px-sm-5 animated slideInRight">Our Classes</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
                 
                 
             </div>
@@ -150,14 +151,15 @@
                     <p>Please check our notice board, to get the latest updates.</p>
                 </div>
                 <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="testimonial-item bg-light rounded p-5">
+                    <div class="testimonial-item bg-light rounded p-5 space-y-2">
                         <h3 class="mb-1">Admission Notice 01, </h3><span>Date: 20th February, 2025</span>
                         <p class="fs-5">Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
-                        <div class="d-flex align-items-between  bg-white me-n5" style="border-radius: 50px 0 0 50px;">
-                            
-                            <a href="" class="btn btn-primary rounded-pill py-3 px-5">Read More</a>
-                        </div>
                         
+                        <p><a href="{{ url('notices/about-1.jpg') }}" class="fs-5" download>Download <i class="fa fa-download" aria-hidden="true"></i></a></p>
+                        
+                        <div class="d-flex align-items-between  bg-white me-n5" style="border-radius: 50px 0 0 50px;">                            
+                            <a href="" class="btn btn-primary rounded-pill py-3 px-5">Read More</a>
+                        </div>                        
                     </div>
                     <div class="testimonial-item bg-light rounded p-5">
                         <h3 class="mb-1">Notice 02, </h3><span>Date: 20th March, 2025</span>
@@ -171,6 +173,7 @@
                     <div class="testimonial-item bg-light rounded p-5">
                         <h3 class="mb-1">Notice 03, </h3><span>Date: 20th April, 2025</span>
                         <p class="fs-5">Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
+                        <p><a href="{{ url('notices/about-pdf.pdf') }}" class="fs-5" download>Download <i class="fa fa-download" aria-hidden="true"></i></a></p>
                         <div class="d-flex align-items-between  bg-white me-n5" style="border-radius: 50px 0 0 50px;">
                             
                             <a href="" class="btn btn-primary rounded-pill py-3 px-5">Read More</a>
@@ -930,7 +933,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title" id="urgentNoticeModalLabel">Urgent Notice</h5>
+                    <h3 class="modal-title text-white" id="urgentNoticeModalLabel">Urgent Notice</h3>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

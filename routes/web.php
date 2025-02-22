@@ -57,6 +57,18 @@ Route::group(
         Route::get('/dashboard', [ App\Http\Controllers\AdminController::class, 'dashboard'])
             ->name('adminDash');
 
+        Route::controller(App\Http\Controllers\UIWelcomeScreenController::class)->group(
+            function () {
+                Route::get('welcomescreens', 'index'); // all notices, in a tabluler form, add new notice, open create
+                // Route::get('notices/{id}', 'display'); //
+                // Route::get('notices/create', 'create'); // create a new notice, display form for data entry
+                // Route::post('notices/create', 'store'); // submit clicked from create, to save the notice, goto indexes
+                // Route::get('notices/{id}/edit', 'edit'); // edit any existing notice, display existing notice, goto update
+                // Route::put('notices/{id}/edit', 'update'); // save the edited notice, goto indexes
+                // Route::get('notices/{id}/delete', 'destroy'); // delete any existing notice, goto inexes
+            }
+        );
+
         // Route::get('/admission/{myclassSection_id}', [App\Http\Controllers\AdminController::class, 'admission'])->name('admission');
         // Route::get('/dashboard', AdminDashboard::class)
         //     ->name('adminDash');
@@ -178,7 +190,10 @@ Route::get('/dashboard', function () {
     
 
 Route::get('/', function () {
-    return view('welcome');
+    $uiscreendesigns = App\Models\UiScreenDesign::where('ui_screen_id', 1)->get();
+    return view('welcome',[
+        'uiscreendesigns' => $uiscreendesigns
+    ]);
 });
 
 
