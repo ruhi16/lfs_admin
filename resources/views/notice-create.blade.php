@@ -34,7 +34,7 @@
                         <textarea id="desc" name="desc" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                             value="{{ old('desc') }}"
                             placeholder="Leave a descriptions..."></textarea>
-                        @error('desc') <span class="text-danger">{{ $message }}</span> @enderror
+                            @error('desc') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="flex  justify-between mb-5  gap-2 bg-slate-200">

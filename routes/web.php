@@ -60,6 +60,13 @@ Route::group(
         Route::controller(App\Http\Controllers\UIWelcomeScreenController::class)->group(
             function () {
                 Route::get('welcomescreens', 'index'); // all notices, in a tabluler form, add new notice, open create
+                Route::get ('welcomescreens/caraosel-view', 'caraoselView')->name('ws.caraosel-view');
+                Route::post('welcomescreens/caraosel-submit', 'caraoselSubmit')->name('ws.caraosel-submit');
+
+                Route::get ('welcomescreens/notices-view', 'noticesView')->name('ws.notices-view');
+                Route::post('welcomescreens/notices-submit', 'noticesSubmit')->name('ws.notices-submit');
+
+                
                 // Route::get('notices/{id}', 'display'); //
                 // Route::get('notices/create', 'create'); // create a new notice, display form for data entry
                 // Route::post('notices/create', 'store'); // submit clicked from create, to save the notice, goto indexes
@@ -105,7 +112,8 @@ Route::group(
         // Route::get('/marksentryentityclasswise/{myclassSection_id}/{myclassSubject_id}/{examdetail_id}', SubadminMarksEntryEntityComponent::class)
         //     ->name('admin.marksentryentity');
 
-        
+        // Route::get('/uiscreendesigns', [App\Http\Controllers\UIWelcomeScreenController::class, 'index'])
+        //     ->name('admin.uiscreendesigns');
             
         Route::get('/home', Home::class)->name('home');
         Route::get('/contact', Contact::class)->name('contact');
@@ -116,6 +124,20 @@ Route::group(
 
     }
 );
+
+
+
+Route::group(
+    ['prefix' => 'office', 'middleware' => ['web', 'isOffice']],
+    function () {
+        Route::get('/dashboard', [
+            App\Http\Controllers\OfficeController::class,
+            'dashboard',
+        ])->name('officeDash');
+    }
+);
+
+
 
 Route::group(
     ['prefix' => 'sub-admin', 'middleware' => ['web', 'isSubAdmin']],
@@ -133,6 +155,10 @@ Route::group(
     
     }
 );
+
+
+
+
 
 Route::group(
     ['prefix' => 'user', 'middleware' => ['web', 'isUser']],
@@ -157,14 +183,19 @@ Route::get('/dashboard', function () {
     // echo auth()->user()->name;
     // echo 'Auth:' . Auth::user();
 
-    if (Auth::user() && Auth::user()->role_id == 4) {
+    if (Auth::user() && Auth::user()->role_id == 5) {
         // Super Admin or owner
         return redirect(route('supAdminDash'));
     }
 
-    if (Auth::user() && Auth::user()->role_id == 3) {
+    if (Auth::user() && Auth::user()->role_id == 4) {
         // Admin or Headmaster
         return redirect(route('adminDash'));
+    }
+
+    if (Auth::user() && Auth::user()->role_id == 3) {
+        // Admin or Clerk or Headmaster
+        return redirect(route('officeDash'));
     }
 
     if (Auth::user() && Auth::user()->role_id == 2) {

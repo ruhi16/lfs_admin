@@ -24,6 +24,15 @@ class CreateUiScreenDesignsTable extends Migration
             $table->integer('ui_particular_id')->unsigned()->nullable();
             $table->string('ui_particular_detail')->nullable();
 
+            $table->string('title')->nullable();
+            $table->string('sub_title')->nullable();
+            $table->string('details')->nullable();
+            $table->string('img_ref_1')->nullable();
+            $table->string('img_ref_2')->nullable();
+            $table->string('img_ref_3')->nullable();
+            $table->string('by_whom')->nullable();
+            $table->string('for_whom_desig')->nullable();
+
             $table->integer('school_id')->unsigned()->nullable();
             $table->integer('session_id')->unsigned()->nullable();
             $table->integer('user_id')->unsigned()->nullable();

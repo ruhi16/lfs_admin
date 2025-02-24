@@ -10,6 +10,6 @@
         @endsection
     {{-- </x-slot> --}}
 
-    <livewire:user-account-component>
+    {{-- <livewire:user-account-component> --}}
         
 </x-app-layout>

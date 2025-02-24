@@ -55,17 +55,31 @@
         @auth
             @include('layouts.navigation')
         @endauth
-        <!-- Page Heading -->        
-        <header class="bg-purple-400 shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                {{-- {{ $slot }} --}}                
+        <!-- Page Heading --> 
+        @php 
+            // $color = auth()->user()->role->id == 3 
+            if(auth()->user()->role->id == 1){
+                $color = 'red';
+            }else if(auth()->user()->role->id == 2){
+                $color = 'blue';
+            }else if(auth()->user()->role->id == 3){
+                $color = 'purple';
+            }else if(auth()->user()->role->id == 4){
+                $color = 'orange';
+            }else{
+                $color = 'red';
+            }
+        @endphp       
+        <header class="bg-{{$color}}-400 shadow mb-4">
+            <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 ">
+                <div class="font-semibold text-xl text-gray-800 leading-tight">Dashboard: {{ auth()->user()->role->name }}{{-- {{ $slot }} --}}</div>
                 @yield('header')
             </div>
         </header>
 
         <!-- Page Content -->
         {{-- <livewire:admin-sidebar-component /> --}}
-        
+        {{-- {{ auth()->user()->role->id  }} --}}
 
         {{ $slot }}
 

@@ -532,3 +532,18 @@ h6,
     background-color: #008CBA; /* Use the theme color */
     border-color: #008CBA; /* Use the theme color */
 }
+
+
+
+.gallery-item {
+    overflow: hidden;
+    position: relative;
+}
+
+.gallery-item img {
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}

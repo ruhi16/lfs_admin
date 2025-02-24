@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class AdminAuthentication
+class OfficeAuthentication
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,13 @@ class AdminAuthentication
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user() && (auth()->user()->role_id == 4 ) ){
+        if(auth()->user() && (auth()->user()->role_id == 3 ) ){
             return $next($request);
         }
 
         return redirect('/');
+
+
+        // return $next($request);
     }
-       
 }
