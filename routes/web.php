@@ -10,16 +10,17 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Livewire\Contact;
 use App\Http\Livewire\Home;
 use App\Http\Livewire\About;
-use App\Http\Livewire\AdminAdmissionComponent;
-use App\Http\Livewire\AdminAnsscrDistributionComponent;
-use App\Http\Livewire\AdminAnsscrDistributioncwComponent;
-use App\Http\Livewire\AdminMyclassAnserScriptDistributionBaseComponent;
-use App\Http\Livewire\AdminMyclassSectionComponent;
-use App\Http\Livewire\AdminTeacherWiseMarksEntryLinksComponent;
-use App\Http\Livewire\AdminUserPreviledgeControlComponent;
+// use App\Http\Livewire\AdminAdmissionComponent;
+// use App\Http\Livewire\AdminAnsscrDistributionComponent;
+// use App\Http\Livewire\AdminAnsscrDistributioncwComponent;
+// use App\Http\Livewire\AdminMyclassAnserScriptDistributionBaseComponent;
+// use App\Http\Livewire\AdminMyclassSectionComponent;
+// use App\Http\Livewire\AdminTeacherWiseMarksEntryLinksComponent;
+// use App\Http\Livewire\AdminUserPreviledgeControlComponent;
 use App\Http\Livewire\SubadminMarksEntryComponent;
 use App\Http\Livewire\SubadminMarksEntryEntityComponent;
-use App\Http\Livewire\UserChangePasswordComponent;
+// use App\Http\Livewire\UserChangePasswordComponent;
+use App\Http\Livewire\AdminNoticeComponent;
 
 // use App\Http\Livewire\Admin;
 // use App\View\Components\AdminDashboard;
@@ -57,13 +58,16 @@ Route::group(
         Route::get('/dashboard', [ App\Http\Controllers\AdminController::class, 'dashboard'])
             ->name('adminDash');
 
+        Route::get ('welcomescreens/notices-view', AdminNoticeComponent::class)->name('ws.notices-view');
+
         Route::controller(App\Http\Controllers\UIWelcomeScreenController::class)->group(
             function () {
                 Route::get('welcomescreens', 'index'); // all notices, in a tabluler form, add new notice, open create
                 Route::get ('welcomescreens/caraosel-view', 'caraoselView')->name('ws.caraosel-view');
                 Route::post('welcomescreens/caraosel-submit', 'caraoselSubmit')->name('ws.caraosel-submit');
 
-                Route::get ('welcomescreens/notices-view', 'noticesView')->name('ws.notices-view');
+                // Route::get ('welcomescreens/notices-view', 'noticesView')->name('ws.notices-view');
+                
                 Route::post('welcomescreens/notices-submit', 'noticesSubmit')->name('ws.notices-submit');
 
                 
@@ -222,8 +226,11 @@ Route::get('/dashboard', function () {
 
 Route::get('/', function () {
     $uiscreendesigns = App\Models\UiScreenDesign::where('ui_screen_id', 1)->get();
+    $notices = App\Models\Notice::all();
+
     return view('welcome',[
-        'uiscreendesigns' => $uiscreendesigns
+        'uiscreendesigns' => $uiscreendesigns,
+        'notices' => $notices
     ]);
 });
 

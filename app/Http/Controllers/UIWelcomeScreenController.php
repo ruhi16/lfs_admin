@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\UiScreen;
 use App\Models\UiScreenDesign;
+use App\Models\Notice;
 
 class UIWelcomeScreenController extends Controller
 {
@@ -84,9 +85,18 @@ class UIWelcomeScreenController extends Controller
 
     public function noticesView(){
 
+
+
+        $notices = Notice::orderBy('id', 'desc')->get();
+        
+        return view('ui-welcome-screen-notices', [
+            'notices' => $notices
+        ]);
     }
 
     public function noticesSubmit(Request $request){
 
+
+        return redirect ('admin/welcomescreens/notices-view');
     }
 }

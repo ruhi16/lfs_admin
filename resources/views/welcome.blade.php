@@ -34,7 +34,9 @@
 
     <!-- Template Stylesheet -->
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
-
+    
+    
+    @livewireStyles    
 </head>
 
 <body>
@@ -73,26 +75,33 @@
                         </div>
                     </div>
                     <a href="#contact" class="nav-item nav-link">Contact Us</a>
+                    <a href="#contact" class="nav-item nav-link">Contact Us</a>
+                    @if (Route::has('login'))
+                        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                            @auth
+                                <a wire:navigate href="{{ url('/dashboard') }}"
+                                    class="btn btn-primary rounded-pill px-3 ">Dashboard
+                                </a>
+                            @else
+                                <a wire:navigate href="{{ route('login') }}"
+                                    class="btn btn-primary rounded-pill px-3 ">Log in
+                                </a>
+                                @if (Route::has('register'))
+                                    <a wire:navigate href="{{ route('register') }}"
+                                        class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                                @endif                        
+                            @endauth
+                        </div>
+                    @endif 
+                                    
+                    
                 </div>
-                @if (Route::has('login'))
-                    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                        @auth
-                            <a wire:navigate href="{{ url('/dashboard') }}"
-                                class="btn btn-primary rounded-pill px-3 d-none d-lg-block">Dashboard
-                            </a>
-                        @else
-                            <a wire:navigate href="{{ route('login') }}"
-                                class="btn btn-primary rounded-pill px-3 d-none d-lg-block">Log in</a>
-
-                            @if (Route::has('register'))
-                                {{-- <a wire:navigate href="{{ route('login') }}"
-                                    class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a> --}}
-                            @endif
-                        @endauth
-                    </div>
-                @endif
+                    
                 {{-- <a href="" class="btn btn-primary rounded-pill px-3 d-none d-lg-block">Shin In<i class="fa fa-arrow-right ms-3"></i></a> --}}
             </div>
+
+            
+            
         </nav>
         <!-- Navbar End -->
 
@@ -103,11 +112,12 @@
             return str_replace('English Medium', '<span style="color: #008CBA;">English Medium</span>', $text); // or $text;
         }
         @endphp
+
         <div class="container-fluid p-0 mb-5">
             <div class="owl-carousel header-carousel position-relative">
                 {{-- {{ json_encode($uiscreendesigns->where('ui_section_id', 1) )}} --}}
                 @php $section = $uiscreendesigns->where('ui_section_id', 1);  @endphp {{-- The Carausel  --}}
-                {{ $section->first()->section->name }}
+                {{-- {{ $section->first()->section->name }} --}}
                 @foreach($section->unique('ui_entity_id') as $entity)
                     {{-- xx{{ $entity->id }} --}}
                     @php  $myentity = $uiscreendesigns->where('ui_entity_id', $entity->ui_entity_id); @endphp
@@ -133,9 +143,6 @@
                         </div>
                     </div>
                 @endforeach
-
-                
-                
                 
             </div>
         </div>
@@ -151,42 +158,45 @@
                     <p>Please check our notice board, to get the latest updates.</p>
                 </div>
                 <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+
+                    {{-- {{ json_encode($notices) }} --}}
+                    @foreach($notices as $notice)
                     <div class="testimonial-item bg-light rounded p-5 space-y-2">
-                        <h3 class="mb-1">Admission Notice 01, </h3><span>Date: 20th February, 2025</span>
-                        <p class="fs-5">Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
+                        <h3 class="mb-1">Admission Notice {{ $notice->id }}, </h3><span>Date of publication: {{ $notice->dop }} to {{ $notice->doe }}</span>
+                        <p class="fs-5">{{ $notice->desc }}</p>
                         
-                        <p><a href="{{ url('notices/about-1.jpg') }}" class="fs-5" download>Download <i class="fa fa-download" aria-hidden="true"></i></a></p>
+                        <p><a href="{{ Storage::url($notice->fileaddr) }}" class="fs-5" download>Download <i class="fa fa-download" aria-hidden="true"></i></a></p>
                         
                         <div class="d-flex align-items-between  bg-white me-n5" style="border-radius: 50px 0 0 50px;">                            
                             <a href="" class="btn btn-primary rounded-pill py-3 px-5">Read More</a>
                         </div>                        
                     </div>
-                    <div class="testimonial-item bg-light rounded p-5">
+                    @endforeach
+
+
+                    {{-- <div class="testimonial-item bg-light rounded p-5">
                         <h3 class="mb-1">Notice 02, </h3><span>Date: 20th March, 2025</span>
                         <p class="fs-5">Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
-                        <div class="d-flex align-items-between  bg-white me-n5" style="border-radius: 50px 0 0 50px;">
-                            
+                        <div class="d-flex align-items-between  bg-white me-n5" style="border-radius: 50px 0 0 50px;">                            
                             <a href="" class="btn btn-primary rounded-pill py-3 px-5">Read More</a>
-                        </div>
-                        
+                        </div>                        
                     </div>
+
                     <div class="testimonial-item bg-light rounded p-5">
                         <h3 class="mb-1">Notice 03, </h3><span>Date: 20th April, 2025</span>
                         <p class="fs-5">Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
                         <p><a href="{{ url('notices/about-pdf.pdf') }}" class="fs-5" download>Download <i class="fa fa-download" aria-hidden="true"></i></a></p>
-                        <div class="d-flex align-items-between  bg-white me-n5" style="border-radius: 50px 0 0 50px;">
-                            
+                        <div class="d-flex align-items-between  bg-white me-n5" style="border-radius: 50px 0 0 50px;">                            
                             <a href="" class="btn btn-primary rounded-pill py-3 px-5">Read More</a>
-                        </div>
-                        
-                    </div>
+                        </div>                        
+                    </div> --}}
                     
                 </div>
             </div>
         </div>
         <!-- Notice Board End -->
 
-
+        {{-- <livewire: gen-notice-view-component /> --}}
 
 
         <!-- Facilities Start -->
@@ -838,46 +848,46 @@
         </div>
         <!-- Contact End -->
         <!-- Photo Gallery Start -->
-<div class="container-xxl py-5">
-    <div class="container">
-        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-            <h1 class="mb-3">Photo Gallery</h1>
-            <p>Explore our vibrant school community through our photo gallery.</p>
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <h1 class="mb-3">Photo Gallery</h1>
+                    <p>Explore our vibrant school community through our photo gallery.</p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="gallery-item">
+                            <img class="img-fluid rounded" src="img/classes-1.jpg" alt="Gallery Image 1">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="gallery-item">
+                            <img class="img-fluid rounded" src="img/classes-2.jpg" alt="Gallery Image 2">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="gallery-item">
+                            <img class="img-fluid rounded" src="img/classes-3.jpg" alt="Gallery Image 3">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="gallery-item">
+                            <img class="img-fluid rounded" src="img/classes-4.jpg" alt="Gallery Image 4">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="gallery-item">
+                            <img class="img-fluid rounded" src="img/classes-5.jpg" alt="Gallery Image 5">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="gallery-item">
+                            <img class="img-fluid rounded" src="img/classes-6.jpg" alt="Gallery Image 6">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="row g-4">
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="gallery-item">
-                    <img class="img-fluid rounded" src="img/classes-1.jpg" alt="Gallery Image 1">
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="gallery-item">
-                    <img class="img-fluid rounded" src="img/classes-2.jpg" alt="Gallery Image 2">
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="gallery-item">
-                    <img class="img-fluid rounded" src="img/classes-3.jpg" alt="Gallery Image 3">
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="gallery-item">
-                    <img class="img-fluid rounded" src="img/classes-4.jpg" alt="Gallery Image 4">
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="gallery-item">
-                    <img class="img-fluid rounded" src="img/classes-5.jpg" alt="Gallery Image 5">
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="gallery-item">
-                    <img class="img-fluid rounded" src="img/classes-6.jpg" alt="Gallery Image 6">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- Photo Gallery End -->
 
 
@@ -1019,6 +1029,8 @@
         </div>
     </div>
 
+
+    @livewireScripts
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

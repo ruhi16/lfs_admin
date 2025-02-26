@@ -67,12 +67,14 @@
             }else if(auth()->user()->role->id == 4){
                 $color = 'orange';
             }else{
-                $color = 'red';
+                $color = 'green';
             }
         @endphp       
         <header class="bg-{{$color}}-400 shadow mb-4">
             <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 ">
-                <div class="font-semibold text-xl text-gray-800 leading-tight">Dashboard: {{ auth()->user()->role->name }}{{-- {{ $slot }} --}}</div>
+                <div class="font-semibold text-xl text-gray-800 leading-tight"> 
+                    {{ __(auth()->user()->role->name) . ': ' . auth()->user()->role->description  }}{{-- {{ $slot }} --}}
+                </div>
                 @yield('header')
             </div>
         </header>
