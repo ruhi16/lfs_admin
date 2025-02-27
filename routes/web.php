@@ -3,6 +3,8 @@
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\StudentdbController;
+use App\Http\Livewire\AdminStudentdbComponent;
+use App\Http\Livewire\AdminStudentdbEntryComponent;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,6 +23,7 @@ use App\Http\Livewire\SubadminMarksEntryComponent;
 use App\Http\Livewire\SubadminMarksEntryEntityComponent;
 // use App\Http\Livewire\UserChangePasswordComponent;
 use App\Http\Livewire\AdminNoticeComponent;
+use App\Http\Livewire\AdminSt;
 
 // use App\Http\Livewire\Admin;
 // use App\View\Components\AdminDashboard;
@@ -59,6 +62,7 @@ Route::group(
             ->name('adminDash');
 
         Route::get ('welcomescreens/notices-view', AdminNoticeComponent::class)->name('ws.notices-view');
+        Route::get('studentdb/admission', AdminStudentdbEntryComponent::class)->name('admin.studentdb_admission');
 
         Route::controller(App\Http\Controllers\UIWelcomeScreenController::class)->group(
             function () {
@@ -226,7 +230,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/', function () {
     $uiscreendesigns = App\Models\UiScreenDesign::where('ui_screen_id', 1)->get();
-    $notices = App\Models\Notice::all();
+    $notices = App\Models\Notice::where('is_active', 1)->get();
 
     return view('welcome',[
         'uiscreendesigns' => $uiscreendesigns,

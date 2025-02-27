@@ -63,36 +63,36 @@ class School extends Model
         return $this->hasMany(Studentcr::class, 'school_id', 'id');
     }
 
-    public function subjects(){
-        return $this->hasMany(Subject::class);
-    }
+    // public function subjects(){
+    //     return $this->hasMany(Subject::class);
+    // }
 
-    public function exam(){
-        return $this->hasMany(Exam::class);
-    }
+    // public function exam(){
+    //     return $this->hasMany(Exam::class);
+    // }
     
-    public function exammodes(){
-        return $this->hasMany(Exammode::class);
-    }
+    // public function exammodes(){
+    //     return $this->hasMany(Exammode::class);
+    // }
 
 
-    public function examtypes(){
-        return $this->hasMany(Examtype::class);
-    }
+    // public function examtypes(){
+    //     return $this->hasMany(Examtype::class);
+    // }
     
     
-    public function examdetails(){
-        return $this->hasMany(Examdetails::class);
-    }
+    // public function examdetails(){
+    //     return $this->hasMany(Examdetails::class);
+    // }
 
-    public function Answerscriptdistribution(){
-        return $this->hasMany(Answerscriptdistribution::class, 'subject_id', 'id');
-    }
+    // public function Answerscriptdistribution(){
+    //     return $this->hasMany(Answerscriptdistribution::class, 'subject_id', 'id');
+    // }
 
 
-    public function marksentries(){
-        return $this->hasMany(Marksentry::class, 'school_id', 'id');        
-    }
+    // public function marksentries(){
+    //     return $this->hasMany(Marksentry::class, 'school_id', 'id');        
+    // }
     
 
 }

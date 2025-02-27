@@ -31,9 +31,9 @@ class Session extends Model{
         return $this->hasMany(Section::class);
     }
 
-    public function subjects(){
-        return $this->hasMany(Subject::class);
-    }
+    // public function subjects(){
+    //     return $this->hasMany(Subject::class);
+    // }
 
 
     public function studentdbs(){
@@ -44,31 +44,31 @@ class Session extends Model{
         return $this->hasMany(Studentcr::class, 'session_id', 'id');
     }
 
-    public function exam(){
-        return $this->hasMany(Exam::class);
-    }
+    // public function exam(){
+    //     return $this->hasMany(Exam::class);
+    // }
     
-    public function exammodes(){
-        return $this->hasMany(Exammode::class);
-    }
+    // public function exammodes(){
+    //     return $this->hasMany(Exammode::class);
+    // }
 
 
-    public function examtypes(){
-        return $this->hasMany(Examtype::class);
-    }
+    // public function examtypes(){
+    //     return $this->hasMany(Examtype::class);
+    // }
     
     
-    public function examdetails(){
-        return $this->hasMany(Examdetails::class);
-    }
+    // public function examdetails(){
+    //     return $this->hasMany(Examdetails::class);
+    // }
 
-    public function Answerscriptdistribution(){
-        return $this->hasMany(Answerscriptdistribution::class, 'subject_id', 'id');
-    }
+    // public function Answerscriptdistribution(){
+    //     return $this->hasMany(Answerscriptdistribution::class, 'subject_id', 'id');
+    // }
 
 
-    public function marksentry(){
-        return $this->hasMany(Marksentry::class, 'session_id', 'id');
-    }
+    // public function marksentry(){
+    //     return $this->hasMany(Marksentry::class, 'session_id', 'id');
+    // }
 
 }
