@@ -40,7 +40,9 @@
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white dark:bg-gray-800 text-ellipsis " width="5%">{{ $notice->desc }}</th><th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white dark:bg-gray-800">{{ $notice->desc }}</th>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white dark:bg-gray-800 text-ellipsis" width="15%">{{ $notice->dop }} to {{ $notice->doe }}</th>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white dark:bg-gray-800">
-                        {{-- {{ $notice->fileaddr }}:{{ Storage::url($notice->fileaddr) }} --}}
+                        {{ $notice->fileaddr }}:<br/>
+                        {{ Storage::url($notice->fileaddr) }}:<br/>
+                        {{ asset('/storage/photos') }}
                         {{-- <img src="{{ asset($notice->fileaddr) }}" alt="Image Preview" class="max-w-xs mt-2 rounded h-10" height="50%"> --}}
                         <img src="{{ Storage::url($notice->fileaddr) }}" alt="Image Preview" class="max-w-xs mt-2 rounded h-10" height="50%">
                     </th>
@@ -81,7 +83,7 @@
                             <li>{{ $notice->title }}</li>
                         @endforeach
                     </ul> --}}
-                    {{ json_encode($notice_selected) }}
+                    {{-- {{ json_encode($notice_selected) }} --}}
                     <form wire:submit.prevent="submit" class="max-w-md mx-auto" enctype="multipart/form-data">
                         <div class="mb-4">
                             <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title:</label>

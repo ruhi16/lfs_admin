@@ -87,8 +87,8 @@
                                     class="btn btn-primary rounded-pill px-3 ">Log in
                                 </a>
                                 @if (Route::has('register'))
-                                    <a wire:navigate href="{{ route('register') }}"
-                                        class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                                    {{-- <a wire:navigate href="{{ route('register') }}"
+                                        class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a> --}}
                                 @endif                        
                             @endauth
                         </div>
@@ -149,52 +149,13 @@
         <!-- Carousel End -->
 
 
-
-         <!-- Notice Board Start -->
-         <div class="container-xxl py-5">
-            <div class="container">
-                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <h1 class="mb-3">School Notice Board</h1>
-                    <p>Please check our notice board, to get the latest updates.</p>
-                </div>
-                <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
-
-                    {{-- {{ json_encode($notices) }} --}}
-                    @foreach($notices as $notice)
-                    <div class="testimonial-item bg-light rounded p-5 space-y-2">
-                        <h3 class="mb-1">Admission Notice {{ $notice->id }}, </h3><span>Date of publication: {{ $notice->dop }} to {{ $notice->doe }}</span>
-                        <p class="fs-5">{{ $notice->desc }}</p>
-                        
-                        <p><a href="{{ Storage::url($notice->fileaddr) }}" class="fs-5" download>Download <i class="fa fa-download" aria-hidden="true"></i></a></p>
-                        
-                        <div class="d-flex align-items-between  bg-white me-n5" style="border-radius: 50px 0 0 50px;">                            
-                            <a href="" class="btn btn-primary rounded-pill py-3 px-5">Read More</a>
-                        </div>                        
-                    </div>
-                    @endforeach
-
-
-                    {{-- <div class="testimonial-item bg-light rounded p-5">
-                        <h3 class="mb-1">Notice 02, </h3><span>Date: 20th March, 2025</span>
-                        <p class="fs-5">Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
-                        <div class="d-flex align-items-between  bg-white me-n5" style="border-radius: 50px 0 0 50px;">                            
-                            <a href="" class="btn btn-primary rounded-pill py-3 px-5">Read More</a>
-                        </div>                        
-                    </div>
-
-                    <div class="testimonial-item bg-light rounded p-5">
-                        <h3 class="mb-1">Notice 03, </h3><span>Date: 20th April, 2025</span>
-                        <p class="fs-5">Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
-                        <p><a href="{{ url('notices/about-pdf.pdf') }}" class="fs-5" download>Download <i class="fa fa-download" aria-hidden="true"></i></a></p>
-                        <div class="d-flex align-items-between  bg-white me-n5" style="border-radius: 50px 0 0 50px;">                            
-                            <a href="" class="btn btn-primary rounded-pill py-3 px-5">Read More</a>
-                        </div>                        
-                    </div> --}}
-                    
-                </div>
-            </div>
-        </div>
+        
+        
+        <!-- Notice Board start -->
+        @livewire('gen-notice-view-component')
         <!-- Notice Board End -->
+
+
 
         {{-- <livewire: gen-notice-view-component /> --}}
 
@@ -335,6 +296,10 @@
                                 <p>
                                     Together, let us make this year one to remember, one that will be filled with laughter, learning, and limitless possibilities."
                                 </p>
+
+                                <p>With warm regards,</p><br/> 
+                                <p><b>Rudra Prasad Sarkar</b><br/> Principal, Little Flower School</p>
+                                
                                 <a class="btn btn-primary py-3 px-5" href="">Get Started Now<i class="fa fa-arrow-right ms-2"></i></a>
                             </div>
                         </div>
@@ -351,7 +316,7 @@
             <div class="container">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                     <h1 class="mb-3">School Classes</h1>
-                    <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+                    <p>Schools play a vital role in shaping the future of children by providing them with a structured environment for learning, growth, and development. Classes in school are carefully designed to cater to the unique needs of children at different stages of their development.</p>
                 </div>
                 <div class="row g-4">
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -365,7 +330,7 @@
                                     <div class="d-flex align-items-center">
                                         <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 45px; height: 45px;">
                                         <div class="ms-3">
-                                            <h6 class="text-primary mb-1">Jhon Doe</h6>
+                                            <h6 class="text-primary mb-1">My Teacher</h6>
                                             <small>Teacher</small>
                                         </div>
                                     </div>
@@ -405,7 +370,7 @@
                                     <div class="d-flex align-items-center">
                                         <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 45px; height: 45px;">
                                         <div class="ms-3">
-                                            <h6 class="text-primary mb-1">Jhon Doe</h6>
+                                            <h6 class="text-primary mb-1">My Teacher</h6>
                                             <small>Teacher</small>
                                         </div>
                                     </div>
@@ -445,7 +410,7 @@
                                     <div class="d-flex align-items-center">
                                         <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 45px; height: 45px;">
                                         <div class="ms-3">
-                                            <h6 class="text-primary mb-1">Jhon Doe</h6>
+                                            <h6 class="text-primary mb-1">My Teacher</h6>
                                             <small>Teacher</small>
                                         </div>
                                     </div>
@@ -485,7 +450,7 @@
                                     <div class="d-flex align-items-center">
                                         <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 45px; height: 45px;">
                                         <div class="ms-3">
-                                            <h6 class="text-primary mb-1">Jhon Doe</h6>
+                                            <h6 class="text-primary mb-1">My Teacher</h6>
                                             <small>Teacher</small>
                                         </div>
                                     </div>
@@ -525,7 +490,7 @@
                                     <div class="d-flex align-items-center">
                                         <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 45px; height: 45px;">
                                         <div class="ms-3">
-                                            <h6 class="text-primary mb-1">Jhon Doe</h6>
+                                            <h6 class="text-primary mb-1">My Teacher</h6>
                                             <small>Teacher</small>
                                         </div>
                                     </div>
@@ -565,7 +530,7 @@
                                     <div class="d-flex align-items-center">
                                         <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 45px; height: 45px;">
                                         <div class="ms-3">
-                                            <h6 class="text-primary mb-1">Jhon Doe</h6>
+                                            <h6 class="text-primary mb-1">My Teacher</h6>
                                             <small>Teacher</small>
                                         </div>
                                     </div>
@@ -664,8 +629,8 @@
             <div class="container">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                     <h1 class="mb-3">Popular Teachers</h1>
-                    <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit
-                        eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+                    <p>Engage students in role-playing activities to help them understand different perspectives.
+                        Simulate a situation where students must decide how to allocate limited resources fairly.</p>
                 </div>
                 <div class="row g-4">
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -720,8 +685,8 @@
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <h1 class="mb-3">Our Clients Say!</h1>
-                    <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+                    <h1 class="mb-3">Our Parents Say!</h1>
+                    <p>Ethics is knowing the difference between what you have a right to do and what is right to do." – Potter Stewart</p>
                 </div>
                 <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
                     <div class="testimonial-item bg-light rounded p-5">

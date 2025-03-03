@@ -6,6 +6,20 @@ use App\Http\Controllers\StudentdbController;
 use App\Http\Livewire\AdminStudentdbComponent;
 use App\Http\Livewire\AdminStudentdbEntryComponent;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\TeacherController;
@@ -27,6 +41,12 @@ use App\Http\Livewire\AdminSt;
 
 // use App\Http\Livewire\Admin;
 // use App\View\Components\AdminDashboard;
+
+
+Route::get('/link', function(){
+    Artisan::call('storage:link');
+    return 'Storage link created';
+});
 
 
 Route::controller(App\Http\Controllers\NoticeController::class)->group(
@@ -230,11 +250,11 @@ Route::get('/dashboard', function () {
 
 Route::get('/', function () {
     $uiscreendesigns = App\Models\UiScreenDesign::where('ui_screen_id', 1)->get();
-    $notices = App\Models\Notice::where('is_active', 1)->get();
+    // $notices = App\Models\Notice::where('is_active', 1)->get();
 
     return view('welcome',[
         'uiscreendesigns' => $uiscreendesigns,
-        'notices' => $notices
+        // 'notices' => $notices
     ]);
 });
 
