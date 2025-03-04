@@ -74,6 +74,16 @@ class AdminNoticeComponent extends Component
         }
     }
 
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName, $this->rules, [
+            'dop.before' => 'The Date of Publication must be before the Date of Expiration.',
+            'doe.after' => 'The Date of Expiration must be after the Date of Publication.',
+            'fileaddr.max' => 'The file size must be less than :max kilobytes. Actual file size: :actual kilobytes.',
+        ]);
+    }
+
     public function closeModal(){
         $this->modal_is_open = false;
         // $this->emit('closeModal');
@@ -98,7 +108,20 @@ class AdminNoticeComponent extends Component
             [
                 'dop.before' => 'The Date of Publication must be before the Date of Expiration.',
                 'doe.after' => 'The Date of Expiration must be after the Date of Publication.',
-            ]
+                'fileaddr.max' => 'The file size must be less than :max kilobytes. Actual file size: :actual kilobytes.',
+                // 'fileaddr.max' => function ($attribute, $value, $parameters) {
+                //     $fileSize = $value->getSize() / 1024 / 1024; // Convert bytes to MB
+                //     $maxSize = $parameters[0] / 1024; // Convert KB to MB
+                //     return "The file size is " . number_format($fileSize, 2) . " MB, but the maximum allowed size is " . $maxSize . " MB.";
+                // },//'The file size is :filesize MB, but the maximum allowed size is :max MB.',
+            ],
+            // [
+            //     'fileaddr' => [
+            //         'max' => [
+            //             'actual' => 'abcd', //$this->fileaddr ? round($this->fileaddr->getSize() / 1024, 2) : 0,
+            //         ],
+            //     ],
+            // ]
         )->validate();
 
         // Simulate saving the data (replace with your actual logic)
@@ -111,6 +134,15 @@ class AdminNoticeComponent extends Component
         if($this->fileaddr){
             $data->fileaddr = $this->fileaddr->store('public/photos'); // store the image
             
+            // $file = $this->fileaddr;
+            // $extension = $file->getClientOriginalExtension();
+            // $path = 'img/';
+            // $filename = 'hari-'.$this->notice_id.'.'.$extension;
+            // $file->store($path, $filename);
+
+
+            // $data->fileaddr = $path.$filename;
+
             // $fileUrl = Storage::disk('public')->download($data->fileaddr); // get the image url
             // $data->fileaddr = $fileUrl; // assign the image url to the data object
 
