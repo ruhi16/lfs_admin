@@ -91,7 +91,7 @@ class AdminNoticeComponent extends Component
         $this->refresh();
     }
 
-    public function submit()
+    public function saveNotice()
     {
         // dd($this->fileaddr);
 
@@ -195,7 +195,8 @@ class AdminNoticeComponent extends Component
         // $data->fileaddr = $fullPath;
         //example of displaying the data
         session()->flash('message', 'Data saved successfully!');
-        session()->flash('savedData', json_encode($saved_notice));
+        // session()->flash('savedData', json_encode($saved_notice));
+        session()->flash('savedData', $data->title);
 
         // Reset the form
         $this->fileaddr = null;

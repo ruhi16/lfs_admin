@@ -3,6 +3,7 @@
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\StudentdbController;
+use App\Http\Livewire\AdminFacilityUpdateComponent;
 use App\Http\Livewire\AdminStudentdbComponent;
 use App\Http\Livewire\AdminStudentdbEntryComponent;
 use Illuminate\Support\Facades\Route;
@@ -45,7 +46,7 @@ use App\Http\Livewire\AdminSt;
 
 Route::get('/link', function(){
     Artisan::call('storage:link');
-    return 'Storage link created';
+    return '<h1>Storage link created</h1>';
 });
 
 
@@ -83,6 +84,8 @@ Route::group(
 
         Route::get ('welcomescreens/notices-view', AdminNoticeComponent::class)->name('ws.notices-view');
         Route::get('studentdb/admission', AdminStudentdbEntryComponent::class)->name('admin.studentdb_admission');
+        Route::get('welcomescreens/facility-crud', AdminFacilityUpdateComponent::class)->name('admin.facility-crud');
+
 
         Route::controller(App\Http\Controllers\UIWelcomeScreenController::class)->group(
             function () {

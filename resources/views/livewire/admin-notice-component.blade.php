@@ -1,16 +1,15 @@
 <div class="max-w-7xl spacey mx-auto sm:px-6 lg:px-8 flex flex-col bg-slate-500">
+    
     @if (session()->has('message'))
-    <div class="p-4 mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
-        <strong class="font-bold">Success!</strong>
-        <span class="block sm:inline">{{ session('message') }}</span>
-        @if(session()->has('savedData'))
-            <pre class="mt-2 p-2 bg-gray-100 rounded">{{session('savedData')}}</pre>
-        @endif
-    </div>
+        <div class="p-4 mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
+            <strong class="font-bold">Success!</strong>
+            <span class="block sm:inline">{{ session('message') }}</span>
+            @if(session()->has('savedData'))
+                <pre class="mt-2 p-2 bg-gray-100 rounded">{{session('savedData')}}</pre>
+            @endif
+        </div>
     @endif
-    {{-- <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
-        <span class="font-medium">Success alert!</span> Change a few things up and try submitting again.
-      </div> --}}
+    
 
 
     <div class="max-w-6xl spacey mx-auto sm:px-6 lg:px-8 ">
@@ -95,9 +94,9 @@
 
                 <div class="flex justify-between items-center">
                     <h2 class="text-2xl font-semibold">Notice Details</h2>
-                    <button class="text-gray-600" onclick="closeModal()">&times;</button>
+                    <button wire:click="closeModal" class="text-gray-600" onclick="closeModal()">&times;</button>
                 </div>
-                <form wire:submit.prevent="submit" class="max-w-md mx-auto" enctype="multipart/form-data">
+                <form wire:submit.prevent="saveNotice" class="max-lg mx-auto" enctype="multipart/form-data">
                 
                     <div class="mt-4">
                     <!-- Modal content goes here -->
@@ -108,7 +107,7 @@
                         @endforeach
                     </ul> --}}
                     {{-- {{ json_encode($notice_selected) }} --}}
-                    {{-- <form wire:submit.prevent="submit" class="max-w-md mx-auto" enctype="multipart/form-data"> --}}
+                    
                         <div class="mb-4">
                             <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title:</label>
                             <input type="text" wire:model="title" id="title"
@@ -177,8 +176,8 @@
 
 
                     <div class="mt-4 flex justify-end">
-                        <button wire:click="closeModal" class="bg-gray-500 text-white px-4 py-2 rounded mr-2" onclick="closeModal()">Close</button>
-                        <button wire:click="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
+                        <button wire:click="closeModal" class="bg-gray-500 text-white px-4 py-2 rounded mr-2">Close</button>
+                        <button wire:click="saveNotice" class="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
                         {{-- <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Submit</button> --}}
                     </div>
 

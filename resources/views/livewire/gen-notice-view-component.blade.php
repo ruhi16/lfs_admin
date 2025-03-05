@@ -13,7 +13,8 @@
                     <div class="testimonial-item bg-light rounded p-5 space-y-2">
                         <h3 class="mb-1">Admission Notice {{ $notice->id }}, </h3><span>Date of publication: {{ $notice->dop }} to {{ $notice->doe }}</span>
                         <p class="fs-5">{{ $notice->desc }}</p>
-                        {{ Storage::url($notice->fileaddr) }}
+                        {{-- {{ Storage::url($notice->fileaddr) }}<br/> --}}
+                        {{-- {{ storage_path('app/public/' . $notice->fileaddr) }}<br/> --}}
                         <img src="{{ Storage::url($notice->fileaddr) }}" alt="Image" class="img-fluid rounded w-100">
                         
                         <p><a href="{{ Storage::url($notice->fileaddr) }}" class="fs-5" download>Download <i class="fa fa-download" aria-hidden="true"></i></a></p>
