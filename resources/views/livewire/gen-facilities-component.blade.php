@@ -1,23 +1,28 @@
 <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <h1 class="mb-3">School Facilities Component</h1>
-                    <p>We understand that every child is unique. Our dedicated staff is committed to providing personalized support to ensure  full potential. </p>
+                    {{-- <h1 class="mb-3">School Facilities </h1> --}}
+                    <h1 class="mb-3">{{ $section->title ?? 'School Facilities' }}</h1>
+                    <p>{{ $section->description ?? '' }}</p>
                 </div>
                 <div class="row g-4">
+                    @foreach($section_entities as $section_entity)
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="facility-item">
-                            <div class="facility-icon bg-primary">
-                                <span class="bg-primary"></span>
-                                <i class="fa fa-bus-alt fa-3x text-primary"></i>
-                                <span class="bg-primary"></span>
+                            <div class="facility-icon bg-{{$section_entity->img_ref_2 ?? ''}}">
+                                <span class="bg-{{$section_entity->img_ref_2 ?? ''}}"></span>
+                                <i class="{{ $section_entity->img_ref_1 ?? ''}} text-{{$section_entity->img_ref_2 ?? ''}}"></i>
+                                <span class="bg-{{$section_entity->img_ref_2 ?? ''}}"></span>
                             </div>
-                            <div class="facility-text bg-primary">
-                                <h3 class="text-primary mb-3">School Bus</h3>
-                                <p class="mb-0">Ensure safe and supportive transportation for all students</p>
+                            <div class="facility-text bg-{{$section_entity->img_ref_2 ?? ''}}">
+                                <h3 class="text-{{$section_entity->img_ref_2 ?? ''}} mb-3">{{ $section_entity->title ?? '' }}</h3>
+                                {{-- <p class="mb-0">Ensure safe and supportive transportation for all students</p> --}}
+                                <p class="mb-0">{{ $section_entity->details ?? '' }}</p>
                             </div>
                         </div>
                     </div>
+                    @endforeach
+                    {{--
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="facility-item">
                             <div class="facility-icon bg-success">
@@ -57,6 +62,7 @@
                             </div>
                         </div>
                     </div>
+                --}}
                 </div>
             </div>
         </div>

@@ -42,28 +42,31 @@ class AdminNoticeComponent extends Component
         'fileaddr' => 'nullable|image|max:2048', //|mimes:jpeg,png,jpg,gif,svg|max:2048',
         'is_active' => 'required|boolean',
     ];
-    
 
-    public function mount(){
+
+    public function mount()
+    {
         $this->refresh();
         $this->notice_id = -555;
-        
+
     }
 
-    public function refresh(){
+    public function refresh()
+    {
         $this->notices = Notice::orderBy('id', 'desc')->get();
         $this->modal_is_open = false;
         $this->notice_selected = null;
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $this->notice_id = $id;
         $this->modal_is_open = true;
         // $this->emit('openModal');
-        if($id <= 0){
+        if ($id <= 0) {
             $this->myreset();
             return;
-        }else{
+        } else {
             $this->notice_selected = Notice::find($id);
             $this->title = $this->notice_selected->title;
             $this->desc = $this->notice_selected->desc;
@@ -84,10 +87,11 @@ class AdminNoticeComponent extends Component
         ]);
     }
 
-    public function closeModal(){
+    public function closeModal()
+    {
         $this->modal_is_open = false;
         // $this->emit('closeModal');
-        
+
         $this->refresh();
     }
 
@@ -130,10 +134,10 @@ class AdminNoticeComponent extends Component
         $data->updated_at = now();
         // $data->id = rand(1,1000);
 
-                
-        if($this->fileaddr){
+
+        if ($this->fileaddr) {
             $data->fileaddr = $this->fileaddr->store('public/photos'); // store the image
-            
+
             // $file = $this->fileaddr;
             // $extension = $file->getClientOriginalExtension();
             // $path = 'img/';
@@ -154,41 +158,41 @@ class AdminNoticeComponent extends Component
             // $data->fileaddr = asset('storage/' . $filePath);
             // $data->fileaddr = $this->fileaddr->store('photos', 'public');
             // $data->fileaddr = asset('storage/' . $filePath);
-            
+
             // dd($data->fileaddr);
             // $filePath = $this->fileaddr->store('photos', 'public');
             // $data->fileaddr = asset('storage/' . $filePath); 
-            
-        $saved_notice = Notice::updateOrCreate([
-            'id' => $this->notice_id,
-        ],[
-            'title' => $data->title,
-            'desc' => $data->desc,
-            'dop' => $data->dop,
-            'doe' => $data->doe,
-            'fileaddr' => $data->fileaddr,
-            'is_active' => $data->is_active,
-        ]);
-       }else{
-        
-        $saved_notice = Notice::updateOrCreate([
-            'id' => $this->notice_id,
-        ],[
-            'title' => $data->title,
-            'desc' => $data->desc,
-            'dop' => $data->dop,
-            'doe' => $data->doe,
-            // 'fileaddr' => $data->fileaddr,
-            'is_active' => $data->is_active,
-        ]);
-        
-       }
+
+            $saved_notice = Notice::updateOrCreate([
+                'id' => $this->notice_id,
+            ], [
+                'title' => $data->title,
+                'desc' => $data->desc,
+                'dop' => $data->dop,
+                'doe' => $data->doe,
+                'fileaddr' => $data->fileaddr,
+                'is_active' => $data->is_active,
+            ]);
+        } else {
+
+            $saved_notice = Notice::updateOrCreate([
+                'id' => $this->notice_id,
+            ], [
+                'title' => $data->title,
+                'desc' => $data->desc,
+                'dop' => $data->dop,
+                'doe' => $data->doe,
+                // 'fileaddr' => $data->fileaddr,
+                'is_active' => $data->is_active,
+            ]);
+
+        }
 
 
 
 
 
-       
+
 
         // $filePath = 'photos/4Y8s0gU9s2axjjmWOQ3ZvBobguLCMPxViX5c9DcB.png';
         // $fullPath = Storage::disk('public')->path($filePath);
@@ -207,7 +211,8 @@ class AdminNoticeComponent extends Component
         $this->refresh();
     }
 
-    public function myreset(){
+    public function myreset()
+    {
         $this->fileaddr = null; // or $this->fileaddr = '';
         $this->title = '';
         $this->desc = '';

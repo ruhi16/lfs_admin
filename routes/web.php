@@ -4,6 +4,7 @@ use App\Http\Controllers\ExamController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\StudentdbController;
 use App\Http\Livewire\AdminFacilityUpdateComponent;
+use App\Http\Livewire\AdminPrincipalUpdateComponent;
 use App\Http\Livewire\AdminStudentdbComponent;
 use App\Http\Livewire\AdminStudentdbEntryComponent;
 use Illuminate\Support\Facades\Route;
@@ -85,6 +86,7 @@ Route::group(
         Route::get ('welcomescreens/notices-view', AdminNoticeComponent::class)->name('ws.notices-view');
         Route::get('studentdb/admission', AdminStudentdbEntryComponent::class)->name('admin.studentdb_admission');
         Route::get('welcomescreens/facility-crud', AdminFacilityUpdateComponent::class)->name('admin.facility-crud');
+        Route::get('welcomescreens/principal-crud', AdminPrincipalUpdateComponent::class)->name('admin.principal-crud');
 
 
         Route::controller(App\Http\Controllers\UIWelcomeScreenController::class)->group(

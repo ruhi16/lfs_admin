@@ -49,6 +49,14 @@
                 </td>
             </tr>
             <tr>
+                <td class="px-6 py-4 dark:text-white">3</td>
+                <td class="px-6 py-4 dark:text-white">Welcome Screen</td>
+                <td class="px-6 py-4 dark:text-white">Principal Speach</td>
+                <td class="px-6 py-4 dark:text-white">
+                    <a href="{{ route('admin.principal-crud') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Goto</a>
+                </td>
+            </tr>
+            <tr>
                 <td class="px-6 py-4 dark:text-white">4</td>
                 <td class="px-6 py-4 dark:text-white">Welcome Screen</td>
                 <td class="px-6 py-4 dark:text-white">Admission</td>
