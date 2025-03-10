@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\ExamController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\StudentdbController;
 use App\Http\Livewire\AdminFacilityUpdateComponent;
 use App\Http\Livewire\AdminPrincipalUpdateComponent;
+use App\Http\Livewire\AdminStudentCurrentComponent;
 use App\Http\Livewire\AdminStudentdbComponent;
 use App\Http\Livewire\AdminStudentdbEntryComponent;
 use Illuminate\Support\Facades\Route;
@@ -50,6 +52,10 @@ Route::get('/link', function(){
     return '<h1>Storage link created</h1>';
 });
 
+Route::get('/idcard', function(){
+    return view('idcard');
+})->name('idcard');
+
 
 Route::controller(App\Http\Controllers\NoticeController::class)->group(
     function () {
@@ -80,6 +86,20 @@ Route::group(
 Route::group(
     ['prefix' => 'admin', 'middleware' => ['web', 'isAdmin']],
     function () {
+
+        Route::get('/mydashboard', About::class)->name('admin.mydashboard');
+
+        // Route::get('/facilities', [AdminController::class, 'facilities'])->name('admin.facilities');
+        // Route::get('/principal', [AdminController::class, 'principal'])->name('admin.principal');
+        // Route::get('/notices', [AdminController::class, 'notices'])->name('admin.notices');
+//     Route::get('/admin/classes', [AdminController::class, 'classes'])->name('admin.classes');
+//     Route::get('/admin/appointments', [AdminController::class, 'appointments'])->name('admin.appointments');
+//     Route::get('/admin/team', [AdminController::class, 'team'])->name('admin.team');
+//     Route::get('/admin/comments', [AdminController::class, 'comments'])->name('admin.comments');
+//     Route::get('/admin/contact', [AdminController::class, 'contact'])->name('admin.contact');
+//     Route::get('/admin/gallery', [AdminController::class, 'gallery'])->name('admin.gallery');
+//     Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
+
         Route::get('/dashboard', [ App\Http\Controllers\AdminController::class, 'dashboard'])
             ->name('adminDash');
 
@@ -87,6 +107,9 @@ Route::group(
         Route::get('studentdb/admission', AdminStudentdbEntryComponent::class)->name('admin.studentdb_admission');
         Route::get('welcomescreens/facility-crud', AdminFacilityUpdateComponent::class)->name('admin.facility-crud');
         Route::get('welcomescreens/principal-crud', AdminPrincipalUpdateComponent::class)->name('admin.principal-crud');
+
+
+        Route::get('studentcr/details', AdminStudentCurrentComponent::class)->name('admin.studentcr-details');
 
 
         Route::controller(App\Http\Controllers\UIWelcomeScreenController::class)->group(
@@ -109,51 +132,12 @@ Route::group(
             }
         );
 
-        // Route::get('/admission/{myclassSection_id}', [App\Http\Controllers\AdminController::class, 'admission'])->name('admission');
-        // Route::get('/dashboard', AdminDashboard::class)
-        //     ->name('adminDash');
-
-        // --------------------- Admin Dashboard Management ---------------------------------------------
-        // Route::get('/userpreviledgemanagement', AdminUserPreviledgeControlComponent::class)
-        //     ->name('admin.profilemanagement');
-
-        // Route::get('/myclasssectionmanagement', AdminMyclassSectionComponent::class)
-        //     ->name('admin.myclasssectionmanagement');
-        
-        // Route::get('/myclasssectionwiseanswerscriptmanagement', AdminMyclassAnserScriptDistributionBaseComponent::class)
-        //     ->name('admin.myclasssectionwiseanswerscriptmanagement');
-
-        // Route::get('teacherwisemarksentrylink', AdminTeacherWiseMarksEntryLinksComponent::class)
-        //     ->name('admin.teacherwisemarksentrylink');
-
-        // --------------------- Admin Dashboard Management -------------------------------------------
-        
-
-        // Route::get('/admission/{myclassSection_id}', AdminAdmissionComponent::class)
-        //     ->name('admin.admission');
-        
-        // Route::get('/ansscrdistribution/{myclassSection_id}', AdminAnsscrDistributionComponent::class)
-        //     ->name('admin.ansscrdistribution');
-        
-        // Route::get('/ansscrdistributionclasswise/{myclass_id}/{exam_id}', AdminAnsscrDistributioncwComponent::class)
-        //     ->name('admin.ansscrdistributioncw');
-
-        
-        // Route::get('/marksentryclasswise/{myclassSection_id}', SubadminMarksEntryComponent::class)
-        //     ->name('admin.marksentry');
-
-        // Route::get('/marksentryentityclasswise/{myclassSection_id}/{myclassSubject_id}/{examdetail_id}', SubadminMarksEntryEntityComponent::class)
-        //     ->name('admin.marksentryentity');
-
-        // Route::get('/uiscreendesigns', [App\Http\Controllers\UIWelcomeScreenController::class, 'index'])
-        //     ->name('admin.uiscreendesigns');
             
         Route::get('/home', Home::class)->name('home');
         Route::get('/contact', Contact::class)->name('contact');
         Route::get('/about', About::class)->name('about');
 
-        // Route::get('/changePassword', UserChangePasswordComponent::class)
-        //     ->name('subadmin.changePassword');
+        
 
     }
 );

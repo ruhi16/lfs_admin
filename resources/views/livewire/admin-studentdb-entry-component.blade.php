@@ -2,7 +2,18 @@
     A good traveler has no fixed plans and is not intent upon arriving.
 </div> --}}
 <div class="container mx-auto p-4">
-    <h1 class="text-2xl font-bold mb-4">Student Data Entry Form</h1>
+    @if(session()->has('message'))
+        <div class="p-4 mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
+            <strong class="font-bold">Success!!! </strong>
+            <span class="block sm:inline">{{ session('message') }}</span>
+        </div>
+    @elseif(session()->has('error'))
+        <div class="p-4 mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+            <strong class="font-bold">Error!!! </strong>
+            <span class="block sm:inline">{{ session('error') }}</span>
+        </div>
+    @endif
+    <h1 class="text-2xl font-bold mb-4">Student Admission & Data Entry Form</h1>
 
     <!-- Progress Bar -->
     <div class="mb-8">
@@ -33,7 +44,9 @@
                                 <label for="studentdb_id" class="block text-gray-700">StudentDB Id:</label>
                                 <input disabled type="text" wire:model="studentdb_id" id="studentdb_id" class="w-full px-4 py-2 border rounded-lg">
                                 @error('studentdb_id') <span class="text-red-500">{{ $message }}</span> @enderror
+                                {{ $studentdb_id }}
                             </div>
+
                             <div class="mb-4 w-1/2">
                                 <label for="student_uuid" class="block text-gray-700">UUID:</label>
                                 <input disabled type="text" wire:model="student_uuid" id="student_uuid" class="w-full px-4 py-2 border rounded-lg">
@@ -42,24 +55,26 @@
                         </div>
                         
                     </div>
+
                     <div class="w-1/3 text-left">
                         <div class="flex justify-between gap-2">
                             <div class="mb-4 w-1/2">
                                 <label for="adm_book_no" class="block text-gray-700">Adm Book No:</label>
                                 <select wire:model="adm_book_no" id="adm_book_no" class="w-full px-4 py-2 border rounded-lg">                                
                                     <option value="">Select One</option>
-                                    <option value="book1">Book 1 </option>
-                                    <option value="book2">Book 2</option>
-                                    <option value="book3">Book 3</option>                                    
-                                    <option value="Other">Other</option>
-                                </select>
-                                {{-- <input type="text" wire:model="adm_book_no" id="adm_book_no" class="w-full px-4 py-2 border rounded-lg"> --}}
+                                    <option value="1">Book 1 </option>
+                                    <option value="2">Book 2</option>
+                                    <option value="3">Book 3</option>                                    
+                                    <option value="-5">Other</option>
+                                </select>                                
                                 @error('adm_book_no') <span class="text-red-500">{{ $message }}</span> @enderror
+                                {{ $adm_book_no }}
                             </div>
                             <div class="mb-4 w-1/2">
                                 <label for="adm_book_slno" class="block text-gray-700">Adm Book Sl No:</label>
                                 <input type="text" wire:model="adm_book_slno" id="adm_book_slno" class="w-full px-4 py-2 border rounded-lg">
                                 @error('adm_book_slno') <span class="text-red-500">{{ $message }}</span> @enderror
+                                {{ $adm_book_slno }}
                             </div>
                         </div>
                         
@@ -70,30 +85,24 @@
                                 <label for="adm_class" class="block text-gray-700">Adm Class:</label>
                                 <select wire:model="adm_class" id="adm_class" class="w-full px-4 py-2 border rounded-lg">                                
                                     <option value="">Select One</option>
-                                    <option value="babyland">Baby Land</option>
-                                    <option value="lkg">LKG</option>
-                                    <option value="ukg">UKG</option>
-                                    <option value="class1">Class 1</option>
-                                    <option value="class2">Class 2</option>
-                                    <option value="class3">Class 3</option>
-                                    <option value="class4">Class 4</option>
-                                    <option value="class5">Class 5</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                                {{-- <input type="text" wire:model="adm_class" id="adm_class" class="w-full px-4 py-2 border rounded-lg"> --}}
+                                    @foreach($curr_classes as $curr_class)
+                                        <option value="{{ $curr_class->id }}">{{ $curr_class->name }}</option>
+                                    @endforeach                                    
+                                </select>                                
                                 @error('adm_class') <span class="text-red-500">{{ $message }}</span> @enderror
+                                {{ $adm_class }}
                             </div>
                             <div class="mb-4 w-1/2">
                                 <label for="adm_section" class="block text-gray-700">Adm Section:</label>
                                 <select wire:model="adm_section" id="adm_section" class="w-full px-4 py-2 border rounded-lg">                                
                                     <option value="">Select One</option>
-                                    <option value="AB+">Section A</option>
-                                    <option value="AB+">Section B</option>
-                                    <option value="AB+">Section C</option>                                    
-                                    <option value="Other">Other</option>
+                                    @foreach($curr_myclass_sections->where('myclass_id', $adm_class) as $curr_myclass_section)
+                                        <option value="{{ $curr_myclass_section->section->id }}">{{ $curr_myclass_section->section->name }}</option>
+                                    @endforeach                                    
                                 </select>
                                 {{-- <input type="text" wire:model="adm_section" id="adm_section" class="w-full px-4 py-2 border rounded-lg"> --}}
                                 @error('adm_section') <span class="text-red-500">{{ $message }}</span> @enderror
+                                {{ $adm_section }}
                             </div>
                         </div>
 
@@ -109,6 +118,7 @@
                         <label for="student_name" class="block text-gray-700">Student Name:</label>
                         <input type="text" wire:model="student_name" id="student_name" class="w-full px-4 py-2 border rounded-lg">
                         @error('student_name') <span class="text-red-500">{{ $message }}</span> @enderror
+                        {{ $student_name }}
                     </div>                                            
                 </div>
 
@@ -123,12 +133,14 @@
                                 <option value="others">Others</option>
                             </select>
                             @error('student_gender') <span class="text-red-500">{{ $message }}</span> @enderror
+                            {{ $student_gender }}
                         </div>
 
                         <div class="mb-4 w-1/2">
                             <label for="student_dob" class="block text-gray-700">Date of Birth:</label>
                             <input type="date" wire:model="student_dob" id="student_dob" class="w-full px-4 py-2 border rounded-lg">
                             @error('student_dob') <span class="text-red-500">{{ $message }}</span> @enderror
+                            {{ $student_dob }}
                         </div>
                         
                     </div>
@@ -140,6 +152,7 @@
                             <label for="student_aadhar" class="block text-gray-700">Aadhar No:</label>
                             <input type="text" wire:model="student_aadhar" id="student_aadhar" class="w-full px-4 py-2 border rounded-lg">
                             @error('student_aadhar') <span class="text-red-500">{{ $message }}</span> @enderror
+                            {{ $student_aadhar }}
                         </div>
                         <div class="mb-4 w-1/2">
                             <label for="student_blood_grp" class="block text-gray-700">Blood Group::</label>
@@ -155,6 +168,7 @@
                             </select>
                             {{-- <input type="text" wire:model="student_blood_grp" id="student_blood_grp" class="w-full px-4 py-2 border rounded-lg"> --}}
                             @error('student_blood_grp') <span class="text-red-500">{{ $message }}</span> @enderror
+                            {{ $student_blood_grp }}
                         </div>
                     </div>
 
@@ -180,6 +194,7 @@
                                 </select>
                                 {{-- <input type="text" wire:model="student_religion" id="student_religion" class="w-full px-4 py-2 border rounded-lg"> --}}
                                 @error('student_religion') <span class="text-red-500">{{ $message }}</span> @enderror
+                                {{ $student_religion }}
                             </div>
                             <div class="mb-4 w-1/2">
                                 <label for="student_caste" class="block text-gray-700">Caste:</label>
@@ -195,6 +210,7 @@
                                 </select>
                                 {{-- <input type="text" wire:model="student_caste" id="student_caste" class="w-full px-4 py-2 border rounded-lg"> --}}
                                 @error('student_caste') <span class="text-red-500">{{ $message }}</span> @enderror
+                                {{ $student_caste }}
                             </div>
                         </div>
 
@@ -204,13 +220,15 @@
                         <div class="flex justify-between gap-2">
                             <div class="mb-4">
                                 <label for="adm_book_no" class="block text-gray-700">Option 1:</label>
-                                <input disabled type="text" wire:model="adm_no" id="adm" class="w-full px-4 py-2 border rounded-lg">
-                                @error('adm_book_no') <span class="text-red-500">{{ $message }}</span> @enderror
+                                <input disabled type="text" id="adm" class="w-full px-4 py-2 border rounded-lg">
+                                {{-- @error('adm_book_no') <span class="text-red-500">{{ $message }}</span> @enderror --}}
+
                             </div>
                             <div class="mb-4">
                                 <label for="adm_book_slno" class="block text-gray-700">Option 2:</label>
-                                <input disabled type="text" wire:model="adm_bono" id="adm" class="w-full px-4 py-2 border rounded-lg">
-                                @error('adm_book_slno') <span class="text-red-500">{{ $message }}</span> @enderror
+                                <input disabled type="text"  id="adm" class="w-full px-4 py-2 border rounded-lg">
+                                {{-- @error('adm_book_slno') <span class="text-red-500">{{ $message }}</span> @enderror --}}
+
                             </div>
                         </div>
 
@@ -220,13 +238,15 @@
                         <div class="flex justify-between gap-2">
                             <div class="mb-4">
                                 <label for="adm_class" class="block text-gray-700">Option 3:</label>
-                                <input disabled type="text" wire:model="adm_cl" id="adm" class="w-full px-4 py-2 border rounded-lg">
-                                @error('adm_class') <span class="text-red-500">{{ $message }}</span> @enderror
+                                <input disabled type="text"  id="adm" class="w-full px-4 py-2 border rounded-lg">
+                                {{-- @error('adm_class') <span class="text-red-500">{{ $message }}</span> @enderror --}}
+
                             </div>
                             <div class="mb-4">
                                 <label for="adm_section" class="block text-gray-700">Option 4:</label>
-                                <input disabled type="text" wire:model="adm_ion" id="adm" class="w-full px-4 py-2 border rounded-lg">
-                                @error('adm_section') <span class="text-red-500">{{ $message }}</span> @enderror
+                                <input disabled type="text"  id="adm" class="w-full px-4 py-2 border rounded-lg">
+                                {{-- @error('adm_section') <span class="text-red-500">{{ $message }}</span> @enderror --}}
+
                             </div>
                         </div>
 
@@ -250,11 +270,13 @@
                                 <label for="father_name" class="block text-gray-700">Father Name:</label>
                                 <input type="text" wire:model="father_name" id="father_name" class="w-full px-4 py-2 border rounded-lg">
                                 @error('father_name') <span class="text-red-500">{{ $message }}</span> @enderror
+                                {{ $father_name }}
                             </div> 
                             <div class="mb-4 w-1/3">
                                 <label for="father_aadhar" class="block text-gray-700">Father Aadhar:</label>
                                 <input type="text" wire:model="father_aadhar" id="father_aadhar" class="w-full px-4 py-2 border rounded-lg">
                                 @error('father_aadhar') <span class="text-red-500">{{ $message }}</span> @enderror
+                                {{ $father_aadhar }}
                             </div>
                         </div>                        
                     </div>
@@ -421,11 +443,11 @@
 
     </form>
 
-    <!-- Success Message -->
+    {{-- <!-- Success Message -->
     @if (session()->has('message'))
         <div class="mt-4 p-4 bg-green-100 text-green-700 rounded-lg">
             {{ session('message') }}
         </div>
-    @endif
+    @endif --}}
 
 </div>

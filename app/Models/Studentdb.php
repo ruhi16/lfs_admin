@@ -18,7 +18,13 @@ class Studentdb extends Model
 
 
     public function myclass(){
-        return $this->belongsTo(Myclass::class, 'myclass_id', 'id');
+        return $this->belongsTo(Myclass::class, 'stclass_id', 'id');
+        // 'myclass_id' is the foreign key in the 'studentdbs' tablet
+        // 'id' is the primary key in the 'myclasses' table
+    }
+
+    public function sections(){
+        return $this->belongsTo(Section::class, 'stsection_id', 'id');
         // 'myclass_id' is the foreign key in the 'studentdbs' tablet
         // 'id' is the primary key in the 'myclasses' table
     }

@@ -136,7 +136,7 @@ class AdminNoticeComponent extends Component
 
 
         if ($this->fileaddr) {
-            $data->fileaddr = $this->fileaddr->store('public/photos'); // store the image
+            $data->fileaddr = $this->fileaddr->store(); // store the image
 
             // $file = $this->fileaddr;
             // $extension = $file->getClientOriginalExtension();

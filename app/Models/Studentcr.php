@@ -23,5 +23,11 @@ class Studentcr extends Model
         // 'id' is the primary key in the 'myclasses' table
     }
 
+    public function section() {
+        return $this->belongsTo(Section::class, 'section_id', 'id');
+        // 'section_id' is the foreign key in the 'studentcrs' tablet
+        // 'id' is the primary key in the 'sections' table
+    }
+
 
 }

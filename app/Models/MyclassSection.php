@@ -9,6 +9,7 @@ class MyclassSection extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    protected $table = 'myclasssections';
 
 
     public function section(){
