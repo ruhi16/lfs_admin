@@ -22,6 +22,12 @@
             <img src="{{ Storage::url($imageUrl) }}" alt="Uploaded Image" class="img-fluid">
         </div>
     @endif
+    @if ($principal_desk->img_ref_1)
+        <div class="mt-4">
+            <h4>Uploaded Image:{{ Storage::url($principal_desk->img_ref_1) }}</h4>
+            <img src="{{ Storage::url($principal_desk->img_ref_1) }}" alt="Uploaded Image" class="img-fluid">
+        </div>
+    @endif
         
     <div class="max-w-8xl spacey  sm:px-6 lg:px-8 ">
         <div class="relative overflow-x-auto">
@@ -60,7 +66,8 @@
                             <td class="px-6 py-3">
                                 <div class="flex flex-row space-x-4">
                                     <div class="w-1/2">
-                                        <input type="text" wire:model="name" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Principal name"  />
+                                        {{$name}}
+                                        <input type="text" wire:model="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Principal name"  />
                                         @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
                                     </div>
                                     <div class="w-1/2">

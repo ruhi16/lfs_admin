@@ -17,6 +17,8 @@ class AdminPrincipalUpdateComponent extends Component
     public $title, $subTitle, $description;
     public $name, $desig,  $imageRef;
     
+    public $principal_desk;
+
     public $imageUrl; // Property to store the image URL after upload
 
     // Validation rules
@@ -33,6 +35,17 @@ class AdminPrincipalUpdateComponent extends Component
 
 
     public function mount(){
+        $this->principal_desk = UiScreenDesign::where('ui_screen_id', 1)
+            ->where('ui_section_id', 5)
+            ->where('ui_entity_id', 1)
+            ->first();
+
+        $this->title = $this->principal_desk->title;
+        $this->subTitle = $this->principal_desk->sub_title;
+        $this->description = $this->principal_desk->details;
+        $this->name = $this->principal_desk->by_whom;
+        $this->desig = $this->principal_desk->by_whom_desig;
+        $this->imageUrl = $this->principal_desk->img_ref_1;
 
     }
 
@@ -44,8 +57,8 @@ class AdminPrincipalUpdateComponent extends Component
         $this->validate($this->rules);
         // $this->imageRef = request('image');
         try{
-            $this->name = "abcd.jpg";
-            $this->imageUrl = $this->imageRef->storeAs('images', $this->name,'public');
+            $image_name = "abcd.jpg";
+            $this->imageUrl = $this->imageRef->storeAs('images', $image_name,'public');
         
             // $this->reset('imageRef', $this->imageUrl);
             UiScreenDesign::updateOrCreate([
@@ -53,12 +66,14 @@ class AdminPrincipalUpdateComponent extends Component
                 'ui_section_id' => 5,
                 'ui_entity_id' => 1,
             ] , [
+                'name' => 'Welcome Screen Design',
                 'title' => $this->title,
                 'sub_title'=> $this->subTitle,
                 'details' => $this->description,
-                'by_whom'=> $this->name,
+                'by_whom'=> $this->name ,
                 'by_whom_desig'=> $this->desig,
-                'img_ref_1' => $this->imageUrl  
+                $this->imageUrl ?:
+                'img_ref_1' => $this->imageUrl, 
             ]);
 
 
