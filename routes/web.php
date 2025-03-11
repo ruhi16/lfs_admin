@@ -12,18 +12,18 @@ use App\Http\Livewire\AdminStudentdbEntryComponent;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Response;
+// use Illuminate\Support\Facades\File;
+// use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\Schema;
+// use Illuminate\Support\Facades\Hash;
+// use Illuminate\Support\Facades\Http;
+// use Illuminate\Support\Facades\Log;
+// use Illuminate\Support\Facades\Mail;
+// use Illuminate\Support\Facades\Session;
+// use Illuminate\Support\Facades\URL;
+// use Illuminate\Support\Facades\View;
+// use Illuminate\Support\Facades\Request;
+// use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\TeacherController;
@@ -92,18 +92,18 @@ Route::group(
         // Route::get('/facilities', [AdminController::class, 'facilities'])->name('admin.facilities');
         // Route::get('/principal', [AdminController::class, 'principal'])->name('admin.principal');
         // Route::get('/notices', [AdminController::class, 'notices'])->name('admin.notices');
-//     Route::get('/admin/classes', [AdminController::class, 'classes'])->name('admin.classes');
-//     Route::get('/admin/appointments', [AdminController::class, 'appointments'])->name('admin.appointments');
-//     Route::get('/admin/team', [AdminController::class, 'team'])->name('admin.team');
-//     Route::get('/admin/comments', [AdminController::class, 'comments'])->name('admin.comments');
-//     Route::get('/admin/contact', [AdminController::class, 'contact'])->name('admin.contact');
-//     Route::get('/admin/gallery', [AdminController::class, 'gallery'])->name('admin.gallery');
-//     Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
+    //     Route::get('/admin/classes', [AdminController::class, 'classes'])->name('admin.classes');
+    //     Route::get('/admin/appointments', [AdminController::class, 'appointments'])->name('admin.appointments');
+    //     Route::get('/admin/team', [AdminController::class, 'team'])->name('admin.team');
+    //     Route::get('/admin/comments', [AdminController::class, 'comments'])->name('admin.comments');
+    //     Route::get('/admin/contact', [AdminController::class, 'contact'])->name('admin.contact');
+    //     Route::get('/admin/gallery', [AdminController::class, 'gallery'])->name('admin.gallery');
+    //     Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
 
         Route::get('/dashboard', [ App\Http\Controllers\AdminController::class, 'dashboard'])
             ->name('adminDash');
 
-        Route::get ('welcomescreens/notices-view', AdminNoticeComponent::class)->name('ws.notices-view');
+        Route::get('welcomescreens/notices-view', AdminNoticeComponent::class)->name('ws.notices-view');
         Route::get('studentdb/admission', AdminStudentdbEntryComponent::class)->name('admin.studentdb_admission');
         Route::get('welcomescreens/facility-crud', AdminFacilityUpdateComponent::class)->name('admin.facility-crud');
         Route::get('welcomescreens/principal-crud', AdminPrincipalUpdateComponent::class)->name('admin.principal-crud');

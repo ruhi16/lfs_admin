@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Myclass;
-use App\Models\Myclasssection;
+use App\Models\MyclassSection;
 use App\Models\Section;
 use App\Models\Studentcr;
 use App\Models\Studentdb;

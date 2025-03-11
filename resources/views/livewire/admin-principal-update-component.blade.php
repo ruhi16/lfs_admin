@@ -16,7 +16,7 @@
     @endif
 
     <!-- Display uploaded image -->
-    @if ($imageUrl)
+    {{-- @if ($imageUrl)
         <div class="mt-4">
             <h4>Uploaded Image:</h4>
             <img src="{{ Storage::url($imageUrl) }}" alt="Uploaded Image" class="img-fluid">
@@ -27,11 +27,12 @@
             <h4>Uploaded Image:{{ Storage::url($principal_desk->img_ref_1) }}</h4>
             <img src="{{ Storage::url($principal_desk->img_ref_1) }}" alt="Uploaded Image" class="img-fluid">
         </div>
-    @endif
+    @endif --}}
         
     <div class="max-w-8xl spacey  sm:px-6 lg:px-8 ">
         <div class="relative overflow-x-auto">
             <form wire:submit.prevent="saveFacility">
+                <h1 class="mb-4 text-2xl font-bold ">Principal Information Update Desk</h1>
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
@@ -65,10 +66,10 @@
                             <th scope="col" class="px-6 py-3">Authority Details</th>
                             <td class="px-6 py-3">
                                 <div class="flex flex-row space-x-4">
-                                    <div class="w-1/2">
-                                        {{$name}}
+                                    <div class="w-1/2">                                        
                                         <input type="text" wire:model="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Principal name"  />
                                         @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
+                                        {{-- {{$name}} --}}
                                     </div>
                                     <div class="w-1/2">
                                         <input type="text" wire:model="desig" id="desig" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Designation"  />
@@ -97,13 +98,10 @@
                             <td class="px-6 py-3">
                                 <input wire:model="imageRef" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" aria-describedby="file_input_help" id="file_input" type="file">
                                 @error('imageRef') <span class="text-red-500">{{ $message }}</span> @enderror
-                                {{-- @if ($imageUrl)
-                                    <img src="{{ $previewUrl }}" alt="Preview" style="max-width: 300px;">
-                                @endif --}}
+                                
                                 @if ($imageRef)
-                                {{-- <p class="mt-2">Preview: {{ $imageRef->temporaryUrl() }}</p> --}}
-                                <img src="{{ $imageRef->temporaryUrl() }}" alt="Image Preview"
-                                    class="max-w-xs mt-2 rounded h-10" >
+                                    {{-- <p class="mt-2">Preview: {{ $imageRef->temporaryUrl() }}</p> --}}
+                                    <img src="{{ $imageRef->temporaryUrl() }}" alt="Image Preview"class="max-w-xs mt-2 rounded h-10" >
                                 @endif
                             </td>
                         </tr>
@@ -123,6 +121,8 @@
             </form>
         </div>
     </div>
+
+    @livewire('gen-principal-speach-component')
     
 </div>
 

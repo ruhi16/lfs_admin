@@ -61,15 +61,15 @@
         @php
         // $color = auth()->user()->role->id == 3
         if(auth()->user()->role->id == 1){
-        $color = 'red';
+            $color = 'red';
         }else if(auth()->user()->role->id == 2){
-        $color = 'blue';
+            $color = 'blue';
         }else if(auth()->user()->role->id == 3){
-        $color = 'purple';
+            $color = 'purple';
         }else if(auth()->user()->role->id == 4){
-        $color = 'orange';
+            $color = 'orange';
         }else{
-        $color = 'green';
+            $color = 'green';
         }
         @endphp
         <header class="bg-{{$color}}-400 shadow mb-4">
@@ -88,13 +88,13 @@
             <!-- Sidebar -->
             <div class="w-64 bg-gray-800 text-white h-screen">
                 <div class="p-4">
-                    <h1 class="text-2xl font-bold text-slate-200">Admin Dashboard</h1>
+                    <h1 class="text-2xl text-white font-bold ">Admin Dashboard</h1>
                 </div>
                 <nav class="mt-2">
-                    <a href="{{ route('admin.mydashboard') }}"
-                        class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Dashboard</a>
+                    <a href="{{ route('adminDash') }}"
+                        class="block py-2.5 px-4 rounded text-yellow-400 transition duration-200 hover:bg-gray-700 hover:text-white">Dashboard</a>
 
-                    <div x-data="{ open: false }">
+                    <div x-data="{ open: true }">
                         <a href="#" @click="open = !open"
                             class="block py-2.5 px-4 text-yellow-400 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Welcome Screen</a>
                             <div x-show="open" class="pl-4">
@@ -102,12 +102,14 @@
                                     class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Carousel View</a>
                                 <a href="{{ route('ws.notices-view') }}"
                                     class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Notices</a>
-                                <a href="{{ route('ws.notices-view') }}"
+                                <a href="{{ route('admin.facility-crud') }}"
                                     class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Facilities</a>
-                                <a href="{{ route('ws.notices-view') }}"
-                                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Activity</a>
-                                <a href="{{ route('ws.notices-view') }}"
+                                <a href="{{ route('admin.principal-crud') }}"
                                     class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Principal</a>
+{{--                                     
+                                
+                                <a href="{{ route('ws.notices-view') }}"
+                                        class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Activity</a>
                                 <a href="{{ route('ws.notices-view') }}"
                                     class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Extra Classes</a>
                                 <a href="{{ route('ws.notices-view') }}"
@@ -119,18 +121,22 @@
                                 <a href="{{ route('ws.notices-view') }}"
                                     class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">In Touch</a>
                                 <a href="{{ route('ws.notices-view') }}"
-                                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Gallery</a>
+                                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Gallery</a> --}}
                             </div>
                     </div>
                     
                     <div x-data="{ open: true }">
                         <a href="#" @click="open = !open"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Students</a>
+                            class="block py-2.5 px-4 rounded text-yellow-400 transition duration-200 hover:bg-gray-700 hover:text-white">Students</a>
                         <div x-show="open" class="pl-4">
                             <a href="{{ route('admin.studentcr-details') }}"
                                 class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Detail View</a>
                             <a href="{{ route('admin.studentdb_admission') }}"
                                 class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">New Admission</a>
+                            <a href="{{ route('idcard') }}"
+                                class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Id Card</a>
+
+
                         </div>
                     </div>
 {{--

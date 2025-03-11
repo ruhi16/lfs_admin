@@ -39,7 +39,7 @@ class AdminPrincipalUpdateComponent extends Component
             ->where('ui_section_id', 5)
             ->where('ui_entity_id', 1)
             ->first();
-
+        // dd($this->principal_desk);
         $this->title = $this->principal_desk->title;
         $this->subTitle = $this->principal_desk->sub_title;
         $this->description = $this->principal_desk->details;
@@ -57,8 +57,10 @@ class AdminPrincipalUpdateComponent extends Component
         $this->validate($this->rules);
         // $this->imageRef = request('image');
         try{
-            $image_name = "abcd.jpg";
-            $this->imageUrl = $this->imageRef->storeAs('images', $image_name,'public');
+            $image_name = "principal.jpg";
+            $this->imageUrl = $this->imageRef->storeAs('images', $image_name, 'public');
+            // dd($this->imageUrl);
+
         
             // $this->reset('imageRef', $this->imageUrl);
             UiScreenDesign::updateOrCreate([
@@ -72,8 +74,8 @@ class AdminPrincipalUpdateComponent extends Component
                 'details' => $this->description,
                 'by_whom'=> $this->name ,
                 'by_whom_desig'=> $this->desig,
-                $this->imageUrl ?:
-                'img_ref_1' => $this->imageUrl, 
+                'img_ref_1' => $this->imageUrl ?? $this->principal_desk->img_ref_1,
+                // 'img_ref_1' => $this->imageUrl ? $this->imageUrl : $this->principal_desk->img_ref_1, 
             ]);
 
 
