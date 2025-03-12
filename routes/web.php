@@ -4,6 +4,7 @@ use App\Http\Controllers\ExamController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\StudentdbController;
+use App\Http\Livewire\AdminCarouselComponent;
 use App\Http\Livewire\AdminFacilityUpdateComponent;
 use App\Http\Livewire\AdminPrincipalUpdateComponent;
 use App\Http\Livewire\AdminStudentCurrentComponent;
@@ -92,19 +93,22 @@ Route::group(
         // Route::get('/facilities', [AdminController::class, 'facilities'])->name('admin.facilities');
         // Route::get('/principal', [AdminController::class, 'principal'])->name('admin.principal');
         // Route::get('/notices', [AdminController::class, 'notices'])->name('admin.notices');
-    //     Route::get('/admin/classes', [AdminController::class, 'classes'])->name('admin.classes');
-    //     Route::get('/admin/appointments', [AdminController::class, 'appointments'])->name('admin.appointments');
-    //     Route::get('/admin/team', [AdminController::class, 'team'])->name('admin.team');
-    //     Route::get('/admin/comments', [AdminController::class, 'comments'])->name('admin.comments');
-    //     Route::get('/admin/contact', [AdminController::class, 'contact'])->name('admin.contact');
-    //     Route::get('/admin/gallery', [AdminController::class, 'gallery'])->name('admin.gallery');
-    //     Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
+        // Route::get('/admin/classes', [AdminController::class, 'classes'])->name('admin.classes');
+        // Route::get('/admin/appointments', [AdminController::class, 'appointments'])->name('admin.appointments');
+        // Route::get('/admin/team', [AdminController::class, 'team'])->name('admin.team');
+        // Route::get('/admin/comments', [AdminController::class, 'comments'])->name('admin.comments');
+        // Route::get('/admin/contact', [AdminController::class, 'contact'])->name('admin.contact');
+        // Route::get('/admin/gallery', [AdminController::class, 'gallery'])->name('admin.gallery');
+        // Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
 
         Route::get('/dashboard', [ App\Http\Controllers\AdminController::class, 'dashboard'])
             ->name('adminDash');
 
         Route::get('welcomescreens/notices-view', AdminNoticeComponent::class)->name('ws.notices-view');
+        
         Route::get('studentdb/admission', AdminStudentdbEntryComponent::class)->name('admin.studentdb_admission');
+        
+        Route::get('welcomescreens/carousel-crud', AdminCarouselComponent::class)->name('ws.carousel-crud');
         Route::get('welcomescreens/facility-crud', AdminFacilityUpdateComponent::class)->name('admin.facility-crud');
         Route::get('welcomescreens/principal-crud', AdminPrincipalUpdateComponent::class)->name('admin.principal-crud');
 

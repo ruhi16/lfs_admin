@@ -100,6 +100,9 @@
                             <div x-show="open" class="pl-4">
                                 <a href="{{ route('ws.caraosel-view') }}"
                                     class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Carousel View</a>
+                                
+                                <a href="{{ route('ws.carousel-crud') }}"
+                                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Carousel View 2</a>
                                 <a href="{{ route('ws.notices-view') }}"
                                     class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Notices</a>
                                 <a href="{{ route('admin.facility-crud') }}"

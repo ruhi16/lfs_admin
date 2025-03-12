@@ -17,7 +17,8 @@
                     {{-- xx================== {{ json_encode($myentity->where('ui_section_id', 1)->where('ui_entity_id', $entity->ui_entity_id)    ) }} =====================yy --}}
                 
                     <div class="owl-carousel-item position-relative">
-                        <img class="img-fluid" src="{{ $entity->img_ref_1}}" alt="">
+                        {{-- <img class="img-fluid" src="{{ $entity->img_ref_1}}" alt=""> --}}
+                        <img class="img-fluid" src="{{ Storage::url($entity->img_ref_1) }}" alt="">
                         <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(0, 0, 0, .2);">
                             <div class="container">
                                 <div class="row justify-content-start">
