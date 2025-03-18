@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\School;
+use App\Models\SessionEventCategory;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -42,6 +43,12 @@ class Session extends Model{
 
     public function studentcrs(){
         return $this->hasMany(Studentcr::class, 'session_id', 'id');
+    }
+
+
+    public function sessonEventCategories(){
+        return $this->hasMany(SessionEventCategory::class, 'session_id', 'id');
+
     }
 
     // public function exam(){

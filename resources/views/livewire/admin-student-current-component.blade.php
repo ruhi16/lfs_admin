@@ -5,7 +5,16 @@
         <div class="flex items-center justify-between">
             <!-- Heading -->
             <h1>Student Detail List</h1>
-
+            <div>
+                <label for="pageSizeSelector">Select Class:{{ $selectedMyclass ?? '-' }}-{{ $message ?? 'x'}}</label>
+                <select id="selectedMyclass" wire:model="selectedMyclass" class="p-2 border border-slate-300 rounded-lg max-w-2xl" style="width: 200px;">
+                    <option value="">Select One</option>
+                    @foreach($currMyclasses as $index => $currMyclass)
+                        <option value="{{$currMyclass->id}}">{{$currMyclass->description}}</option>
+                    @endforeach        
+                    
+                </select>
+            </div>
             <!-- Button -->
             <div>
                 <a href="#"   {{-- id="openModal" --}}{{-- wire:click="openModal" --}}
@@ -17,6 +26,7 @@
 
         </div>
     </div>
+    
 
     <br /><br />
 
@@ -32,7 +42,7 @@
 
             <!-- Page Size Selector -->
             <div>
-                <select id="pageSizeSelector" class="p-2 border border-slate-300 rounded-lg min-w-auto">
+                <select id="pageSizeSelector" class="p-2 border border-slate-300 rounded-lg min-w-auto" style="width: 200px;">
                     <option value="2">2 per page</option>
                     <option value="5">5 per page</option>
                     <option value="10">10 per page</option>

@@ -53,6 +53,8 @@
 </head>
 
 <body class="font-sans antialiased">
+
+    
     <div class="min-h-screen bg-gray-100">
         @auth
         @include('layouts.navigation')
@@ -82,7 +84,9 @@
         </header>
 
         <!-- Page Content -->
+        {{--  --}}
         
+        {{--  --}}
         
         <div class="flex gap-2 px-2">
             <!-- Sidebar -->
@@ -92,6 +96,9 @@
                 </div>
                 <nav class="mt-2">
                     <a href="{{ route('adminDash') }}"
+                        class="block py-2.5 px-4 rounded text-yellow-400 transition duration-200 hover:bg-gray-700 hover:text-white">Dashboard</a>
+                    
+                    <a href="{{ route('about') }}"
                         class="block py-2.5 px-4 rounded text-yellow-400 transition duration-200 hover:bg-gray-700 hover:text-white">Dashboard</a>
 
                     <div x-data="{ open: true }">
@@ -138,6 +145,24 @@
                                 class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">New Admission</a>
                             <a href="{{ route('idcard') }}"
                                 class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Id Card</a>
+
+
+                        </div>
+                    </div>
+
+                    <div x-data="{ open: true }">
+                        <a href="#" @click="open = !open"
+                            class="block py-2.5 px-4 rounded text-yellow-400 transition duration-200 hover:bg-gray-700 hover:text-white">Management</a>
+                        <div x-show="open" class="pl-4">
+                            <a href="{{ route('admin.session-event-management') }}"
+                                class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Session Events</a>
+                            
+                            <a href="{{ route('admin.session-fees-management') }}"
+                                class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Session Fees</a>
+                            {{-- <a href="{{ route('admin.studentdb_admission') }}"
+                                class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">New Admission</a>
+                            <a href="{{ route('idcard') }}"
+                                class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Id Card</a> --}}
 
 
                         </div>

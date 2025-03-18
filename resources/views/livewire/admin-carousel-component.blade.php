@@ -36,11 +36,11 @@
                         {{ $uiwelcomescreen_caraosel->id }}
                     </td>
                     <td class="px-6 py-4 dark:text-white" width="20%">                    
-                        <input type="text" name="title" wire:model='title.{{ $uiwelcomescreen_caraosel->id }}' 
-                            
+                        <input type="text" name="title" wire:model='title.{{ $uiwelcomescreen_caraosel->id }}'                            
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Enter your title" required />
-                            @error('title[$uiwelcomescreen_caraosel->id]')<span class="text-red-500">{{ $message }}</span> @enderror
+                            placeholder="Enter your title"  />
+                            {{-- {{ "title.{$uiwelcomescreen_caraosel->id}"}} --}}
+                            @error("title.{$uiwelcomescreen_caraosel->id}")<span class="text-red-500">{{ $message }}</span> @enderror
                     </td>
                     <td class="px-6 py-4 dark:text-white">
                         <textarea id="sub_title" name="sub_title" rows="4" wire:model='subTitle.{{ $uiwelcomescreen_caraosel->id }}'

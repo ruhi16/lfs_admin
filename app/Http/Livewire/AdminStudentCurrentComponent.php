@@ -15,6 +15,8 @@ class AdminStudentCurrentComponent extends Component{
 
     public $modal_is_open = false;
     public $currMyclasses, $currSections, $currMyclassSections;
+
+    public $selectedMyclass = null, $selectedSection = null, $message = null;
     public $studentcrs; 
 
     public $myclass, $section, $rollNo, $regNo;
@@ -36,6 +38,13 @@ class AdminStudentCurrentComponent extends Component{
         $this->studentcrs = Studentcr::all();
 
         // $this->name = "Ram";
+    }
+
+    public function updatedSelectedMyclass(){
+        // $this->selectedMyclass = $this->currMyclass;
+        $this->message = $this->selectedMyclass;
+        $this->studentcrs = Studentcr::where('myclass_id', $this->selectedMyclass)->get();
+
     }
 
     public function openModal(){

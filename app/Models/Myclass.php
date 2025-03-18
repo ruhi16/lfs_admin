@@ -29,4 +29,11 @@ class Myclass extends Model
     }   
 
 
+    public function feeStruectures(){
+        return $this->hasMany(FeeStructure::class,'myclass_id','id');
+        // 'myclass_id' is the foreign key in the 'fee_structures' tablet
+        // 'id' is the primary key in the 'myclasses' table
+    }
+
+
 }

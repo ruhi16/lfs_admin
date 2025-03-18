@@ -15,19 +15,19 @@ class AdminCarouselComponent extends Component
 
     public $uiwelcomescreen_caraosels;
 
-    protected $rules = [
-        'title.*' => 'required',
-        'subTitle.*' => 'required',
-        'details.*' => 'required',
-        'imgFile.*' => 'nullable|max:2048|mimes:png,jpg,jpeg,webp,pdf',
-    ];
+    // protected $rules = [
+    //     'title.*' => 'required',
+    //     'subTitle.*' => 'required',
+    //     'details.*' => 'required',
+    //     'imgFile.*' => 'nullable|max:2048|mimes:png,jpg,jpeg,webp,pdf',
+    // ];
 
-    protected $message = [
-        'title' => 'Title is required',
-        'subTitle' => 'Sub Title is required',
-        'details' => 'Details is required',
-        'imgFile'=> 'Image should be uploaded',
-    ];
+    // protected $message = [
+    //     'title' => 'Title is required',
+    //     'subTitle' => 'Sub Title is required',
+    //     'details' => 'Details is required',
+    //     'imgFile'=> 'Image should be uploaded',
+    // ];
     
     public function mount(){
         
@@ -44,7 +44,36 @@ class AdminCarouselComponent extends Component
 
     public function saveCarousel($carouselId){
         try{
-            $this->validate($this->rules);
+            // 1. Dynamic Rule Generation
+            $rules = [
+                "title. {$carouselId}" => 'required',
+                "subTitle. {$carouselId}" => 'required',
+                "details. {$carouselId}" => 'required',
+                "imgFile.{$carouselId}" => 'nullable|max:2048|mimes:png,jpg,jpeg,webp,pdf',
+                // 'title.'. $carouselId => 'required',
+                // 'subTitle.' . $carouselId => 'required',
+                // 'details.' . $carouselId => 'required',
+                // 'imgFile.' . $carouselId => 'nullable|max:2048|mimes:png,jpg,jpeg,webp,pdf',
+            ];
+            //2. Dynamically generate message
+            $messages = [
+                "title.{$carouselId}.required" => 'Title is required for this carousel.',
+                "subTitle.{$carouselId}.required" => 'Sub Title is required for this carousel.',
+                "details.{$carouselId}.required" => 'Details is required for this carousel.',
+                "imgFile.{$carouselId}.mimes" => 'Image should be of type png, jpg, jpeg, webp or pdf.',
+                "imgFile.{$carouselId}.max" => 'The image may not be greater than 2MB.',
+                
+                // 'title.' . $carouselId . '.required' => 'Title is required for this carousel.',
+                // 'subTitle.' . $carouselId . '.required' => 'Sub Title is required for this carousel.',
+                // 'details.' . $carouselId . '.required' => 'Details is required for this carousel.',
+                // 'imgFile.' . $carouselId . '.mimes' => 'Image should be of type png, jpg, jpeg, webp or pdf.',
+                // 'imgFile.' . $carouselId . '.max' => 'The image may not be greater than 2MB.',
+            ];
+
+            // 3. Validate only the current carousel's data
+            $validatedData = $this->validate($rules, $messages);
+            // dd($validatedData);
+            // $this->validate($this->rules);
 
             $image_name = "principal.jpg";
             if (isset($this->imgFile[$carouselId]) && is_object($this->imgFile[$carouselId])) {                

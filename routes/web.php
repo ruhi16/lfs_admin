@@ -7,6 +7,8 @@ use App\Http\Controllers\StudentdbController;
 use App\Http\Livewire\AdminCarouselComponent;
 use App\Http\Livewire\AdminFacilityUpdateComponent;
 use App\Http\Livewire\AdminPrincipalUpdateComponent;
+use App\Http\Livewire\AdminSessionEventManagementComponent;
+use App\Http\Livewire\AdminSessionFeesManagementComponent;
 use App\Http\Livewire\AdminStudentCurrentComponent;
 use App\Http\Livewire\AdminStudentdbComponent;
 use App\Http\Livewire\AdminStudentdbEntryComponent;
@@ -104,6 +106,8 @@ Route::group(
         Route::get('/dashboard', [ App\Http\Controllers\AdminController::class, 'dashboard'])
             ->name('adminDash');
 
+
+        // Welcome Screens Routes
         Route::get('welcomescreens/notices-view', AdminNoticeComponent::class)->name('ws.notices-view');
         
         Route::get('studentdb/admission', AdminStudentdbEntryComponent::class)->name('admin.studentdb_admission');
@@ -114,6 +118,22 @@ Route::group(
 
 
         Route::get('studentcr/details', AdminStudentCurrentComponent::class)->name('admin.studentcr-details');
+
+
+        // Session Management
+        Route::get('session/event-management', AdminSessionEventManagementComponent::class)->name('admin.session-event-management');
+        Route::get('session/fees-management', AdminSessionFeesManagementComponent::class)->name('admin.session-fees-management');
+
+
+
+
+
+
+
+
+
+
+
 
 
         Route::controller(App\Http\Controllers\UIWelcomeScreenController::class)->group(
