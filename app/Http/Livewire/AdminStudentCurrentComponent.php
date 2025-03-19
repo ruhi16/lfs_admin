@@ -9,6 +9,9 @@ use App\Models\Myclass;
 use App\Models\Section;
 use App\Models\MyclassSection;
 
+
+use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf as PDF;
+
 use Livewire\Component;
 
 class AdminStudentCurrentComponent extends Component{
@@ -44,6 +47,39 @@ class AdminStudentCurrentComponent extends Component{
         // $this->selectedMyclass = $this->currMyclass;
         $this->message = $this->selectedMyclass;
         $this->studentcrs = Studentcr::where('myclass_id', $this->selectedMyclass)->get();
+
+        
+    }
+
+    public function generatePdf(){
+
+        // $this->studentcrs = Studentcr::where('myclass_id', $this->selectedMyclass)->get();
+
+        $data = ['title' => 'Merit List Class Section', 'content' => 'This is the content of the Secondary PDF.'];
+        $pdf = PDF::loadView('pdfs.temp_studentlist', [
+            'studentcrs' => $this->studentcrs,
+            // 'myclassSection' => $this->myclassSection,
+            // 'myclassSubjects' => $this->myclassSubjects,
+            // 'markentries'   => $this->markentries,
+
+
+        ], [], [
+            'title' => 'Another Title',
+            'format' => 'A4-P',
+            'orientation' => 'P',
+            'margin_top' => 20,
+            'default_font_size' => 8,
+        ]);
+        // return $pdf->stream('document.pdf');
+        $pdf_filename = 'StudentList-Class-'. $this->selectedMyclass .'.pdf';
+
+        return response()->streamDownload(function () use ($pdf) {
+            // echo $pdf->stream();
+            echo $pdf->Output('', 'S'); // Output the PDF content as a string
+        }, $pdf_filename, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="ccc.pdf"'
+        ]);
 
     }
 
