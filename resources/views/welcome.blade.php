@@ -75,7 +75,7 @@
                         </div>
                     </div>
                     <a href="#contact" class="nav-item nav-link">Contact Us</a>
-                    <a href="#contact" class="nav-item nav-link">Contact Us</a>
+                    
                     @if (Route::has('login'))
                         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                             @auth

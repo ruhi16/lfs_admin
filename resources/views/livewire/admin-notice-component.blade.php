@@ -60,6 +60,8 @@
                             {{-- {{ asset('/storage/photos') }} --}}
                             {{-- <img src="{{ asset($notice->fileaddr) }}" alt="Image Preview"
                                 class="max-w-xs mt-2 rounded h-10" height="50%"> --}}
+                                {{ Storage::url('app/'.$notice->fileaddr) }}:<br />
+                                {{ now("Asia/Kolkata") }}
                             <img src="{{ Storage::url($notice->fileaddr) }}" alt="Image Preview"
                                 class="max-w-xs mt-2 rounded h-10" height="50%">
                         </th>
@@ -156,8 +158,7 @@
 
                             @if ($fileaddr)
                                 {{-- <p class="mt-2">Preview: {{ $fileaddr->temporaryUrl() }}</p> --}}
-                                <img src="{{ $fileaddr->temporaryUrl() }}" alt="Image Preview"
-                                    class="max-w-xs mt-2 rounded h-10" height="10%">
+                                <img src="{{ $fileaddr->temporaryUrl() }}" alt="Image Preview" class="max-w-xs mt-2 rounded h-10" height="10%">
                             @endif
                         </div>
 

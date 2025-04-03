@@ -35,14 +35,18 @@ class CreateStudentdbsTable extends Migration
             $table->date('dob')->nullable();
             // 
             // $table->date('doadm')->nullable();            
-            $table->string('vill')->nullable();
+            $table->string('vill1')->nullable();
+            $table->string('vill2')->nullable();
             $table->string('post')->nullable();
             $table->string('pstn')->nullable();
             $table->string('dist')->nullable();
             $table->string('pin')->nullable();
-            $table->string('mobl')->nullable();
+            $table->string('state')->nullable();
+            $table->string('mobl1')->nullable();
+            $table->string('mobl2')->nullable();
             
             $table->string('ssex')->nullable();
+            $table->string('blood_grp')->nullable();
             $table->string('phch')->nullable();
             $table->string('relg')->nullable();
             $table->string('cste')->nullable();
@@ -64,6 +68,12 @@ class CreateStudentdbsTable extends Migration
             $table->integer('ensection_id')->nullable();
             $table->integer('ensession_id')->nullable();
             $table->string('enreason')->nullable();
+            
+            $table->string('img_ref_profile')->nullable();
+            $table->string('img_ref_brthcrt')->nullable();
+            $table->string('img_ref_adhaar')->nullable();
+
+
 
             $table->integer('user_id');
 

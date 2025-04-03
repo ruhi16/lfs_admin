@@ -11,8 +11,7 @@ class AdminController extends Controller
         return view('components.admin-dashboard');
     }
 
-    public function admission($myclassSection_id)
-    {
+    public function admission($myclassSection_id){
         // echo ($myclassSection_id);
         return view('livewire.admin-admission-component', ['myclassSection_id' => $myclassSection_id]);
     }

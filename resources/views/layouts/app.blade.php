@@ -140,13 +140,14 @@
                             class="block py-2.5 px-4 rounded text-yellow-400 transition duration-200 hover:bg-gray-700 hover:text-white">Students</a>
                         <div x-show="open" class="pl-4">
                             <a href="{{ route('admin.studentcr-details') }}"
-                                class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Detail View</a>
-                            <a href="{{ route('admin.studentdb_admission') }}"
+                                class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">List View</a>
+                            <a href="{{ route('admin.studentdb_admission', [ 'studentdb_id' => -1 ]) }}"
                                 class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">New Admission</a>
-                            <a href="{{ route('idcard') }}"
+                            <a href="{{ route('admin.studentcr-records') }}"
                                 class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Id Card</a>
 
-
+                            <a href="{{ route('admin.studentcr-records-individual-idcard', [ 'uuid' => 21 ]) }}"
+                                class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">New Id Card</a>
                         </div>
                     </div>
 

@@ -9,6 +9,7 @@ use App\Http\Livewire\AdminFacilityUpdateComponent;
 use App\Http\Livewire\AdminPrincipalUpdateComponent;
 use App\Http\Livewire\AdminSessionEventManagementComponent;
 use App\Http\Livewire\AdminSessionFeesManagementComponent;
+use App\Http\Livewire\AdminStudentcrRecordComponent;
 use App\Http\Livewire\AdminStudentCurrentComponent;
 use App\Http\Livewire\AdminStudentdbComponent;
 use App\Http\Livewire\AdminStudentdbEntryComponent;
@@ -73,6 +74,9 @@ Route::controller(App\Http\Controllers\NoticeController::class)->group(
 );
 
 // Route::get('/dashboard', [App\Http\Controllers\SuperAdminController::class, 'dashboard']);
+Route::get('/studentcr-profile/{id}', [App\Http\Controllers\UserController::class, 'studentcrProfile'])->name('general.studentcr-profile');
+
+
 
 Route::group(
     ['prefix' => 'sup-admin', 'middleware' => ['web', 'auth', 'isSuperAdmin']],
@@ -110,15 +114,26 @@ Route::group(
         // Welcome Screens Routes
         Route::get('welcomescreens/notices-view', AdminNoticeComponent::class)->name('ws.notices-view');
         
-        Route::get('studentdb/admission', AdminStudentdbEntryComponent::class)->name('admin.studentdb_admission');
+
+        // Studentdb Routes
+        Route::get('studentdb/admission/{studentdb_id}', AdminStudentdbEntryComponent::class)->name('admin.studentdb_admission');
+        Route::get('studentdb/updation/{studentdb_id}', [AdminStudentdbEntryComponent::class, 'updation'])->name('admin.studentdb_updation');
         
+        // Welcome Screens Routes
         Route::get('welcomescreens/carousel-crud', AdminCarouselComponent::class)->name('ws.carousel-crud');
         Route::get('welcomescreens/facility-crud', AdminFacilityUpdateComponent::class)->name('admin.facility-crud');
         Route::get('welcomescreens/principal-crud', AdminPrincipalUpdateComponent::class)->name('admin.principal-crud');
 
 
         Route::get('studentcr/details', AdminStudentCurrentComponent::class)->name('admin.studentcr-details');
+        Route::get('studentcr/records', AdminStudentcrRecordComponent::class)->name('admin.studentcr-records');
 
+        Route::get('studentcr/records/{uuid}', AdminStudentcrRecordComponent::class)->name('admin.studentcr-records-individual');
+        Route::get('studentcr/records/{uuid}/qrcode', [AdminStudentcrRecordComponent::class, 'getQrcode'])->name('admin.studentcr-records-individual-qrcode');
+        Route::get('studentcr/records/{uuid}/idcard', [AdminStudentcrRecordComponent::class, 'getIdcard'])->name('admin.studentcr-records-individual-idcard');
+        
+
+        Route::get('/studentcr-profile/{id}', [App\Http\Controllers\UserController::class, 'studentcrProfile'])->name('admin.studentcr-profile');
 
         // Session Management
         Route::get('session/event-management', AdminSessionEventManagementComponent::class)->name('admin.session-event-management');
@@ -204,10 +219,9 @@ Route::group(
 Route::group(
     ['prefix' => 'user', 'middleware' => ['web', 'isUser']],
     function () {
-        Route::get('/dashboard', [
-            App\Http\Controllers\UserController::class,
-            'dashboard',
-        ])->name('userDash');
+        Route::get('/dashboard', [App\Http\Controllers\UserController::class,'dashboard'])->name('userDash');
+
+        Route::get('/studentcr-profile/{id}', [App\Http\Controllers\UserController::class, 'studentcrProfile'])->name('user.studentcr-profile');
     }
 );
 

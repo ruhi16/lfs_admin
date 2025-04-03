@@ -35,19 +35,23 @@ class AdminStudentCurrentComponent extends Component{
 
         $this->currMyclassSections = MyclassSection::all();
         $this->currMyclasses = Myclass::all();
-        $this->currSections = MyclassSection::all();
+        $this->currSections = MyclassSection::orderBy('myclass_id', 'asc')->get();
 
 
-        $this->studentcrs = Studentcr::all();
+        $this->studentcrs = Studentcr::orderBy('myclass_id', 'asc')->get();
 
         // $this->name = "Ram";
     }
 
     public function updatedSelectedMyclass(){
         // $this->selectedMyclass = $this->currMyclass;
-        $this->message = $this->selectedMyclass;
-        $this->studentcrs = Studentcr::where('myclass_id', $this->selectedMyclass)->get();
-
+        // $this->message = $this->selectedMyclass;
+        if( $this->selectedMyclass != null ){
+            $this->studentcrs = Studentcr::where('myclass_id', $this->selectedMyclass)
+                ->orderBy('myclass_id', 'asc')->get();
+        }else{
+            $this->studentcrs = Studentcr::orderBy('myclass_id', 'asc')->get();
+        }
         
     }
 
@@ -58,11 +62,7 @@ class AdminStudentCurrentComponent extends Component{
         $data = ['title' => 'Merit List Class Section', 'content' => 'This is the content of the Secondary PDF.'];
         $pdf = PDF::loadView('pdfs.temp_studentlist', [
             'studentcrs' => $this->studentcrs,
-            // 'myclassSection' => $this->myclassSection,
-            // 'myclassSubjects' => $this->myclassSubjects,
-            // 'markentries'   => $this->markentries,
-
-
+            
         ], [], [
             'title' => 'Another Title',
             'format' => 'A4-P',
@@ -74,8 +74,8 @@ class AdminStudentCurrentComponent extends Component{
         $pdf_filename = 'StudentList-Class-'. $this->selectedMyclass .'.pdf';
 
         return response()->streamDownload(function () use ($pdf) {
-            // echo $pdf->stream();
-            echo $pdf->Output('', 'S'); // Output the PDF content as a string
+            echo $pdf->stream();
+            // echo $pdf->Output('', 'S'); // Output the PDF content as a string
         }, $pdf_filename, [
             'Content-Type' => 'application/pdf',
             'Content-Disposition' => 'inline; filename="ccc.pdf"'
@@ -102,8 +102,7 @@ class AdminStudentCurrentComponent extends Component{
 
     }
 
-    public function render()
-    {
+    public function render(){
         return view('livewire.admin-student-current-component');
     }
 

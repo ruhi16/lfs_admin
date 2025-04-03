@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Studentcr;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -11,6 +12,16 @@ class UserController extends Controller
 
         return view('user-dashboard');
     }
+
+    public function studentcrProfile($id){
+        $studentcr = Studentcr::find($id);
+        // $myclass = Myclass::find($studentcr->myclass_id);
+        // $section = Section::find($studentcr->section_id);
+
+        return view('user-studentcr-profile', compact('studentcr') );
+    }
+
+
     
     public function index()
     {

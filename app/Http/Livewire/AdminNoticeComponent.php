@@ -11,6 +11,7 @@ use Livewire\TemporaryUploadedFile; //added
 use Illuminate\Support\Facades\Storage;
 // use Livewire\WithFileUploads;
 // use Livewire\TemporaryUploadedFile; //added
+use Illuminate\Support\Str;
 
 
 
@@ -118,7 +119,7 @@ class AdminNoticeComponent extends Component
                 //     $maxSize = $parameters[0] / 1024; // Convert KB to MB
                 //     return "The file size is " . number_format($fileSize, 2) . " MB, but the maximum allowed size is " . $maxSize . " MB.";
                 // },//'The file size is :filesize MB, but the maximum allowed size is :max MB.',
-            ],
+            ]
             // [
             //     'fileaddr' => [
             //         'max' => [
@@ -134,9 +135,11 @@ class AdminNoticeComponent extends Component
         $data->updated_at = now();
         // $data->id = rand(1,1000);
 
-
         if ($this->fileaddr) {
-            $data->fileaddr = $this->fileaddr->store(); // store the image
+            $file_name = $this->notice_id . Str::random(8) . '_notices.' . $this->fileaddr->getClientOriginalExtension();
+            $data->fileaddr = $this->fileaddr->storeAs('public/notices', $file_name);
+            // $data->fileaddr = $this->fileaddr->store('public/notices');
+            // $data->fileaddr = $this->fileaddr->store('public/notices');
 
             // $file = $this->fileaddr;
             // $extension = $file->getClientOriginalExtension();
