@@ -298,8 +298,8 @@
                 </div>
             </div>
             <div class="signature">
-                <br/><br/>
-                {{-- <img src="https://via.placeholder.com/100x40" alt="Signature"> --}}
+                
+                <img src="{{ Storage::url('hm_sign.jpg')}}" alt="Signature" width="100" height="20">
                 <div class="signature-label">Signature</div>
                 <div class="signature-label">Head of Institution</div>
             </div>

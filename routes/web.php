@@ -94,18 +94,7 @@ Route::group(
     ['prefix' => 'admin', 'middleware' => ['web', 'isAdmin']],
     function () {
 
-        Route::get('/mydashboard', About::class)->name('admin.mydashboard');
-
-        // Route::get('/facilities', [AdminController::class, 'facilities'])->name('admin.facilities');
-        // Route::get('/principal', [AdminController::class, 'principal'])->name('admin.principal');
-        // Route::get('/notices', [AdminController::class, 'notices'])->name('admin.notices');
-        // Route::get('/admin/classes', [AdminController::class, 'classes'])->name('admin.classes');
-        // Route::get('/admin/appointments', [AdminController::class, 'appointments'])->name('admin.appointments');
-        // Route::get('/admin/team', [AdminController::class, 'team'])->name('admin.team');
-        // Route::get('/admin/comments', [AdminController::class, 'comments'])->name('admin.comments');
-        // Route::get('/admin/contact', [AdminController::class, 'contact'])->name('admin.contact');
-        // Route::get('/admin/gallery', [AdminController::class, 'gallery'])->name('admin.gallery');
-        // Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
+        Route::get('/mydashboard', About::class)->name('admin.mydashboard');       
 
         Route::get('/dashboard', [ App\Http\Controllers\AdminController::class, 'dashboard'])
             ->name('adminDash');

@@ -95,18 +95,18 @@
                     <h1 class="text-2xl text-white font-bold ">Admin Dashboard</h1>
                 </div>
                 <nav class="mt-2">
-                    <a href="{{ route('adminDash') }}"
-                        class="block py-2.5 px-4 rounded text-yellow-400 transition duration-200 hover:bg-gray-700 hover:text-white">Dashboard</a>
+                    {{-- <a href="{{ route('adminDash') }}"
+                        class="block py-2.5 px-4 rounded text-yellow-400 transition duration-200 hover:bg-gray-700 hover:text-white">Dashboard</a> --}}
                     
                     <a href="{{ route('about') }}"
                         class="block py-2.5 px-4 rounded text-yellow-400 transition duration-200 hover:bg-gray-700 hover:text-white">Dashboard</a>
 
-                    <div x-data="{ open: true }">
+                    <div x-data="{ open: false }">
                         <a href="#" @click="open = !open"
-                            class="block py-2.5 px-4 text-yellow-400 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Welcome Screen</a>
+                            class="block py-2.5 px-4 text-yellow-400 rounded transition duration-200 hover:bg-gray-700 hover:text-white ">Welcome Screen</a>
                             <div x-show="open" class="pl-4">
-                                <a href="{{ route('ws.caraosel-view') }}"
-                                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Carousel View</a>
+                                {{-- <a href="{{ route('ws.caraosel-view') }}"
+                                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Carousel View</a> --}}
                                 
                                 <a href="{{ route('ws.carousel-crud') }}"
                                     class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Carousel View 2</a>

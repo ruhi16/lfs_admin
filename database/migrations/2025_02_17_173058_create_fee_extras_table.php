@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFeeStructuresTable extends Migration
+class CreateFeeExtrasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,25 +13,18 @@ class CreateFeeStructuresTable extends Migration
      */
     public function up()
     {
-        Schema::create('fee_structures', function (Blueprint $table) {
+        Schema::create('fee_extras', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('description')->nullable();
-            $table->integer('order_index')->unsigned()->nullable();
-
-            $table->integer('fee_mandates_id')->unsigned()->nullable();
+            $table->integer('myclass_id');
+            $table->integer('section_id');
+            $table->integer('studentcr_id');
             $table->integer('fee_category_id')->unsigned()->nullable();
             $table->integer('fee_particular_id')->unsigned()->nullable();
+            $table->integer('session_event_id')->unsigned()->nullable();
+            $table->integer('session_event_schedule_id')->unsigned()->nullable();
 
             $table->decimal('amount')->unsigned()->nullable();
-            $table->enum ('amount_type', ['Yearly', 'Monthly', 'Half Yearly', 'Quarterly'])->default(null)->nullable();
-            
-            $table->string('session_event_schedule_ids')->nullable();
-
-            
-            // $table->integer('student_social_category_id')->unsigned()->nullable();
-            // $table->integer('student_category_id')->unsigned()->nullable();               
-            // $table->boolean('is_emi_allowed')->default(0)->unsigned();            
+            $table->boolean('is_paid')->default(0)->nullable();
 
             $table->integer('school_id')->unsigned()->nullable();
             $table->integer('session_id')->unsigned()->nullable();
@@ -52,6 +45,6 @@ class CreateFeeStructuresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fee_structures');
+        Schema::dropIfExists('fee_extras');
     }
 }

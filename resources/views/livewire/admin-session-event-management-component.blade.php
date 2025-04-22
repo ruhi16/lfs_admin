@@ -28,7 +28,7 @@
                         <div class="flex items-center justify-between">
                             <a href="#" class="block p-2 hover:bg-gray-100 rounded text-sm group-hover:bg-gray-100">{{ $sessionEventCategory->name }}</a>
                             <div>
-                                <button class="ml-2 p-1 rounded-full hover:bg-gray-200" onclick="openAddModal">Aa</button>
+                                <button class="ml-2 p-1 rounded-full hover:bg-gray-200" onclick="openAddModal">V</button>
                                 <button class="ml-2 p-1 rounded-full hover:bg-gray-200">U</button>
                                 <button class="ml-2 p-1 rounded-full hover:bg-gray-200">D</button>
                             </div>
@@ -42,7 +42,7 @@
                                         class="block p-2 hover:bg-gray-100 rounded text-xs selected">{{ $sessionEvent->name}}
                                     </a>
                                     <div>
-                                        <button class="ml-2 p-1 text-xs rounded-full hover:bg-gray-200">A</button>
+                                        <button class="ml-2 p-1 text-xs rounded-full hover:bg-gray-200">V</button>
                                         <button class="ml-2 p-1 text-xs rounded-full hover:bg-gray-200">U</button>
                                         <button class="ml-2 p-1 text-xs rounded-full hover:bg-gray-200">D</button>
                                     </div>
