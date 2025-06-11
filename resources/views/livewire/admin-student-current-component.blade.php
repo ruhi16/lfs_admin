@@ -133,10 +133,14 @@
                     <td class="p-2 border-b border-slate-200">
                         <p class="block text-lg font-normal leading-none text-slate-500">
                             <a href="{{ route('admin.studentdb_admission', ['studentdb_id' => $studentcr->studentdb_id]) }}"
-                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit</a>
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                Edit
+                            </a>
 
                             <a href="{{ route('admin.studentcr-records-individual-idcard', [ 'uuid' => $studentcr->id ]) }}" target="_blank" 
-                                class="text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-3 py-2 dark:bg-orange-600 dark:hover:bg-orange-700 focus:outline-none dark:focus:ring-orange-800">Id Card</a>
+                                class="text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-3 py-2 dark:bg-orange-600 dark:hover:bg-orange-700 focus:outline-none dark:focus:ring-orange-800">
+                                Id Card
+                            </a>
                             
                             {{-- <a href="{{ route('admin.studentdb_updation', ['studentdb_id' => $studentcr->studentdb_id]) }}"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit</a> --}}

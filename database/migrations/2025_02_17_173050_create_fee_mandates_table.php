@@ -18,15 +18,18 @@ class CreateFeeMandatesTable extends Migration
 
             $table->string('name');
             $table->string('description')->nullable();
-            $table->integer('order_index')->unsigned()->nullable();
+            $table->integer('order_index')->nullable();
 
-            $table->integer('myclass_id')->unsigned()->nullable();
-            $table->integer('session_event_id')->unsigned()->nullable();
+            $table->integer('myclass_id')->nullable();
+            $table->integer('section_id')->nullable();
+
+            $table->integer('session_event_id')->nullable();
+            $table->date('schedule_date')->nullable();
             
-            $table->integer('school_id')->unsigned()->nullable();
-            $table->integer('session_id')->unsigned()->nullable();
-            $table->integer('user_id')->unsigned()->nullable();
-            $table->integer('approved_by')->unsigned()->nullable();
+            $table->integer('school_id')->nullable();
+            $table->integer('session_id')->nullable();
+            $table->integer('user_id')->nullable();
+            $table->integer('approved_by')->nullable();
             $table->boolean('is_active')->default(1)->nullable();
             $table->boolean('is_finalized')->default(0)->nullable();
             $table->string('status')->nullable();

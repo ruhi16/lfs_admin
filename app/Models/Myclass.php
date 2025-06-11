@@ -35,5 +35,11 @@ class Myclass extends Model
         // 'id' is the primary key in the 'myclasses' table
     }
 
+    public function mandates(){
+        return $this->hasMany(FeeMandate::class,'myclass_id','id');
+        // 'myclass_id' is the foreign key in the 'fee_mandates' tablet
+        // 'id' is the primary key in the 'myclasses' table
+    }
+
 
 }

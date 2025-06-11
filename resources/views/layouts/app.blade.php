@@ -84,9 +84,6 @@
         </header>
 
         <!-- Page Content -->
-        {{--  --}}
-        
-        {{--  --}}
         
         <div class="flex gap-2 px-2">
             <!-- Sidebar -->
@@ -160,6 +157,9 @@
                             
                             <a href="{{ route('admin.session-fees-management') }}"
                                 class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Session Fees</a>
+
+                            <a href="{{ route('admin.session-shop-management') }}"
+                                class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Shop Management</a>
                             {{-- <a href="{{ route('admin.studentdb_admission') }}"
                                 class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">New Admission</a>
                             <a href="{{ route('idcard') }}"
@@ -243,7 +243,7 @@
         
             <!-- Main Content -->
             <div class="flex-1 p-10 bg-green-200">
-                {{-- @yield('content') --}}
+                
         
                 {{ $slot }}
             </div>

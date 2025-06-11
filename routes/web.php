@@ -9,6 +9,7 @@ use App\Http\Livewire\AdminFacilityUpdateComponent;
 use App\Http\Livewire\AdminPrincipalUpdateComponent;
 use App\Http\Livewire\AdminSessionEventManagementComponent;
 use App\Http\Livewire\AdminSessionFeesManagementComponent;
+use App\Http\Livewire\AdminSessionShopManagementComponent;
 use App\Http\Livewire\AdminStudentcrRecordComponent;
 use App\Http\Livewire\AdminStudentCurrentComponent;
 use App\Http\Livewire\AdminStudentdbComponent;
@@ -16,31 +17,14 @@ use App\Http\Livewire\AdminStudentdbEntryComponent;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Artisan;
-// use Illuminate\Support\Facades\File;
-// use Illuminate\Support\Facades\DB;
-// use Illuminate\Support\Facades\Schema;
-// use Illuminate\Support\Facades\Hash;
-// use Illuminate\Support\Facades\Http;
-// use Illuminate\Support\Facades\Log;
-// use Illuminate\Support\Facades\Mail;
-// use Illuminate\Support\Facades\Session;
-// use Illuminate\Support\Facades\URL;
-// use Illuminate\Support\Facades\View;
-// use Illuminate\Support\Facades\Request;
-// use Illuminate\Support\Facades\Response;
+
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\TeacherController;
 use App\Http\Livewire\Contact;
 use App\Http\Livewire\Home;
 use App\Http\Livewire\About;
-// use App\Http\Livewire\AdminAdmissionComponent;
-// use App\Http\Livewire\AdminAnsscrDistributionComponent;
-// use App\Http\Livewire\AdminAnsscrDistributioncwComponent;
-// use App\Http\Livewire\AdminMyclassAnserScriptDistributionBaseComponent;
-// use App\Http\Livewire\AdminMyclassSectionComponent;
-// use App\Http\Livewire\AdminTeacherWiseMarksEntryLinksComponent;
-// use App\Http\Livewire\AdminUserPreviledgeControlComponent;
+
 use App\Http\Livewire\SubadminMarksEntryComponent;
 use App\Http\Livewire\SubadminMarksEntryEntityComponent;
 // use App\Http\Livewire\UserChangePasswordComponent;
@@ -118,15 +102,18 @@ Route::group(
         Route::get('studentcr/records', AdminStudentcrRecordComponent::class)->name('admin.studentcr-records');
 
         Route::get('studentcr/records/{uuid}', AdminStudentcrRecordComponent::class)->name('admin.studentcr-records-individual');
-        Route::get('studentcr/records/{uuid}/qrcode', [AdminStudentcrRecordComponent::class, 'getQrcode'])->name('admin.studentcr-records-individual-qrcode');
-        Route::get('studentcr/records/{uuid}/idcard', [AdminStudentcrRecordComponent::class, 'getIdcard'])->name('admin.studentcr-records-individual-idcard');
-        
+        Route::get('studentcr/records/{uuid}/qrcode', [AdminStudentcrRecordComponent::class, 'getQrcode'])
+            ->name('admin.studentcr-records-individual-qrcode');
+            
+        Route::get('studentcr/records/{uuid}/idcard', [AdminStudentcrRecordComponent::class, 'getIdcard'])
+            ->name('admin.studentcr-records-individual-idcard');
 
         Route::get('/studentcr-profile/{id}', [App\Http\Controllers\UserController::class, 'studentcrProfile'])->name('admin.studentcr-profile');
 
         // Session Management
         Route::get('session/event-management', AdminSessionEventManagementComponent::class)->name('admin.session-event-management');
         Route::get('session/fees-management', AdminSessionFeesManagementComponent::class)->name('admin.session-fees-management');
+        Route::get('session/shop-management', AdminSessionShopManagementComponent::class)->name('admin.session-shop-management');
 
 
 

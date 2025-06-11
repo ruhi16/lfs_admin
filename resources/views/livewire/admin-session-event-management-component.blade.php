@@ -6,27 +6,16 @@
             <div class="p-3">
                 <h2 class="text-lg font-semibold mb-2">Session Event Management</h2>
                 <nav>
-                    {{-- @foreach($sessionEventCategories as $sessionEventCategory)
-                    <div class="group">
-                        <a href="#" class="block p-2 hover:bg-gray-100 rounded text-sm group-hover:bg-gray-100">{{ $sessionEventCategory->name }}</a>
-                        <div class="hidden group-hover:block ml-4 mt-1 space-y-1">
-                            @foreach($sessionEventCategory->sessionEvents as $sessionEvent)
-                            <a href="#"
-                                wire:click="selectSessionEvent({{ $sessionEventCategory->id }},{{ $sessionEvent->id }})"
-                                class="block p-2 hover:bg-gray-100 rounded text-xs selected">{{ $sessionEvent->name
-                                }}</a>
-
-                            @endforeach
-                            
-                        </div>
-                    </div>
-                    @endforeach --}}
+                    
 
 
                     @foreach($sessionEventCategories as $sessionEventCategory)
                     <div class="group relative">
                         <div class="flex items-center justify-between">
-                            <a href="#" class="block p-2 hover:bg-gray-100 rounded text-sm group-hover:bg-gray-100">{{ $sessionEventCategory->name }}</a>
+                            <a href="#"
+                              wire:click="selectSessionEventCategory({{ $sessionEventCategory->id }})"
+                              class="block p-2 hover:bg-gray-100 rounded text-sm group-hover:bg-pink-100
+                                {{ $selectedSessionEventCategoryId == $sessionEventCategory->id ? 'bg-pink-100' : '' }}">{{ $sessionEventCategory->id }}-{{ $sessionEventCategory->name }}</a>
                             <div>
                                 <button class="ml-2 p-1 rounded-full hover:bg-gray-200" onclick="openAddModal">V</button>
                                 <button class="ml-2 p-1 rounded-full hover:bg-gray-200">U</button>
@@ -34,12 +23,20 @@
                             </div>
                         </div>
 
-                        <div class="hidden group-hover:block ml-4 mt-1 space-y-1">
-                            @foreach($sessionEventCategory->sessionEvents as $sessionEvent)
+                        <div class=" ml-4 mt-1 space-y-1 
+                            {{ $selectedSessionEventCategoryId == $sessionEventCategory->id ? 'group-hover:block' : 'hidden' }}
+                                             
+                           ">
+                            
+                            {{-- Session Events under the category --}}
+                            @foreach($sessionEventCategory->sessionEvents as $sessionEventParticular)
                                 <div class="flex items-center justify-between">
                                     <a href="#"
-                                        wire:click="selectSessionEvent({{ $sessionEventCategory->id }},{{ $sessionEvent->id }})"
-                                        class="block p-2 hover:bg-gray-100 rounded text-xs selected">{{ $sessionEvent->name}}
+                                        wire:click="selectSessionEventCategoryParticular({{ $sessionEventCategory->id }},{{ $sessionEventParticular->id }})"
+                                        class="block p-2 hover:bg-gray-100 rounded text-xs selected 
+                                        {{ $selectedSessionEventCategoryParticularId == $sessionEventParticular->id ? 'hover:bg-pink-100' : '' }}
+                                         {{ $selectedSessionEventCategoryParticularId == $sessionEventParticular->id ? 'bg-blue-100' : '' }}
+                                         ">{{ $sessionEventCategory->id }}-{{ $sessionEventParticular->name }}
                                     </a>
                                     <div>
                                         <button class="ml-2 p-1 text-xs rounded-full hover:bg-gray-200">V</button>

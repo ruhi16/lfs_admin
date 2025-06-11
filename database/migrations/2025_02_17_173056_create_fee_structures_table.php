@@ -17,26 +17,22 @@ class CreateFeeStructuresTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('description')->nullable();
-            $table->integer('order_index')->unsigned()->nullable();
+            $table->integer('order_index')->nullable();
 
-            $table->integer('fee_mandates_id')->unsigned()->nullable();
-            $table->integer('fee_category_id')->unsigned()->nullable();
-            $table->integer('fee_particular_id')->unsigned()->nullable();
+            $table->integer('myclass_id')->nullable();
+            $table->integer('fee_category_id')->nullable();
+            $table->integer('fee_particular_id')->nullable();
+            $table->decimal('amount')->nullable();
+            $table->boolean('is_special')->default(0)->nullable();
 
-            $table->decimal('amount')->unsigned()->nullable();
-            $table->enum ('amount_type', ['Yearly', 'Monthly', 'Half Yearly', 'Quarterly'])->default(null)->nullable();
+            // $table->enum ('amount_type', ['Yearly', 'Monthly', 'Half Yearly', 'Quarterly'])->default(null)->nullable();
             
-            $table->string('session_event_schedule_ids')->nullable();
+                       
 
-            
-            // $table->integer('student_social_category_id')->unsigned()->nullable();
-            // $table->integer('student_category_id')->unsigned()->nullable();               
-            // $table->boolean('is_emi_allowed')->default(0)->unsigned();            
-
-            $table->integer('school_id')->unsigned()->nullable();
-            $table->integer('session_id')->unsigned()->nullable();
-            $table->integer('user_id')->unsigned()->nullable();
-            $table->integer('approved_by')->unsigned()->nullable();
+            $table->integer('school_id')->nullable();
+            $table->integer('session_id')->nullable();
+            $table->integer('user_id')->nullable();
+            $table->integer('approved_by')->nullable();
             $table->boolean('is_active')->default(1)->nullable();
             $table->boolean('is_finalized')->default(0)->nullable();
             $table->string('status')->nullable();

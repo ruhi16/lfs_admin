@@ -19,24 +19,22 @@ class CreateFeeCollectionsTable extends Migration
             $table->integer('section_id');
             $table->integer('studentcr_id');
 
-            $table->integer('session_event_id')->unsigned()->nullable();
-            $table->integer('session_event_schedule_id')->unsigned()->nullable();
-            $table->decimal('reg_total_amount')->unsigned()->nullable();
-            $table->decimal('extra_total_amount')->unsigned()->nullable();
+            $table->integer('fee_mandate_id')->nullable();
 
-            $table->decimal('total_amount')->unsigned()->nullable();
-            $table->decimal('total_discount')->unsigned()->nullable();
-            $table->decimal('paid_amount')->unsigned()->nullable();
-            $table->decimal('balance_amount')->unsigned()->nullable();
+            
+            $table->decimal('total_amount')->nullable();
+            $table->decimal('total_discount')->nullable();
+            $table->decimal('paid_amount')->nullable();
+            $table->decimal('balance_amount')->nullable();
             
             $table->string('payment_mode')->nullable();
             $table->string('cat_part_ref')->nullable();
 
 
-            $table->integer('school_id')->unsigned()->nullable();
-            $table->integer('session_id')->unsigned()->nullable();
-            $table->integer('user_id')->unsigned()->nullable();
-            $table->integer('approved_by')->unsigned()->nullable();
+            $table->integer('school_id')->nullable();
+            $table->integer('session_id')->nullable();
+            $table->integer('user_id')->nullable();
+            $table->integer('approved_by')->nullable();
             $table->boolean('is_active')->default(1)->nullable();
             $table->boolean('is_finalized')->default(0)->nullable();
             $table->string('status')->nullable();

@@ -47,7 +47,7 @@
                             <div class="mb-4 w-1/2">
                                 <label for="student_uuid" class="block text-gray-700">UUID:</label>
                                 <input type="text" wire:model="student_uuid" id="student_uuid" class="w-full px-4 py-2 border rounded-lg">
-                                @error('student_uuid') <span class="text-red-500">{{ $message }}</span> @enderror
+                                @error('student_uuid') <span class="text-red-500">{{ $message ?? 'XXX' }}</span> @enderror
                             </div>
                         </div>
                         
@@ -64,13 +64,13 @@
                                     <option value="3">Book 3</option>                                    
                                     <option value="-5">Other</option>
                                 </select>                                
-                                @error('adm_book_no') <span class="text-red-500">{{ $message }}</span> @enderror
+                                @error('adm_book_no') <span class="text-red-500">{{ $message ?? 'XXX' }}</span> @enderror
                                 {{-- {{ $adm_book_no }} --}}
                             </div>
                             <div class="mb-4 w-1/2">
                                 <label for="adm_book_slno" class="block text-gray-700">Adm Book Sl No:</label>
                                 <input type="text" wire:model="adm_book_slno" id="adm_book_slno" class="w-full px-4 py-2 border rounded-lg">
-                                @error('adm_book_slno') <span class="text-red-500">{{ $message }}</span> @enderror
+                                @error('adm_book_slno') <span class="text-red-500">{{ $message ?? 'XXX' }}</span> @enderror
                                 {{-- {{ $adm_book_slno }} --}}
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                                         <option value="{{ $curr_class->id }}">{{ $curr_class->name }}</option>
                                     @endforeach                                    
                                 </select>                                
-                                @error('adm_class') <span class="text-red-500">{{ $message }}</span> @enderror
+                                @error('adm_class') <span class="text-red-500">{{ $message ?? 'XXX' }}</span> @enderror
                                 {{-- {{ $adm_class }} --}}
                             </div>
                             <div class="mb-4 w-1/4">
@@ -98,7 +98,7 @@
                                     @endforeach                                    
                                 </select>
                                 {{-- <input type="text" wire:model="adm_section" id="adm_section" class="w-full px-4 py-2 border rounded-lg"> --}}
-                                @error('adm_section') <span class="text-red-500">{{ $message }}</span> @enderror
+                                @error('adm_section') <span class="text-red-500">{{ $message ?? 'XXX' }}</span> @enderror
                                 {{-- {{ $adm_section }} --}}
                             </div>
                             <div class="mb-4 w-1/4">
@@ -111,7 +111,7 @@
                                 </select> --}}
                                 {{ $studentdb ? $studentdb->studentcrs()->where('session_id', 1)->first()->roll_no : 'NA'}}
                                 <input type="text" wire:model="adm_roll_no" id="adm_roll_no" class="w-full px-4 py-2 border rounded-lg">
-                                @error('adm_roll_no') <span class="text-red-500">{{ $message }}</span> @enderror
+                                @error('adm_roll_no') <span class="text-red-500">{{ $message ?? 'XXX' }}</span> @enderror
                                 {{-- {{ $adm_section }} --}}
                             </div>
                         </div>
@@ -127,7 +127,7 @@
                     <div class="mb-4">
                         <label for="student_name" class="block text-gray-700">Student Name:</label>
                         <input type="text" wire:model="student_name" id="student_name" class="w-full px-4 py-2 border rounded-lg">
-                        @error('student_name') <span class="text-red-500">{{ $message }}</span> @enderror
+                        @error('student_name') <span class="text-red-500">{{ $message ?? 'XXX' }}</span> @enderror
                         {{-- {{ $student_name }} --}}
                     </div>                                            
                 </div>
@@ -142,14 +142,14 @@
                                 <option value="female">Girl</option>
                                 <option value="others">Others</option>
                             </select>
-                            @error('student_gender') <span class="text-red-500">{{ $message }}</span> @enderror
+                            @error('student_gender') <span class="text-red-500">{{ $message ?? 'XXX' }}</span> @enderror
                             {{-- {{ $student_gender }} --}}
                         </div>
 
                         <div class="mb-4 w-1/2">
                             <label for="student_dob" class="block text-gray-700">Date of Birth:</label>
                             <input type="date" wire:model="student_dob" id="student_dob" class="w-full px-4 py-2 border rounded-lg">
-                            @error('student_dob') <span class="text-red-500">{{ $message }}</span> @enderror
+                            @error('student_dob') <span class="text-red-500">{{ $message ?? 'XXX' }}</span> @enderror
                             {{-- {{ $student_dob }} --}}
                         </div>
                         
@@ -161,7 +161,7 @@
                         <div class="mb-4 w-1/2">
                             <label for="student_aadhar" class="block text-gray-700">Aadhar No:</label>
                             <input type="text" wire:model="student_aadhar" id="student_aadhar" class="w-full px-4 py-2 border rounded-lg">
-                            @error('student_aadhar') <span class="text-red-500">{{ $message }}</span> @enderror
+                            @error('student_aadhar') <span class="text-red-500">{{ $message ?? 'XXX' }}</span> @enderror
                             {{-- {{ $student_aadhar }} --}}
                         </div>
                         <div class="mb-4 w-1/2">
@@ -177,7 +177,7 @@
                                 <option value="Other">Other</option>
                             </select>
                             {{-- <input type="text" wire:model="student_blood_grp" id="student_blood_grp" class="w-full px-4 py-2 border rounded-lg"> --}}
-                            @error('student_blood_grp') <span class="text-red-500">{{ $message }}</span> @enderror
+                            @error('student_blood_grp') <span class="text-red-500">{{ $message ?? 'XXX' }}</span> @enderror
                             {{-- {{ $student_blood_grp }} --}}
                         </div>
                     </div>
@@ -203,7 +203,7 @@
                                     <option value="Other">Other</option>
                                 </select>
                                 {{-- <input type="text" wire:model="student_religion" id="student_religion" class="w-full px-4 py-2 border rounded-lg"> --}}
-                                @error('student_religion') <span class="text-red-500">{{ $message }}</span> @enderror
+                                @error('student_religion') <span class="text-red-500">{{ $message ?? 'XXX' }}</span> @enderror
                                 {{-- {{ $student_religion }} --}}
                             </div>
                             <div class="mb-4 w-1/2">
@@ -219,7 +219,7 @@
                                     <option value="Other">Other</option>
                                 </select>
                                 {{-- <input type="text" wire:model="student_caste" id="student_caste" class="w-full px-4 py-2 border rounded-lg"> --}}
-                                @error('student_caste') <span class="text-red-500">{{ $message }}</span> @enderror
+                                @error('student_caste') <span class="text-red-500">{{ $message ?? 'XXX' }}</span> @enderror
                                 {{-- {{ $student_caste }} --}}
                             </div>
                         </div>
@@ -279,13 +279,13 @@
                             <div class="mb-4 w-2/3">
                                 <label for="father_name" class="block text-gray-700">Father Name:</label>
                                 <input type="text" wire:model="father_name" id="father_name" class="w-full px-4 py-2 border rounded-lg">
-                                @error('father_name') <span class="text-red-500">{{ $message }}</span> @enderror
+                                @error('father_name') <span class="text-red-500">{{ $message ?? 'xxx' }}</span> @enderror
                                 {{-- {{ $father_name }} --}}
                             </div> 
                             <div class="mb-4 w-1/3">
                                 <label for="father_aadhar" class="block text-gray-700">Father Aadhar:</label>
                                 <input type="text" wire:model="father_aadhar" id="father_aadhar" class="w-full px-4 py-2 border rounded-lg">
-                                @error('father_aadhar') <span class="text-red-500">{{ $message }}</span> @enderror
+                                @error('father_aadhar') <span class="text-red-500">{{ $message ?? 'xxx' }}</span> @enderror
                                 {{-- {{ $father_aadhar }} --}}
                             </div>
                         </div>                        
@@ -296,12 +296,12 @@
                             <div class="mb-4 w-2/3">
                                 <label for="mother_name" class="block text-gray-700">Mother Name:</label>
                                 <input type="text" wire:model="mother_name" id="mother_name" class="w-full px-4 py-2 border rounded-lg">
-                                @error('mother_name') <span class="text-red-500">{{ $message }}</span> @enderror
+                                @error('mother_name') <span class="text-red-500">{{ $message ?? 'xxx' }}</span> @enderror
                             </div> 
                             <div class="mb-4 w-1/3">
                                 <label for="mother_aadhar" class="block text-gray-700">Mother Aadhar:</label>
                                 <input type="text" wire:model="mother_aadhar" id="mother_aadhar" class="w-full px-4 py-2 border rounded-lg">
-                                @error('mother_aadhar') <span class="text-red-500">{{ $message }}</span> @enderror
+                                @error('mother_aadhar') <span class="text-red-500">{{ $message ?? 'xxx' }}</span> @enderror
                             </div>
                         </div>                        
                     </div>
@@ -317,7 +317,7 @@
                         <div class="mb-2">
                             <label for="addr_line1" class="block text-gray-700">Address Line 1:</label>
                             <input type="text" wire:model="addr_line1" id="addr_line1" class="w-full px-4 py-2 border rounded-lg">
-                            @error('addr_line1') <span class="text-red-500">{{ $message }}</span> @enderror
+                            @error('addr_line1') <span class="text-red-500">{{ $message ?? 'xxx' }}</span> @enderror
                         </div>                        
                     </div>
 
@@ -325,7 +325,7 @@
                         <div class="mb-2">
                             <label for="addr_line2" class="block text-gray-700">Address Line 2:</label>
                             <input type="text" wire:model="addr_line2" id="addr_line2" class="w-full px-4 py-2 border rounded-lg">
-                            @error('addr_line2') <span class="text-red-500">{{ $message }}</span> @enderror
+                            @error('addr_line2') <span class="text-red-500">{{ $message ?? 'xxx' }}</span> @enderror
                         </div>
                     </div>
 
@@ -340,7 +340,7 @@
                         <div class="mb-1">
                             <label for="addr_po" class="block text-gray-700">Post Office:</label>
                             <input type="text" wire:model="addr_po" id="addr_po" class="w-full px-4 py-2 border rounded-lg">
-                            @error('addr_po') <span class="text-red-500">{{ $message }}</span> @enderror
+                            @error('addr_po') <span class="text-red-500">{{ $message ?? 'xxx' }}</span> @enderror
                         </div>
                     </div>
 
@@ -348,7 +348,7 @@
                         <div class="mb-1">
                             <label for="addr_ps" class="block text-gray-700">Police Station:</label>
                             <input type="text" wire:model="addr_ps" id="addr_ps" class="w-full px-4 py-2 border rounded-lg">
-                            @error('addr_ps') <span class="text-red-500">{{ $message }}</span> @enderror
+                            @error('addr_ps') <span class="text-red-500">{{ $message ?? 'xxx' }}</span> @enderror
                         </div>                        
                     </div>
 
@@ -356,7 +356,7 @@
                         <div class="mb-1">
                             <label for="addr_dist" class="block text-gray-700">District:</label>
                             <input type="text" wire:model="addr_dist" id="addr_dist" class="w-full px-4 py-2 border rounded-lg">
-                            @error('addr_dist') <span class="text-red-500">{{ $message }}</span> @enderror
+                            @error('addr_dist') <span class="text-red-500">{{ $message ?? 'xxx' }}</span> @enderror
                         </div>
                     </div>
 
@@ -364,7 +364,7 @@
                         <div class="mb-1">
                             <label for="addr_pin" class="block text-gray-700">Pin:</label>
                             <input type="text" wire:model="addr_pin" id="addr_pin" class="w-full px-4 py-2 border rounded-lg">
-                            @error('addr_pin') <span class="text-red-500">{{ $message }}</span> @enderror
+                            @error('addr_pin') <span class="text-red-500">{{ $message ?? 'xxx' }}</span> @enderror
                         </div>                        
                     </div>
                     
@@ -379,7 +379,7 @@
                         <div class="mb-1">
                             <label for="addr_state" class="block text-gray-700">State:</label>
                             <input type="text" wire:model="addr_state" id="addr_state" class="w-full px-4 py-2 border rounded-lg">
-                            @error('addr_state') <span class="text-red-500">{{ $message }}</span> @enderror
+                            @error('addr_state') <span class="text-red-500">{{ $message ?? 'xxx' }}</span> @enderror
                         </div>
                     </div>
 
@@ -387,7 +387,7 @@
                         <div class="mb-1">
                             <label for="addr_nation" class="block text-gray-700">Nationality:</label>
                             <input type="text" wire:model="addr_nation" id="addr_nation" class="w-full px-4 py-2 border rounded-lg">
-                            @error('addr_nation') <span class="text-red-500">{{ $message }}</span> @enderror
+                            @error('addr_nation') <span class="text-red-500">{{ $message ?? 'xxx' }}</span> @enderror
                         </div>                        
                     </div>
                     
@@ -395,7 +395,7 @@
                         <div class="mb-1">
                             <label for="addr_mobile1" class="block text-gray-700">Mobile 1:</label>
                             <input type="text" wire:model="addr_mobile1" id="addr_mobile1" class="w-full px-4 py-2 border rounded-lg">
-                            @error('addr_mobile1') <span class="text-red-500">{{ $message }}</span> @enderror
+                            @error('addr_mobile1') <span class="text-red-500">{{ $message ?? 'xxx' }}</span> @enderror
                         </div>
                     </div>
 
@@ -403,7 +403,7 @@
                         <div class="mb-1">
                             <label for="addr_mobile2" class="block text-gray-700">Mobile 2:</label>
                             <input type="text" wire:model="addr_mobile2" id="addr_mobile2" class="w-full px-4 py-2 border rounded-lg">
-                            @error('addr_mobile2') <span class="text-red-500">{{ $message }}</span> @enderror
+                            @error('addr_mobile2') <span class="text-red-500">{{ $message ?? 'xxx' }}</span> @enderror
                         </div>                        
                     </div>
 
@@ -426,12 +426,12 @@
                         <option value="cash">Cash</option>
                         <option value="other">Other</option>
                     </select>
-                    @error('payment_method') <span class="text-red-500">{{ $message }}</span> @enderror
+                    @error('payment_method') <span class="text-red-500">{{ $message ?? 'xxx' }}</span> @enderror
                 </div>
                 <div class="mb-4">
                     <label for="amount" class="block text-gray-700">Amount</label>
                     <input type="number" wire:model="amount" id="amount" class="w-full px-4 py-2 border rounded-lg">
-                    @error('amount') <span class="text-red-500">{{ $message }}</span> @enderror
+                    @error('amount') <span class="text-red-500">{{ $message ?? 'xxx' }}</span> @enderror
                 </div>
 
 
@@ -439,7 +439,7 @@
                     <label for="img_ref_profile" class="block text-gray-700">Profile Image</label>
                     <input id="img_ref_profile" wire:model="img_ref_profile" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" aria-describedby="file_input_help" id="file_input" type="file"/>
                     
-                    @error('img_ref_profile') <span class="text-red-500">{{ $message }}</span> @enderror
+                    @error('img_ref_profile') <span class="text-red-500">{{ $message ?? 'xxx' }}</span> @enderror
                     {{ $img_ref_profile ?? 'NOT FOUND' }}
                     @if ($img_ref_profile)
                         <div>

@@ -12,30 +12,32 @@ class School extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $table = 'schools';
+    protected $primaryKey = 'id';
     // private static $table_type = "Basic";
     // ============================== start ===================================
-    private static $table_type = "Basic";
+    // private static $table_type = "Basic";
 
 
-    public static function getTableType()
-    {
-        return self::$table_type;
-    }
+    // public static function getTableType()
+    // {
+    //     return self::$table_type;
+    // }
 
-    public function scopeExclude($query, $value = array()){
-        $columns = $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
-        return $query->select( array_diff( (array) $columns, (array) $value) );
-    }
+    // public function scopeExclude($query, $value = array()){
+    //     $columns = $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
+    //     return $query->select( array_diff( (array) $columns, (array) $value) );
+    // }
 
 
-    protected static function boot(){
+    // protected static function boot(){
 
-        parent::boot();
+    //     parent::boot();
 
-        static::addGlobalScope('session_id', function (Builder $builder) {
-            $builder->where(self::getTableName() . '.session_id', Session::where('status', 'CURRENT')->first()->id);
-        });
-    }
+    //     static::addGlobalScope('session_id', function (Builder $builder) {
+    //         $builder->where(self::getTableName() . '.session_id', Session::where('status', 'CURRENT')->first()->id);
+    //     });
+    // }
 
     // ============================== end =====================================
 

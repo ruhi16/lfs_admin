@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFeeExtrasTable extends Migration
+class CreateFeeCollectionDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,23 +13,17 @@ class CreateFeeExtrasTable extends Migration
      */
     public function up()
     {
-        Schema::create('fee_extras', function (Blueprint $table) {
+        Schema::create('fee_collection_details', function (Blueprint $table) {
             $table->id();
-            $table->integer('myclass_id');
-            $table->integer('section_id');
-            $table->integer('studentcr_id');
+            $table->integer('fee_collection_id');
+            $table->string('src_table_name')->nullable();  
+            $table->integer('src_table_id')->nullable();
 
             $table->integer('fee_category_id')->nullable();
             $table->integer('fee_particular_id')->nullable();
             $table->decimal('amount')->nullable();
             $table->boolean('is_paid')->default(0)->nullable();
-            $table->integer('paid_ref_fee_collection_detail_id')->nullable(); //after payment, this will be filled with fee_collection_detail_id
 
-            $table->integer('fee_mandate_id')->nullable();
-            $table->integer('session_event_id')->nullable();
-            $table->integer('session_event_schedule_id')->nullable();
-
-            
             $table->integer('school_id')->nullable();
             $table->integer('session_id')->nullable();
             $table->integer('user_id')->nullable();
@@ -49,6 +43,6 @@ class CreateFeeExtrasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fee_extras');
+        Schema::dropIfExists('fee_collection_details');
     }
 }
