@@ -92,8 +92,6 @@
                     <h1 class="text-2xl text-white font-bold ">Admin Dashboard</h1>
                 </div>
                 <nav class="mt-2">
-                    {{-- <a href="{{ route('adminDash') }}"
-                        class="block py-2.5 px-4 rounded text-yellow-400 transition duration-200 hover:bg-gray-700 hover:text-white">Dashboard</a> --}}
                     
                     <a href="{{ route('about') }}"
                         class="block py-2.5 px-4 rounded text-yellow-400 transition duration-200 hover:bg-gray-700 hover:text-white">Dashboard</a>
@@ -113,26 +111,11 @@
                                     class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Facilities</a>
                                 <a href="{{ route('admin.principal-crud') }}"
                                     class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Principal</a>
-{{--                                     
-                                
-                                <a href="{{ route('ws.notices-view') }}"
-                                        class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Activity</a>
-                                <a href="{{ route('ws.notices-view') }}"
-                                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Extra Classes</a>
-                                <a href="{{ route('ws.notices-view') }}"
-                                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Appointments</a>
-                                <a href="{{ route('ws.notices-view') }}"
-                                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Teachers</a>
-                                <a href="{{ route('ws.notices-view') }}"
-                                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Parent Comments</a>
-                                <a href="{{ route('ws.notices-view') }}"
-                                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">In Touch</a>
-                                <a href="{{ route('ws.notices-view') }}"
-                                    class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Gallery</a> --}}
+
                             </div>
                     </div>
                     
-                    <div x-data="{ open: true }">
+                    <div x-data="{ open: false }">
                         <a href="#" @click="open = !open"
                             class="block py-2.5 px-4 rounded text-yellow-400 transition duration-200 hover:bg-gray-700 hover:text-white">Students</a>
                         <div x-show="open" class="pl-4">
@@ -156,88 +139,19 @@
                                 class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Session Events</a>
                             
                             <a href="{{ route('admin.session-fees-management') }}"
-                                class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Session Fees</a>
+                                class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Account Fees</a>
 
                             <a href="{{ route('admin.session-shop-management') }}"
                                 class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Shop Management</a>
-                            {{-- <a href="{{ route('admin.studentdb_admission') }}"
-                                class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">New Admission</a>
-                            <a href="{{ route('idcard') }}"
-                                class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Id Card</a> --}}
 
+
+                            {{-- <a href="{{ route('admin.session-exam-management') }}"
+                                class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Exam Management</a> --}}
+                            
 
                         </div>
                     </div>
-{{--
-                    <div x-data="{ open: false }">
-                        <a href="#" @click="open = !open"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Classes</a>
-                        <div x-show="open" class="pl-4">
-                            <a href="{{ route('admin.classes') }}"
-                                class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Classes
-                                View</a>
-                        </div>
-                    </div>
 
-                    <div x-data="{ open: false }">
-                        <a href="#" @click="open = !open"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Appointments</a>
-                        <div x-show="open" class="pl-4">
-                            <a href="{{ route('admin.appointments') }}"
-                                class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Appointments
-                                View</a>
-                        </div>
-                    </div>
-
-                    <div x-data="{ open: false }">
-                        <a href="#" @click="open = !open"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Team</a>
-                        <div x-show="open" class="pl-4">
-                            <a href="{{ route('admin.team') }}"
-                                class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Team
-                                View</a>
-                        </div>
-                    </div>
-
-                    <div x-data="{ open: false }">
-                        <a href="#" @click="open = !open"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Comments</a>
-                        <div x-show="open" class="pl-4">
-                            <a href="{{ route('admin.comments') }}"
-                                class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Comments
-                                View</a>
-                        </div>
-                    </div>
-
-                    <div x-data="{ open: false }">
-                        <a href="#" @click="open = !open"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Contact</a>
-                        <div x-show="open" class="pl-4">
-                            <a href="{{ route('admin.contact') }}"
-                                class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Contact
-                                View</a>
-                        </div>
-                    </div>
-
-                    <div x-data="{ open: false }">
-                        <a href="#" @click="open = !open"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Gallery</a>
-                        <div x-show="open" class="pl-4">
-                            <a href="{{ route('admin.gallery') }}"
-                                class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Gallery
-                                View</a>
-                        </div>
-                    </div>
-
-                    <div x-data="{ open: false }">
-                        <a href="#" @click="open = !open"
-                            class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Settings</a>
-                        <div x-show="open" class="pl-4">
-                            <a href="{{ route('admin.settings') }}"
-                                class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Settings
-                                View</a>
-                        </div>
-                    </div> --}}
                 </nav>
             </div>            
         

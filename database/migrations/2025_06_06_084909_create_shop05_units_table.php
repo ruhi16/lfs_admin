@@ -16,8 +16,15 @@ class CreateShop05UnitsTable extends Migration
         Schema::create('shop05_units', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('slug')->unique();
+            $table->string('slug')->unique()->nullable();
             $table->text('description')->nullable();
+
+            $table->string('unit_title')->unique()->nullable();
+            $table->string('unit_code')->unique()->nullable();            
+            $table->double('unit_amount', 10, 3)->unique()->nullable();
+
+
+
 
             $table->boolean('is_active')->default(false);
             $table->integer('owner_id');

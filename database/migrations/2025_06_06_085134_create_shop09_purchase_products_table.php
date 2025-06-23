@@ -18,7 +18,7 @@ class CreateShop09PurchaseProductsTable extends Migration
             $table->integer('purchase_id');
             $table->integer('product_id');
             
-            $table->integer('purch_unit_ref_id');
+            $table->integer('purch_unit_id');
             $table->integer('purch_unit_rate');
             $table->integer('purch_unit_qty');
 
@@ -26,6 +26,10 @@ class CreateShop09PurchaseProductsTable extends Migration
             $table->decimal('adjust_amount', 10, 2)->nullable();
             $table->decimal('payable_amount', 10, 2)->nullable();
             
+            $table->boolean('is_paid')->default(false);
+            $table->boolean('is_sale_unit_defined')->default(false);
+
+
             
             // $table->integer('invoice_id')->nullable();
             // $table->integer('vendor_id')->nullable();

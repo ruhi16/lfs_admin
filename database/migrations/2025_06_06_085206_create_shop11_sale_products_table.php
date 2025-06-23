@@ -16,16 +16,18 @@ class CreateShop11SaleProductsTable extends Migration
         Schema::create('shop11_sale_products', function (Blueprint $table) {
             $table->id();
             $table->integer('sale_id');
+            $table->integer('customer_id')->nullable();
             
             $table->integer('product_id');
-            $table->integer('sold_unit_ref_id');
-            $table->integer('sold_unit_rate');
-            $table->integer('sold_unit_qty');
+            $table->integer('sale_unit_id');
+            $table->integer('sale_unit_rate');
+            $table->integer('sale_unit_qty');
 
             $table->decimal('total_amount', 10, 2)->nullable();
             $table->decimal('adjust_amount', 10, 2)->nullable();
             $table->decimal('payable_amount', 10, 2)->nullable();
-            
+
+            $table->boolean('is_paid')->default(false);            
 
             $table->boolean('is_active')->default(false);
             $table->integer('owner_id');

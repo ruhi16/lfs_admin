@@ -7,11 +7,23 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 
 class AdminSessionFeesManagementComponent extends Component{
+    
+    
+
+    public $myclasses, $studentcrs;
+    public $activeMyclassId = null;
 
 
+    public function mount($myclassId = null){
+        $this->myclasses = \App\Models\Myclass::all();
+        
+    }
 
-    public function mount(){
-
+    public function setActiveMyclass($myclassId)
+    {
+        $this->activeMyclassId = $myclassId;
+        $this->studentcrs = \App\Models\Myclass::find($myclassId)->studentcrs ?? collect();
+        $this->emit('activeMyclassSet', $myclassId);
     }
 
       

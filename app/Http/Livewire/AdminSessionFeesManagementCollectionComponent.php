@@ -7,12 +7,13 @@ use Livewire\Component;
 class AdminSessionFeesManagementCollectionComponent extends Component
 {
 
-    public $myclasses, $studentcrs;
+    public $myclasses, $studentcrs, $feeCollections;
 
     public $isReceiptVisible = false, $receiptStudentcrId, $receiptFeeMandateId, $receiptFeeMandateDateId;
     public $receiptStudentcr, $receiptFeeMandate, $receiptFeeMandateDate; 
 
-    public function mount(){
+    public function mount($sessionId = null, $myclassId = null){
+
 
         $this->isReceiptVisible = false;
         $this->receiptStudentcrId = null;
@@ -20,8 +21,25 @@ class AdminSessionFeesManagementCollectionComponent extends Component
         $this->receiptFeeMandateDateId = null;
 
         $this->myclasses = \App\Models\Myclass::all();
-        $this->studentcrs = $this->myclasses->where('id', 1)->first()->studentcrs ?? collect();
+        $this->feeCollections = \App\Models\FeeCollection::where('myclass_id', $myclassId)
+            // ->with(['myclass', 'studentcr', 'feeMandate', 'feeMandateDate'])
+            ->get();
+            // dd($this->feeCollections);
+        // where('session_id', 1)
+            // ->where('id', $myclassId)
+            // ->with(['feeMandates' => function($query) {
+            //     $query->where('is_active', true);
+            // }])
+            // ->with(['feeMandates' => function($query) {
+            //     $query->where('is_active', true)
+            //           ->where('is_special', false); // Assuming you want only non-special mandates
+            // }])
+            // ->get();
+        $this->studentcrs = $this->myclasses->where('id', $myclassId)->first()->studentcrs ?? collect();
+        
+        
         // dd($this->myclasses);
+        // dd($this->studentcrs);
 
         
         // if($receiptStudentcrId && $mandateId && $mandateDateId){
@@ -54,10 +72,10 @@ class AdminSessionFeesManagementCollectionComponent extends Component
                 
 
             ], [
-                'total_amount' => 1000, // Example amount, replace with actual logic
-                'paid_amount' => 1000, // Example amount, replace with actual logic
-                'balance_amount' => 0, // Example amount, replace with actual logic
-                'status' => 'paid', // Example status, replace with actual logic
+                'total_amount' => 1000, 
+                'paid_amount' => 1000, 
+                'balance_amount' => 0, 
+                'status' => null, 
                 'user_id' => auth()->user()->id, // Assuming the user is authenticated
                 'created_at' => now(),
                 'updated_at' => now(),

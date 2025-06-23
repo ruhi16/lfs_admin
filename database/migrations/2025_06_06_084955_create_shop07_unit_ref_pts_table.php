@@ -16,7 +16,18 @@ class CreateShop07UnitRefPtsTable extends Migration
         Schema::create('shop07_unit_ref_pts', function (Blueprint $table) {
             $table->id();            
             $table->integer('purchase_id');
-            $table->integer('sold_unit_ref_id');
+            $table->integer('purchase_product_id');
+            
+            $table->integer('sale_unit_id')->nullable();
+
+            $table->double('purchase_to_sale_factor', 10, 7)->nullable();            
+
+            $table->double('sale_unit__actual_rate', 10, 7)->nullable();
+            $table->double('sale_unit_profit_percent', 10, 7)->nullable();
+            $table->double('sale_unit_profit_rate', 10, 7)->nullable();
+
+
+
 
             $table->boolean('is_active')->default(false);
             $table->integer('owner_id');

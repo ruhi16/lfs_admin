@@ -1,216 +1,221 @@
 <div>
     <style id="myStyle">
-    .button-container {
-        display: flex;
-        justify-content: center;
-        gap: 1.25rem;
-        margin-top: 2rem;
-    }
-
-    @media print {
-        .button-container, .no-print {
-            display: none !important;
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 1.25rem;
+            margin-top: 2rem;
         }
-    }
 
-    .print-button, .pdf-button {
-        color: #ffffff;
-        font-weight: 700;
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        border-radius: 0.25rem;
-        transition: background-color 300ms;
-        border: none;
-        cursor: pointer;
-    }
-    .outer-container {
-        background-color: #f3f4f6;
-        padding: 1.25rem;
-        color: #1f2937;
-    }
+        @media print {
 
-    .print-container {
-        max-width: 72rem;
-        margin-left: auto;
-        margin-right: auto;
-        background-color: #ffffff;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        border-radius: 0.375rem;
-        padding: 2rem;
-    }
+            .button-container,
+            .no-print {
+                display: none !important;
+            }
+        }
 
-    .header-center {
-        text-align: center;
-        margin-bottom: 0.5rem;
-    }
+        .print-button,
+        .pdf-button {
+            color: #ffffff;
+            font-weight: 700;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            border-radius: 0.25rem;
+            transition: background-color 300ms;
+            border: none;
+            cursor: pointer;
+        }
 
-    .school-name {
-        font-size: 1.25rem;
-        line-height: 1.75rem;
-        font-weight: 700;
-        margin-bottom: 0.25rem;
-    }
+        .outer-container {
+            background-color: #f3f4f6;
+            padding: 1.25rem;
+            color: #1f2937;
+        }
 
-    .school-details {
-        font-size: 0.875rem;
-        line-height: 1.25rem;
-        margin-bottom: 0.25rem;
-    }
+        .print-container {
+            max-width: 72rem;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-radius: 0.375rem;
+            padding: 2rem;
+        }
 
-    .school-type {
-        font-size: 1rem;
-        line-height: 1.5rem;
-    }
+        .header-center {
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
 
-    .divider {
-        border-top-width: 2px;
-        border-color: #d1d5db;
-        margin-top: 0.5rem;
-        margin-bottom: 0.5rem;
-    }
+        .school-name {
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
 
-    .receipt-title {
-        text-align: center;
-        font-size: 1.125rem;
-        line-height: 1.75rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-    }
+        .school-details {
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            margin-bottom: 0.25rem;
+        }
 
-    .student-info-grid {
-        display: grid;
-        grid-template-columns: repeat(1, minmax(0, 1fr));
-        gap: 0;
-        margin-bottom: 1rem;
-    }
+        .school-type {
+            font-size: 1rem;
+            line-height: 1.5rem;
+        }
 
-    @media (min-width: 640px) {
+        .divider {
+            border-top-width: 2px;
+            border-color: #d1d5db;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .receipt-title {
+            text-align: center;
+            font-size: 1.125rem;
+            line-height: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
         .student-info-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 0;
+            margin-bottom: 1rem;
         }
-    }
 
-    .info-item {
-        display: flex;
-    }
+        @media (min-width: 640px) {
+            .student-info-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
 
-    .uppercase {
-        text-transform: uppercase;
-    }
+        .info-item {
+            display: flex;
+        }
 
-    .label {
-        font-weight: 700;
-        width: 12rem;
-    }
+        .uppercase {
+            text-transform: uppercase;
+        }
 
-    .bg-slate-100 {
-        background-color: #f1f5f9;
-    }
+        .label {
+            font-weight: 700;
+            width: 12rem;
+        }
 
-    .colon {
-        margin-left: 0.5rem;
-        margin-right: 0.5rem;
-    }
+        .bg-slate-100 {
+            background-color: #f1f5f9;
+        }
 
-    .fee-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 1rem;
-    }
+        .colon {
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+        }
 
-    .table-header {
-        border: 1px solid #d1d5db;
-        background-color: #e5e7eb;
-        font-weight: 700;
-        padding-top: 0.25rem;
-        padding-bottom: 0.25rem;
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-        text-align: left;
-    }
+        .fee-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
 
-    .text-right {
-        text-align: right;
-    }
+        .table-header {
+            border: 1px solid #d1d5db;
+            background-color: #e5e7eb;
+            font-weight: 700;
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            text-align: left;
+        }
 
-    .table-data {
-        border: 1px solid #d1d5db;
-        padding-top: 0.25rem;
-        padding-bottom: 0.25rem;
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-    }
+        .text-right {
+            text-align: right;
+        }
 
-    .table-footer {
-        border: 1px solid #d1d5db;
-        padding-top: 0.25rem;
-        padding-bottom: 0.25rem;
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-        font-weight: 700;
-    }
+        .table-data {
+            border: 1px solid #d1d5db;
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
 
-    .notes {
-        font-size: 0.875rem;
-        line-height: 1.25rem;
-        margin-bottom: 2rem;
-    }
+        .table-footer {
+            border: 1px solid #d1d5db;
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            font-weight: 700;
+        }
 
-    .notes-title {
-        display: block;
-        margin-bottom: 0.25rem;
-    }
+        .notes {
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            margin-bottom: 2rem;
+        }
 
-    .note-item {
-        margin-bottom: 0.25rem;
-    }
+        .notes-title {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
 
-    .button-container {
-        display: flex;
-        justify-content: center;
-        gap: 1.25rem;
-        margin-top: 2rem;
-    }
+        .note-item {
+            margin-bottom: 0.25rem;
+        }
 
-    .print-button, .pdf-button {
-        color: #ffffff;
-        font-weight: 700;
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        border-radius: 0.25rem;
-        transition: background-color 300ms;
-        border: none;
-        cursor: pointer;
-    }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 1.25rem;
+            margin-top: 2rem;
+        }
 
-    .print-button {
-        background-color: #22c55e;
-    }
+        .print-button,
+        .pdf-button {
+            color: #ffffff;
+            font-weight: 700;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            border-radius: 0.25rem;
+            transition: background-color 300ms;
+            border: none;
+            cursor: pointer;
+        }
 
-    .print-button:hover {
-        background-color: #15803d;
-    }
+        .print-button {
+            background-color: #22c55e;
+        }
 
-    .pdf-button {
-        background-color: #3b82f6;
-    }
+        .print-button:hover {
+            background-color: #15803d;
+        }
 
-    .pdf-button:hover {
-        background-color: #1d4ed8;
-    }
+        .pdf-button {
+            background-color: #3b82f6;
+        }
 
-    .no-print {
-        /* This class remains for print-specific styles */
-    }
+        .pdf-button:hover {
+            background-color: #1d4ed8;
+        }
+
+        .no-print {
+            /* This class remains for print-specific styles */
+        }
     </style>
 
     {{-- Livewire component content starts here --}}
 
-   
+
     <div>
         <div class="outer-container">
             <div class="print-container" id="receiptContainer">
@@ -228,7 +233,7 @@
                 <hr class="divider">
 
                 <div class="receipt-title">
-                    ONLINE FEE RECEIPT FOR THE ACADEMIC YEAR : {{ $session->name }}, Month: January, 2025
+                    ONLINE FEE RECEIPT FOR THE ACADEMIC YEAR : {{ $session->name }}, Month: , 2025
                 </div>
                 <hr class="divider">
 
@@ -322,18 +327,30 @@
                     <p class="note-item">4. Admission Fee is not Refundable.</p>
                 </div>
 
-                <div class="button-container no-print">
-                    <button class="print-button" onclick="window.print()">Print Receipt</button>
-                    <button class="pdf-button" id="myButton" onclick="openCompactPrintWindow()">Print/Download
-                        PDF</button>
-                </div>
+
+
+            </div> {{-- End of print: receipt-container --}}
+
+            @if(!$isCaptchaVerified)
+            @livewire('admin-captcha-component')
+            @endif
+            <div class="button-container no-print">
+                {{ $isCaptchaVerified ? 'True' : 'False' }}
+
+                <button class="pdf-button" id="myButton">
+                    Print/Download PDF {{ $isCaptchaVerified ? 'True' : '(Captcha Required)' }}
+                </button>
+
             </div>
+
         </div>
     </div>
 
 
 
 </div> {{-- End of root Livewire component div --}}
+
+
 <script>
     function openCompactPrintWindow() {
         const receiptContainer = document.getElementById('receiptContainer');
@@ -347,6 +364,13 @@
         printWindow.document.write('</style></head><body>');
         // printWindow.document.write(`<div class="outer-container">`);
         printWindow.document.write(receiptContainer.innerHTML);
+
+        printWindow.document.write('</div>');
+        printWindow.document.write('<div class="button-container no-print">');
+        printWindow.document.write('<button class="print-button" onclick="window.print()">Print Receipt</button>');
+        // printWindow.document.write('<button class="pdf-button" id="myButton" onclick="openCompactPrintWindow()">Print/Download PDF</button>');
+        printWindow.document.write('</div>');
+        
         printWindow.document.write('</body></html>');
         // printWindow.document.close();
         printWindow.focus();

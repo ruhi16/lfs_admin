@@ -8,6 +8,16 @@ use Livewire\Component;
 
 class AdminSessionFeesManagementReceiptComponent extends Component
 {
+    protected $listeners = ['captchaVerified' ];
+    public $isCaptchaVerified = false;
+
+    public function captchaVerified($isVerified)
+    {
+        $this->isCaptchaVerified = $isVerified;
+        // dd($this->isCaptchaVerified);
+        // $this->render();
+    }
+    
 
 
     public $school, $session, $myclasses, $studentcrs, $feeCollections;
@@ -46,6 +56,17 @@ class AdminSessionFeesManagementReceiptComponent extends Component
             // dd($this->receiptFeeCollection->feeCollectionDetails );
         }
     }
+
+
+
+
+    
+
+
+
+
+
+
 
     public function render(){
         return view('livewire.admin-session-fees-management-receipt-component');
