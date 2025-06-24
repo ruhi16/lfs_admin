@@ -1,0 +1,189 @@
+<?php
+
+namespace App\Http\Livewire;
+
+use App\Models\Shop04Product;
+use App\Models\Shop08Purchase;
+use App\Models\Shop09PurchaseProduct;
+use Exception;
+use Livewire\Component;
+
+class AdminShopPurchaseComponent extends Component
+{
+    
+    public $vendors = [
+        [
+            'id' => 1,
+            'name' => 'Vendor A',
+            'contact' => '123-456-7890',
+            'email' => 'Hxg9O@example.com',
+            'address' => '123 Vendor St, City, Country',
+            ],[
+            'id' => 2,
+            'name' => 'Vendor B',
+            'contact' => '987-654-3210',
+            'email' => 'Hxg9O@example.com',
+            'address' => '123 Vendor St, City, Country',
+            ],[
+            'id' => 3,
+            'name' => 'Vendor C',
+            'contact' => '555-555-5555',
+            'email' => 'Hxg9O@example.com',
+            'address' => '123 Vendor St, City, Country',
+            ],
+
+    ], $selectedVendor = null;
+    public $invoiceNo = null, $invoiceDate = null;
+
+    public $categories = null, $selectedCategory = null;
+    public $items = null, $selectedItem = null;
+    public $purchaseUnits = null, $selectedPurchaseUnit = null;
+
+
+    public $rowCounter = 0;
+    public $productDetails = [];
+
+    public function mount(){
+        // $this->items = \App\Models\Shop03Item::all();
+        // $this->vendors = \App\Models\Vendor::all();
+        $this->categories = \App\Models\Shop02Category::all();
+        $this->items = \App\Models\Shop03Item::all();
+        $this->purchaseUnits = \App\Models\Shop05Unit::all();
+
+        $this->addProductRow();
+        
+    }
+
+    public function addProductRow(){
+        $this->productDetails[$this->rowCounter] = [
+            'category_id' => '',
+            'item_id' => '',
+            'purchase_unit_id' => '',
+            'quantity' => 0,
+            'rate' => 0,
+            'amount' => 0,
+        ];
+        $this->rowCounter++;
+        $this->refresh();
+    }
+
+    public function updateProductOptions($index)
+    {
+        $categoryId = $this->productDetails[$index]['category_id'];
+        // dd($categoryId, $index);
+
+        if ($categoryId) {
+            // Reset product selection when category changes
+            $this->productDetails[$index]['item_id'] = '';
+            $this->productDetails[$index]['amount'] = 0;
+            
+            // This will trigger the view to update product options
+            // $this->emit('categoryChanged', $index, $categoryId);
+        }
+    }
+
+    public function calculateAmount($index){
+        $this->productDetails[$index]['amount'] = $this->productDetails[$index]['quantity'] * $this->productDetails[$index]['rate'];
+    }
+
+
+
+    public function getTotalAmount(){
+        // $totalAmount = 0;
+        return collect($this->productDetails)->sum('amount');
+    }
+
+
+    public function saveProductDetails(){
+
+        $this->validate([
+            'selectedVendor' => 'required', //|exists:vendors,id',
+            'invoiceNo' => 'required|string|max:255',
+            'invoiceDate' => 'required|date',
+        ]);
+
+        // dd($this->selectedVendor, $this->invoiceNo, $this->invoiceDate);
+
+        $this->validate([
+            'productDetails.*.category_id' => 'required', //|exists:categories,id',
+            'productDetails.*.item_id' => 'required',//|exists:items,id',
+            'productDetails.*.purchase_unit_id' => 'required', //|exists:units,id',
+            'productDetails.*.quantity' => 'required|numeric|min:0',
+            'productDetails.*.rate' => 'required|numeric|min:0',
+        ]);
+        // dd($this->productDetails);
+
+        try{
+            // DB::beginTransaction();
+            // $product = Shop04Product::updateOrCreate([
+            //     'category_id' => $this->selectedCategory,
+            //     'item_id' => $this->selectedItem,
+            //         ],[
+            //             // 'purchase_id' => $purchase->id,
+            //     ]);
+
+            $product = Shop04Product::where('category_id', $this->selectedCategory)
+                ->where('item_id', $this->selectedItem)
+                ->first();
+            dd($this->selectedCategory, $this->selectedItem, $product);
+
+
+            $purchase = Shop08Purchase::updateOrCreate([
+                'vendor_id' => 1002, //$this->selectedVendor,
+                'invoice_no' => $this->invoiceNo,        
+                'invoice_date' => $this->invoiceDate,       
+
+            ],[
+                'order_id' => 100,
+            ]);
+            dd($purchase, $product);
+
+            foreach($this->productDetails as $detail){
+                $purchaseDetails = Shop09PurchaseProduct::updateOrCreate([
+                    'purchase_id' => $purchase->id,
+                    'product_id' => $product->id,
+                ],[
+                    'purchase_unit_id' => $detail['purchase_unit_id'],
+                    'purchase_unit_rate' => $detail['rate'],
+                    'purchase_unit_qty' => $detail['quantity'],
+                    'purchase_amount' => $detail['amount'],
+                    'purchase_adjustment' => 0,
+                    'purchase_amount_payable' => $detail['amount'] - 0,
+                ]);
+            }
+
+            // Db::commitTransaction();
+
+            session()->flash('success', 'Product details saved successfully!');
+            // $this->refresh();
+
+        }catch(Exception $e){
+            session()->flash('error', $e->getMessage());
+        }
+
+
+
+
+        
+
+        session()->flash('message', 'Product details saved successfully!');
+    }
+
+
+
+
+
+
+
+
+
+    public function render()
+    {
+        return view('livewire.admin-shop-purchase-component');
+    }
+    
+    
+    public function refresh(){
+
+    }
+}

@@ -19,6 +19,6 @@ class Shop02Category extends Model
 
     public function items()
     {
-        return $this->hasMany(Shop03Item::class, 'category_id', 'id');
+        return $this->hasMany(Shop02Category::class, 'category_id', 'id');
     }
 }

@@ -17,7 +17,7 @@ class CreateShop04ProductsTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
-            $table->string('sku')->unique()->nullable();
+            $table->string('sku')->nullable();
             $table->string('tag')->nullable();
             
             $table->text('description')->nullable();

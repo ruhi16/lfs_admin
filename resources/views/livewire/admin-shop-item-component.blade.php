@@ -24,7 +24,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                     <div class="mb-0">
-                        <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
+                        <label for="category" class="block text-sm font-medium text-gray-700">Category: {{ $selectedCategory }}</label>
                         <select wire:model="selectedCategory" id="category" name="category"
                             class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2">
                             <option value="">Select Category</option>
@@ -75,7 +75,7 @@
                     <div class="mb-0">
                         <button wire:click="addItem()" type="button"
                             class="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-                            Add Item
+                            Add Item 
                         </button>
                     </div>
 

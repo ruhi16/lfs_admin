@@ -16,7 +16,7 @@ class CreateShop01OwnersTable extends Migration
         Schema::create('shop01_owners', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->string('shop_name')->nullable();

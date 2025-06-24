@@ -1,5 +1,5 @@
 <div>
-    Shop Management Component
+
 
     <div>
         <h1 class="text-2xl font-bold text-center my-4">Shop Management Dashboard</h1>
@@ -23,24 +23,24 @@
                         </div>
 
                         @foreach($items as $itemIndex => $item)
-                            <div class="mt-2">
-                                <div class="px-4 py-2 text-gray-300 text-sm font-semibold">
-                                    {{ strtoupper($item['name']) }}
-                                </div>
-                                @foreach($item['subitems'] as $subitemIndex => $subitem)
-
-                                <div wire:click="setActive('{{ $itemIndex }}', '{{ $subitemIndex }}')" 
-                                    class="px-8 py-2 hover:bg-slate-700 cursor-pointer transition-colors duration-200 {{ $subitem['active'] ? 'bg-slate-700 border-l-4 border-blue-500' : '' }}">
-                                    <span>{{ $subitem['title'] }}</span>
-                                    <i class="{{ $subitem['icon'] }} ml-2"></i>
-                                    @if(isset($subitem['badge']))
-                                    <span class="bg-red-500 text-xs px-2 py-1 rounded-full animate-pulse-slow">{{
-                                        $subitem['badge'] }}</span>
-                                    @endif
-                                </div>
-
-                                @endforeach
+                        <div class="mt-2">
+                            <div class="px-4 py-2 text-gray-300 text-sm font-semibold">
+                                {{ strtoupper($item['name']) }}
                             </div>
+                            @foreach($item['subitems'] as $subitemIndex => $subitem)
+
+                            <div wire:click="setActive('{{ $itemIndex }}', '{{ $subitemIndex }}')"
+                                class="px-8 py-2 hover:bg-slate-700 cursor-pointer transition-colors duration-200 {{ $subitem['active'] ? 'bg-slate-700 border-l-4 border-blue-500' : '' }}">
+                                <span>{{ $subitem['title'] }}</span>
+                                <i class="{{ $subitem['icon'] }} ml-2"></i>
+                                @if(isset($subitem['badge']))
+                                <span class="bg-red-500 text-xs px-2 py-1 rounded-full animate-pulse-slow">{{
+                                    $subitem['badge'] }}</span>
+                                @endif
+                            </div>
+
+                            @endforeach
+                        </div>
                         @endforeach
 
                     </nav>
@@ -94,14 +94,25 @@
 
                         <!-- Charts and Tables -->
                         {{-- <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6"> --}}
-                        @if($activeItem === 'item1' && $activeSubitem === 'subitem1')
+                            @if($activeItem === 'item1' && $activeSubitem === 'subitem1') {{-- Category --}}
                             @livewire('admin-shop-category-component')
-                        @elseif($activeItem === 'item1' && $activeSubitem === 'subitem2')
+                            @elseif($activeItem === 'item1' && $activeSubitem === 'subitem2') {{-- Item --}}
                             @livewire('admin-shop-item-component')
-                        @elseif($activeItem === 'item1' && $activeSubitem === 'subitem3')
-                            {{-- @livewire('admin-shop-order-component')  --}}
-                        @endif
-                            
+                            @elseif($activeItem === 'item1' && $activeSubitem === 'subitem3') {{-- Product --}}
+                            {{-- @livewire('admin-shop-order-component') --}}
+
+
+                            @elseif($activeItem === 'item2' && $activeSubitem === 'subitem1') {{-- Suppliers --}}
+                            {{-- @livewire('admin-shop-category-component') --}}
+                            @elseif($activeItem === 'item2' && $activeSubitem === 'subitem2') {{-- purchase Order --}}
+                            {{-- @livewire('admin-shop-item-component') --}}
+                            @elseif($activeItem === 'item2' && $activeSubitem === 'subitem3') {{-- Purchase Products --}}
+                            @livewire('admin-shop-purchase-component')
+
+
+
+                            @endif
+
 
                             {{-- </div> --}}
                     </main>
@@ -417,3 +428,4 @@
         </div>
 
     </div>
+</div>

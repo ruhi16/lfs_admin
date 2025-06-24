@@ -53,7 +53,7 @@ class AdminSessionShopManagementComponent extends Component
                     'active' => false,
                 ],
                 'subitem3' => [
-                    'title' => 'Purchase History',
+                    'title' => 'Purchase Products',
                     'icon' => 'fas fa-history',
                     'route' => 'admin.shop.purchase-history',
                     'active' => false,
