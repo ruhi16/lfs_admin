@@ -1,15 +1,15 @@
 <div>    
     <h1 class="text-2xl font-semibold text-gray-800 mb-6">Shop Items</h1>
-    @if (session()->has('message'))
+    @if (session()->has('item_message'))
         <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">  
             <strong class="font-bold">Success!</strong>
-            <span class="block sm:inline">{{ session('message') }}</span> 
+            <span class="block sm:inline">{{ session('item_message') }}</span> 
         </div>
     @endif
-    @if (session()->has('error'))
+    @if (session()->has('item_error'))
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
             <strong class="font-bold">Error!</strong>
-            <span class="block sm:inline">{{ session('error') }}</span>
+            <span class="block sm:inline">{{ session('item_error') }}</span>
         </div>
     @endif
 
@@ -24,7 +24,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                     <div class="mb-0">
-                        <label for="category" class="block text-sm font-medium text-gray-700">Category: {{ $selectedCategory }}</label>
+                        <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
                         <select wire:model="selectedCategory" id="category" name="category"
                             class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2">
                             <option value="">Select Category</option>
@@ -64,18 +64,12 @@
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
-                    <div class="mb-0">
-                        
-                    </div>
-
-                    <div class="mb-0">
-                        
-                    </div>
+                    
 
                     <div class="mb-0">
                         <button wire:click="addItem()" type="button"
                             class="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-                            Add Item 
+                            Add Item
                         </button>
                     </div>
 
@@ -113,7 +107,7 @@
                         <td class="px-4 py-2 whitespace-nowrap text-sm text-right">{{ $item['slug'] }}</td> 
                         <td class="px-4 py-2 whitespace-nowrap text-sm text-right">{{ $item['description'] }}</td>
                         <td class="px-4 py-2 whitespace-nowrap text-sm text-right">
-                            <button wire:click="editItem({{ $item['id'] }})"
+                            <button wire:click="addItem({{ $item['id'] }})"
                                 class="text-blue-600 hover:text-blue-900">Edit</button>
                             <button wire:click="deleteItem({{ $item['id'] }})"
                                 class="text-red-600 hover:text-red-900 ml-2">Delete</button>

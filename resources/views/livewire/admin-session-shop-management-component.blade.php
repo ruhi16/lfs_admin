@@ -95,9 +95,9 @@
                         <!-- Charts and Tables -->
                         {{-- <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6"> --}}
                             @if($activeItem === 'item1' && $activeSubitem === 'subitem1') {{-- Category --}}
-                            @livewire('admin-shop-category-component')
+                                @livewire('admin-shop-category-component')
                             @elseif($activeItem === 'item1' && $activeSubitem === 'subitem2') {{-- Item --}}
-                            @livewire('admin-shop-item-component')
+                                @livewire('admin-shop-item-component')
                             @elseif($activeItem === 'item1' && $activeSubitem === 'subitem3') {{-- Product --}}
                             {{-- @livewire('admin-shop-order-component') --}}
 

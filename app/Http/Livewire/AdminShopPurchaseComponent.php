@@ -67,6 +67,12 @@ class AdminShopPurchaseComponent extends Component
         $this->refresh();
     }
 
+    public function removeProductRow($index){
+        unset($this->productDetails[$index]);
+        $this->rowCounter--;
+        $this->refresh();
+    }
+
     public function updateProductOptions($index)
     {
         $categoryId = $this->productDetails[$index]['category_id'];
@@ -122,26 +128,31 @@ class AdminShopPurchaseComponent extends Component
             //             // 'purchase_id' => $purchase->id,
             //     ]);
 
-            $product = Shop04Product::where('category_id', $this->selectedCategory)
-                ->where('item_id', $this->selectedItem)
-                ->first();
-            dd($this->selectedCategory, $this->selectedItem, $product);
-
+            // dd('hello');
 
             $purchase = Shop08Purchase::updateOrCreate([
                 'vendor_id' => 1002, //$this->selectedVendor,
                 'invoice_no' => $this->invoiceNo,        
-                'invoice_date' => $this->invoiceDate,       
+                'invoice_date' => $this->invoiceDate,   
+                'owner_id' => auth()->user()->id,    
 
             ],[
                 'order_id' => 100,
             ]);
-            dd($purchase, $product);
+
+            dd($purchase);
 
             foreach($this->productDetails as $detail){
+                $product = Shop04Product::where('category_id', $detail['category_id'])
+                    ->where('item_id', $detail['item_id'])
+                    ->first();
+                
+                dd('Done',$detail['category_id'], $detail['item_id'], $product);
+
+            
                 $purchaseDetails = Shop09PurchaseProduct::updateOrCreate([
                     'purchase_id' => $purchase->id,
-                    'product_id' => $product->id,
+                    'product_id' => $detail['item_id'],
                 ],[
                     'purchase_unit_id' => $detail['purchase_unit_id'],
                     'purchase_unit_rate' => $detail['rate'],
@@ -152,13 +163,16 @@ class AdminShopPurchaseComponent extends Component
                 ]);
             }
 
+            dd($purchase, $purchaseDetails);
+
             // Db::commitTransaction();
 
-            session()->flash('success', 'Product details saved successfully!');
+            session()->flash('purchase_success', 'Product details saved successfully!');
             // $this->refresh();
 
-        }catch(Exception $e){
-            session()->flash('error', $e->getMessage());
+        }catch(\Exception $e){
+            dd($e);
+            session()->flash('purchase_error', $e->getMessage());
         }
 
 
