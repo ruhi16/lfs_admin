@@ -29,7 +29,7 @@ class AdminSessionShopManagementComponent extends Component
                     'active' => false,
                 ],
                 'subitem3' => [
-                    'title' => 'Products',
+                    'title' => 'Products List',
                     'icon' => 'fas fa-cubes', // Example icon class
                     'route' => 'admin.shop.products',
                     'active' => false,
@@ -64,18 +64,24 @@ class AdminSessionShopManagementComponent extends Component
             'name' => 'Sales',
             'subitems' => [
                 'subitem1' => [
+                    'title' => 'Dashboard',
+                    'icon' => 'fas fa-dashboard',
+                    'route' => 'admin.shop.dashboard',
+                    'active' => false,
+                ],
+                'subitem2' => [
                     'title' => 'Customers',
                     'icon' => 'fas fa-users',
                     'route' => 'admin.shop.customers',
                     'active' => false,
                 ],
-                'subitem2' => [
+                'subitem3' => [
                     'title' => 'Sales Orders',
                     'icon' => 'fas fa-shopping-cart',
                     'route' => 'admin.shop.sales-orders',
                     'active' => false,
                 ],
-                'subitem3' => [
+                'subitem4' => [
                     'title' => 'Sales History',
                     'icon' => 'fas fa-history',
                     'route' => 'admin.shop.sales-history',

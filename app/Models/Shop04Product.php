@@ -14,11 +14,11 @@ class Shop04Product extends Model
     
 
     public function category(){
-        return $this->belongsTo(Shop04Product::class, 'category_id', 'id');
+        return $this->belongsTo(Shop02Category::class, 'category_id', 'id');
     }
 
-    public function items(){
-        return $this->belongsTo(Shop04Product::class, 'product_id', 'id');
+    public function item(){
+        return $this->belongsTo(Shop03Item::class, 'item_id', 'id');
     }
 
 

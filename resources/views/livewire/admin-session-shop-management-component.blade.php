@@ -54,7 +54,7 @@
                             <h2 class="text-2xl font-bold text-gray-800">Dashboard Overview</h2>
                             <div class="flex items-center space-x-4">
                                 <div class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                                    Today: June 07, 2025
+                                    {{ \Carbon\Carbon::now()->format('F d, Y') }}
                                 </div>
                                 <div class="w-8 h-8 bg-blue-500 rounded-full"></div>
                             </div>
@@ -99,7 +99,8 @@
                             @elseif($activeItem === 'item1' && $activeSubitem === 'subitem2') {{-- Item --}}
                                 @livewire('admin-shop-item-component')
                             @elseif($activeItem === 'item1' && $activeSubitem === 'subitem3') {{-- Product --}}
-                            {{-- @livewire('admin-shop-order-component') --}}
+                                @livewire('admin-shop-product-list-component')
+                            
 
 
                             @elseif($activeItem === 'item2' && $activeSubitem === 'subitem1') {{-- Suppliers --}}
@@ -108,6 +109,16 @@
                             {{-- @livewire('admin-shop-item-component') --}}
                             @elseif($activeItem === 'item2' && $activeSubitem === 'subitem3') {{-- Purchase Products --}}
                             @livewire('admin-shop-purchase-component')
+
+
+
+                            @elseif($activeItem === 'item3' && $activeSubitem === 'subitem1') {{-- Suppliers --}}
+                                @livewire('admin-shop-sale-dashboard-component')
+                            @elseif($activeItem === 'item3' && $activeSubitem === 'subitem2') {{-- purchase Order --}}
+                            {{-- @livewire('admin-shop-item-component') --}}
+                            @elseif($activeItem === 'item3' && $activeSubitem === 'subitem3') {{-- Purchase Products --}}
+                                {{-- @livewire('admin-shop-purchase-component') --}}
+
 
 
 

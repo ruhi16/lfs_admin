@@ -8,6 +8,8 @@ use App\Models\Shop09PurchaseProduct;
 use Exception;
 use Livewire\Component;
 
+use DB;
+
 class AdminShopPurchaseComponent extends Component
 {
     
@@ -73,8 +75,7 @@ class AdminShopPurchaseComponent extends Component
         $this->refresh();
     }
 
-    public function updateProductOptions($index)
-    {
+    public function updateProductOptions($index){
         $categoryId = $this->productDetails[$index]['category_id'];
         // dd($categoryId, $index);
 
@@ -119,15 +120,9 @@ class AdminShopPurchaseComponent extends Component
         ]);
         // dd($this->productDetails);
 
+        DB::beginTransaction();
         try{
-            // DB::beginTransaction();
-            // $product = Shop04Product::updateOrCreate([
-            //     'category_id' => $this->selectedCategory,
-            //     'item_id' => $this->selectedItem,
-            //         ],[
-            //             // 'purchase_id' => $purchase->id,
-            //     ]);
-
+            
             // dd('hello');
 
             $purchase = Shop08Purchase::updateOrCreate([
@@ -140,14 +135,14 @@ class AdminShopPurchaseComponent extends Component
                 'order_id' => 100,
             ]);
 
-            dd($purchase);
+            // dd($purchase);
 
             foreach($this->productDetails as $detail){
                 $product = Shop04Product::where('category_id', $detail['category_id'])
                     ->where('item_id', $detail['item_id'])
                     ->first();
                 
-                dd('Done',$detail['category_id'], $detail['item_id'], $product);
+                // dd('Done',$detail['category_id'], $detail['item_id'], $product);
 
             
                 $purchaseDetails = Shop09PurchaseProduct::updateOrCreate([
@@ -160,27 +155,30 @@ class AdminShopPurchaseComponent extends Component
                     'purchase_amount' => $detail['amount'],
                     'purchase_adjustment' => 0,
                     'purchase_amount_payable' => $detail['amount'] - 0,
+                    'owner_id' => auth()->user()->id,
+                // ])->product()->associate($product);
                 ]);
             }
 
-            dd($purchase, $purchaseDetails);
 
-            // Db::commitTransaction();
+            $purchase->update([
+                'total_amount' => $this->getTotalAmount(),
+                'total_adjustment' => 0,
+                'total_payable' => $this->getTotalAmount() - 0,
+            ]);
 
+            // dd($purchase, $purchaseDetails);
+
+            Db::commit();
             session()->flash('purchase_success', 'Product details saved successfully!');
-            // $this->refresh();
+            
 
-        }catch(\Exception $e){
-            dd($e);
+        }catch(Exception $e){
+            // dd($e);
+            Db::rollBack();
             session()->flash('purchase_error', $e->getMessage());
         }
 
-
-
-
-        
-
-        session()->flash('message', 'Product details saved successfully!');
     }
 
 

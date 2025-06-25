@@ -15,7 +15,7 @@ class Shop03Item extends Model
         return $this->belongsTo(Shop02Category::class, 'category_id', 'id');
     }
 
-    public function product(){
-        return $this->belongsTo(Shop04Product::class, 'item_id', 'id');
+    public function products(){
+        return $this->hasMany(Shop04Product::class, 'item_id', 'id');
     }
 }

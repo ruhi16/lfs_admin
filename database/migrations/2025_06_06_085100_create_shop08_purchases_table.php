@@ -18,6 +18,7 @@ class CreateShop08PurchasesTable extends Migration
             $table->integer('order_id')->nullable();
             $table->integer('vendor_id')->nullable();
             $table->integer('invoice_no')->nullable();
+            $table->date('invoice_date')->nullable();
 
             $table->decimal('total_amount', 10, 2)->nullable();
             $table->decimal('adjust_amount', 10, 2)->nullable();

@@ -18,9 +18,9 @@ class CreateShop09PurchaseProductsTable extends Migration
             $table->integer('purchase_id');
             $table->integer('product_id');
             
-            $table->integer('purch_unit_id');
-            $table->integer('purch_unit_rate');
-            $table->integer('purch_unit_qty');
+            $table->integer('purchase_unit_id');
+            $table->integer('purchase_unit_rate');
+            $table->integer('purchase_unit_qty');
 
             $table->decimal('total_amount', 10, 2)->nullable();
             $table->decimal('adjust_amount', 10, 2)->nullable();
