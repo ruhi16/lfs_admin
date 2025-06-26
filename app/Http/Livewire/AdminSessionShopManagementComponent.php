@@ -70,18 +70,24 @@ class AdminSessionShopManagementComponent extends Component
                     'active' => false,
                 ],
                 'subitem2' => [
+                    'title' => 'Checkout',
+                    'icon' => 'fas fa-checkout',
+                    'route' => 'admin.shop.checkout',
+                    'active' => false,
+                ],
+                'subitem3' => [
                     'title' => 'Customers',
                     'icon' => 'fas fa-users',
                     'route' => 'admin.shop.customers',
                     'active' => false,
                 ],
-                'subitem3' => [
+                'subitem4' => [
                     'title' => 'Sales Orders',
                     'icon' => 'fas fa-shopping-cart',
                     'route' => 'admin.shop.sales-orders',
                     'active' => false,
                 ],
-                'subitem4' => [
+                'subitem5' => [
                     'title' => 'Sales History',
                     'icon' => 'fas fa-history',
                     'route' => 'admin.shop.sales-history',

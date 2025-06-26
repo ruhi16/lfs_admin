@@ -51,7 +51,7 @@
                     <!-- Header -->
                     <header class="bg-white shadow-sm border-b p-4">
                         <div class="flex justify-between items-center">
-                            <h2 class="text-2xl font-bold text-gray-800">Dashboard Overview</h2>
+                            <h2 class="text-2xl font-bold text-gray-800">Dashboard Overview ::{{ auth()->user()->name }}</h2>
                             <div class="flex items-center space-x-4">
                                 <div class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
                                     {{ \Carbon\Carbon::now()->format('F d, Y') }}
@@ -94,6 +94,7 @@
 
                         <!-- Charts and Tables -->
                         {{-- <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6"> --}}
+                            {{-- INVENTORY --}}
                             @if($activeItem === 'item1' && $activeSubitem === 'subitem1') {{-- Category --}}
                                 @livewire('admin-shop-category-component')
                             @elseif($activeItem === 'item1' && $activeSubitem === 'subitem2') {{-- Item --}}
@@ -102,7 +103,7 @@
                                 @livewire('admin-shop-product-list-component')
                             
 
-
+                            {{-- PURCHASE --}}
                             @elseif($activeItem === 'item2' && $activeSubitem === 'subitem1') {{-- Suppliers --}}
                             {{-- @livewire('admin-shop-category-component') --}}
                             @elseif($activeItem === 'item2' && $activeSubitem === 'subitem2') {{-- purchase Order --}}
@@ -111,17 +112,23 @@
                             @livewire('admin-shop-purchase-component')
 
 
-
+                            {{-- SALE --}}
                             @elseif($activeItem === 'item3' && $activeSubitem === 'subitem1') {{-- Suppliers --}}
                                 @livewire('admin-shop-sale-dashboard-component')
                             @elseif($activeItem === 'item3' && $activeSubitem === 'subitem2') {{-- purchase Order --}}
+                                @livewire('admin-shop-sale-cart-checkout-component')
                             {{-- @livewire('admin-shop-item-component') --}}
                             @elseif($activeItem === 'item3' && $activeSubitem === 'subitem3') {{-- Purchase Products --}}
                                 {{-- @livewire('admin-shop-purchase-component') --}}
 
 
+                            {{-- FINANCE --}}
+                            @elseif($activeItem === 'item4' && $activeSubitem === 'subitem1') {{-- Suppliers --}}
+                                {{-- @livewire('admin-shop-finance-component') --}}
 
 
+
+                            {{-- REPORT --}}
                             @endif
 
 
@@ -143,7 +150,7 @@
 
             </div>
 
-            <body class="bg-gray-100 font-sans">
+            {{-- <body class="bg-gray-100 font-sans">
                 <div class="flex h-screen">
                     <!-- Sidebar -->
                     <div class="w-64 bg-slate-800 text-white shadow-xl">
@@ -434,7 +441,7 @@
             }
                     </script> --}}
                 </div>
-            </body>
+            </body> --}}
 
         </div>
 

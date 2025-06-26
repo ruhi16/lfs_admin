@@ -41,21 +41,14 @@ class AdminShopSaleDashboardComponent extends Component
                 'is_paid' => false,
             ]);
 
-            $sale->products()->attach($product, [
+            $saleProduct = $sale->saleProducts()->firstOrCreate([
+                'product_id' => $productId,
+            ], [
                 'quantity' => 1, // Assuming a default quantity of 1
-                'price' => 10.0, // Assuming the product has a price attribute
+                'price' => 102.0, // $product->price, // Assuming the product has a price attribute
             ]);
-            
 
-            // $sale =\App\Models\Shop10Sale::updateOrCreate([
-            //     'studentcr_id' => auth()->user()->id,
-            
-            // ],[
-            //     'product_id' => $productId,
-            //     'quantity' => 1, // Assuming a default quantity of 1
-            //     'price' => $product->price, // Assuming the product has a price attribute
-            
-            // ]);
+
 
             session()->flash('sale_dashboard_success', 'Product added to cart successfully.');
 
