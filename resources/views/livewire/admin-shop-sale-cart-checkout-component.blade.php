@@ -23,18 +23,25 @@
                 @endif
             </div>
 
+            @if($sale)
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+                    <strong class="font-bold">Error!</strong>
+                    <span class="block sm:inline">No Product Found, in your CART!!!</span>
+                </div>
+            @else
+
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-4">
                 <!-- Main Form -->
                 <div class="lg:col-span-3 space-y-4 bg-red-300 p-4 rounded-lg shadow">
                     <!-- Customer Info -->
-                    <div class="flex flex-row justify-start items-start mb-4 gap-2">
-                        <div class="bg-white rounded-lg shadow p-4 w-1/2">
+                    <div class="flex flex-row md:flex-col justify-start items-start mb-4 gap-2">
+                        <div class="bg-white rounded-lg shadow p-4 w-1/2 md:w-full">
                             <h2 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
                                 <i class="fas fa-user mr-2 text-green-500 text-sm"></i>
                                 Customer Details
                             </h2>
                             <div class="grid grid-cols-2 gap-3">
-                                Name: {{ auth()->user()->name }}
+                                <strong>Name:</strong>{{ auth()->user()->name }}
                                 {{-- <input type="text" id="firstName" placeholder="First Name"
                                     class="px-3 py-2 border border-gray-300 rounded text-sm focus:ring-1 focus:ring-green-500 focus:outline-none">
                                 <input type="text" id="lastName" placeholder="Last Name"
@@ -48,7 +55,7 @@
                         </div>
 
                         <!-- Shipping -->
-                        <div class="bg-white rounded-lg shadow p-4 w-1/2">
+                        <div class="bg-white rounded-lg shadow p-4 w-1/2 md:w-full">
                             <h2 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
                                 <i class="fas fa-truck mr-2 text-green-500 text-sm"></i>
                                 Shipping Address
@@ -126,21 +133,26 @@
                         </h2>
 
                         <!-- Cart Items - Scrollable -->
+                        @foreach($saleProducts as $product)
                         <div class="space-y-2 mb-4 max-h-96 overflow-y-auto">
                             <div class="flex items-center space-x-2 p-2 bg-gray-50 rounded text-sm">
                                 <img src="https://placehold.co/40x40/4CAF50/FFFFFF?text=P1" alt="Product"
-                                    class="w-16 h-16 rounded object-cover">
+                                    class="w-12 h-12 rounded object-cover">
                                 <div class="flex-1 min-w-0 ">
                                     <h4 class="font-medium text-gray-800 truncate">Wireless Headphones</h4>
                                     <div class="flex items-center mt-1 space-x-2">
                                         <!-- Quantity controls -->
                                         <div class="flex border border-gray-300 rounded-md">
                                             <button
+                                                wire:click="decreaseProductQuantity('{{$product->id}}')"
                                                 class="w-6 h-6 flex items-center justify-center rounded-l bg-gray-100 text-gray-600 hover:bg-gray-200 focus:outline-none transition-colors">
                                                 - </button>
                                             <span
-                                                class="w-8 h-6 flex items-center justify-center bg-white text-xs text-gray-800">2</span>
+                                                class="w-8 h-6 flex items-center justify-center bg-white text-xs text-gray-800">
+                                                {{ $product->sale_unit_qty ?? 0 }}
+                                                </span>
                                             <button
+                                                wire:click="increaseProductQuantity('{{$product->id}}')"
                                                 class="w-6 h-6 flex items-center justify-center rounded-r bg-gray-100 text-gray-600 hover:bg-gray-200 focus:outline-none transition-colors">+</button>
                                         </div>
                                         <p class="text-xs text-gray-500">(In stock)</p>
@@ -148,8 +160,9 @@
                                 </div>
                                 <span class="font-semibold text-gray-800">₹2,999</span>
                             </div>
+                            @endforeach
 
-                            <div class="flex items-center space-x-2 p-2 bg-gray-50 rounded text-sm">
+                            {{-- <div class="flex items-center space-x-2 p-2 bg-gray-50 rounded text-sm">
                                 <img src="https://placehold.co/40x40/4CAF50/FFFFFF?text=P1" alt="Product"
                                     class="w-8 h-8 rounded object-cover">
                                 <div class="flex-1 min-w-0">
@@ -175,7 +188,7 @@
                                     <p class="text-xs text-gray-600">Qty: 3</p>
                                 </div>
                                 <span class="font-semibold text-gray-800 text-xs">₹450</span>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <!-- Price Details -->
@@ -199,7 +212,9 @@
                         </div>
 
                         <!-- Place Order Button -->
-                        <button onclick="placeOrder()" id="placeOrderBtn"
+                        <button 
+                            wire:click="placeOrder()"
+                            {{-- onclick="placeOrder()" id="placeOrderBtn" --}}
                             class="w-full bg-green-500 text-white py-3 rounded-lg font-semibold mt-4 hover:bg-green-600 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed text-sm">
                             <i class="fas fa-lock mr-1"></i>
                             Place Order ₹4,777
@@ -209,7 +224,7 @@
 
             </div>
 
-
+            @endif
 
 
 
