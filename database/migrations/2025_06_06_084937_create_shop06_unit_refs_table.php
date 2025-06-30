@@ -31,7 +31,7 @@ class CreateShop06UnitRefsTable extends Migration
 
 
             $table->boolean('is_active')->default(false);
-            $table->integer('owner_id');
+            $table->integer('owner_id')->default(0)->nullable();
             $table->timestamps();
         });
     }

@@ -51,6 +51,11 @@ class Session extends Model{
 
     }
 
+
+    public function sessionExams(){
+        return $this->hasMany(Exam01Name::class, 'session_id', 'id');
+    }
+
     // public function exam(){
     //     return $this->hasMany(Exam::class);
     // }

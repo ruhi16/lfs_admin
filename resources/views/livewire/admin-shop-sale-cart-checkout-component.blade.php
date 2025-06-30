@@ -23,11 +23,12 @@
                 @endif
             </div>
 
-            @if($sale)
-                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
-                    <strong class="font-bold">Error!</strong>
-                    <span class="block sm:inline">No Product Found, in your CART!!!</span>
-                </div>
+            @if(!$sale)
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+                <strong class="font-bold">Error!</strong>
+                <span class="block sm:inline">No Product Found, in your CART!!!</span>
+            </div>
+
             @else
 
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-4">
@@ -120,7 +121,7 @@
                                 </div>
                             </div>
                         </div>
-                    
+
                     </div>
                 </div>
 
@@ -143,16 +144,14 @@
                                     <div class="flex items-center mt-1 space-x-2">
                                         <!-- Quantity controls -->
                                         <div class="flex border border-gray-300 rounded-md">
-                                            <button
-                                                wire:click="decreaseProductQuantity('{{$product->id}}')"
+                                            <button wire:click="decreaseQuantity('{{$product->id}}')"
                                                 class="w-6 h-6 flex items-center justify-center rounded-l bg-gray-100 text-gray-600 hover:bg-gray-200 focus:outline-none transition-colors">
                                                 - </button>
                                             <span
                                                 class="w-8 h-6 flex items-center justify-center bg-white text-xs text-gray-800">
                                                 {{ $product->sale_unit_qty ?? 0 }}
-                                                </span>
-                                            <button
-                                                wire:click="increaseProductQuantity('{{$product->id}}')"
+                                            </span>
+                                            <button wire:click="increaseQuantity('{{$product->id}}')"
                                                 class="w-6 h-6 flex items-center justify-center rounded-r bg-gray-100 text-gray-600 hover:bg-gray-200 focus:outline-none transition-colors">+</button>
                                         </div>
                                         <p class="text-xs text-gray-500">(In stock)</p>
@@ -160,36 +159,37 @@
                                 </div>
                                 <span class="font-semibold text-gray-800">₹2,999</span>
                             </div>
-                            @endforeach
-
-                            {{-- <div class="flex items-center space-x-2 p-2 bg-gray-50 rounded text-sm">
-                                <img src="https://placehold.co/40x40/4CAF50/FFFFFF?text=P1" alt="Product"
-                                    class="w-8 h-8 rounded object-cover">
-                                <div class="flex-1 min-w-0">
-                                    <h4 class="font-medium text-gray-800 truncate">Wireless Headphones</h4>
-                                    <p class="text-xs text-gray-600">Qty: 2</p>
-                                </div>
-                                <span class="font-semibold text-gray-800 text-xs">₹2,999</span>
-                            </div>
-                            <div class="flex items-center space-x-2 p-2 bg-gray-50 rounded text-sm">
-                                <img src="https://placehold.co/40x40/2196F3/FFFFFF?text=P2" alt="Product"
-                                    class="w-8 h-8 rounded object-cover">
-                                <div class="flex-1 min-w-0">
-                                    <h4 class="font-medium text-gray-800 truncate">Smartphone Case Pro Max</h4>
-                                    <p class="text-xs text-gray-600">Qty: 1</p>
-                                </div>
-                                <span class="font-semibold text-gray-800 text-xs">₹599</span>
-                            </div>
-                            <div class="flex items-center space-x-2 p-2 bg-gray-50 rounded text-sm">
-                                <img src="https://placehold.co/40x40/FF9800/FFFFFF?text=P3" alt="Product"
-                                    class="w-8 h-8 rounded object-cover">
-                                <div class="flex-1 min-w-0">
-                                    <h4 class="font-medium text-gray-800 truncate">USB Cable Lightning</h4>
-                                    <p class="text-xs text-gray-600">Qty: 3</p>
-                                </div>
-                                <span class="font-semibold text-gray-800 text-xs">₹450</span>
-                            </div> --}}
                         </div>
+                        @endforeach
+
+                        {{-- <div class="flex items-center space-x-2 p-2 bg-gray-50 rounded text-sm">
+                            <img src="https://placehold.co/40x40/4CAF50/FFFFFF?text=P1" alt="Product"
+                                class="w-8 h-8 rounded object-cover">
+                            <div class="flex-1 min-w-0">
+                                <h4 class="font-medium text-gray-800 truncate">Wireless Headphones</h4>
+                                <p class="text-xs text-gray-600">Qty: 2</p>
+                            </div>
+                            <span class="font-semibold text-gray-800 text-xs">₹2,999</span>
+                        </div>
+                        <div class="flex items-center space-x-2 p-2 bg-gray-50 rounded text-sm">
+                            <img src="https://placehold.co/40x40/2196F3/FFFFFF?text=P2" alt="Product"
+                                class="w-8 h-8 rounded object-cover">
+                            <div class="flex-1 min-w-0">
+                                <h4 class="font-medium text-gray-800 truncate">Smartphone Case Pro Max</h4>
+                                <p class="text-xs text-gray-600">Qty: 1</p>
+                            </div>
+                            <span class="font-semibold text-gray-800 text-xs">₹599</span>
+                        </div>
+                        <div class="flex items-center space-x-2 p-2 bg-gray-50 rounded text-sm">
+                            <img src="https://placehold.co/40x40/FF9800/FFFFFF?text=P3" alt="Product"
+                                class="w-8 h-8 rounded object-cover">
+                            <div class="flex-1 min-w-0">
+                                <h4 class="font-medium text-gray-800 truncate">USB Cable Lightning</h4>
+                                <p class="text-xs text-gray-600">Qty: 3</p>
+                            </div>
+                            <span class="font-semibold text-gray-800 text-xs">₹450</span>
+                        </div> --}}
+
 
                         <!-- Price Details -->
                         <div class="border-t pt-3 space-y-1 text-sm">
@@ -212,9 +212,7 @@
                         </div>
 
                         <!-- Place Order Button -->
-                        <button 
-                            wire:click="placeOrder()"
-                            {{-- onclick="placeOrder()" id="placeOrderBtn" --}}
+                        <button wire:click="placeOrder()" {{-- onclick="placeOrder()" id="placeOrderBtn" --}}
                             class="w-full bg-green-500 text-white py-3 rounded-lg font-semibold mt-4 hover:bg-green-600 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed text-sm">
                             <i class="fas fa-lock mr-1"></i>
                             Place Order ₹4,777
@@ -249,9 +247,8 @@
             </div>
         </div>
 
- 
-{{-- <script>
-    let captchaVerified = false;
+        {{-- <script>
+            let captchaVerified = false;
         
         function generateCaptcha() {
             const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -323,6 +320,6 @@
         // Initialize
         generateCaptcha();
         updatePlaceOrderButton();
-</script> --}}
+        </script> --}}
 
-</div>
+    </div>

@@ -24,6 +24,7 @@ class CreateShop10SalesTable extends Migration
             $table->decimal('adjust_amount', 10, 2)->nullable();
             $table->decimal('payable_amount', 10, 2)->nullable();
 
+            $table->boolean('is_order_placed')->nullable()->default(false);
             $table->boolean('is_paid')->default(false)->nullable();
             $table->date('paid_date')->nullable();
             $table->string('payment_method')->nullable();
@@ -32,7 +33,7 @@ class CreateShop10SalesTable extends Migration
 
 
             $table->boolean('is_active')->default(false);
-            $table->integer('owner_id');
+            $table->integer('owner_id')->default(0)->nullable();
             $table->timestamps();
         });
     }

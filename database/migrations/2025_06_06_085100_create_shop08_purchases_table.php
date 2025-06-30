@@ -29,10 +29,11 @@ class CreateShop08PurchasesTable extends Migration
             $table->string('payment_method')->nullable();
             
             $table->string('remarks')->nullable();
+            // $table->enum('status', ['active', 'inactive'])->default('active');
             
 
             $table->boolean('is_active')->default(false);
-            $table->integer('owner_id');
+            $table->integer('owner_id')->default(0)->nullable();
             $table->timestamps();
         });
     }

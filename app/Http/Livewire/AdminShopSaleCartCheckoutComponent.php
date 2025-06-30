@@ -11,13 +11,12 @@ class AdminShopSaleCartCheckoutComponent extends Component
     public $saleProducts;
 
     public function refresh(){
-        $this->user = auth()->user();
+        
         $this->sale = \App\Models\Shop10Sale::where('studentcr_id', $this->user->id)
             ->where('is_paid', false)
             ->first();
-
-        if(!$this->sale){
-            
+        
+        if($this->sale){
             $this->saleProducts = $this->sale->saleProducts;
         }
     
@@ -25,13 +24,15 @@ class AdminShopSaleCartCheckoutComponent extends Component
 
     public function mount(){
         $this->user = auth()->user();
-        $this->sale = \App\Models\Shop10Sale::where('studentcr_id', $this->user->id)
-            ->where('is_paid', false)
-            ->first();
+
+        // $this->sale = \App\Models\Shop10Sale::where('studentcr_id', $this->user->id)
+        //     ->where('is_paid', false)
+        //     ->first();
         // dd($this->sale);
-        if(!$this->sale){
-            $this->saleProducts = $this->sale->saleProducts;
-        }
+        // if(!$this->sale){
+        //     // dd($this->sale);
+        //     $this->saleProducts = $this->sale->saleProducts;
+        // }
         
 
         $this->refresh();

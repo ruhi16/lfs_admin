@@ -144,6 +144,9 @@
                             <a href="{{ route('admin.session-shop-management') }}"
                                 class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Shop Management</a>
 
+                            <a href="{{ route('admin.session-exam-management') }}"
+                                class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Exam Management</a>
+
 
                             {{-- <a href="{{ route('admin.session-exam-management') }}"
                                 class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">Exam Management</a> --}}

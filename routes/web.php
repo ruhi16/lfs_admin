@@ -8,6 +8,7 @@ use App\Http\Livewire\AdminCarouselComponent;
 use App\Http\Livewire\AdminFacilityUpdateComponent;
 use App\Http\Livewire\AdminPrincipalUpdateComponent;
 use App\Http\Livewire\AdminSessionEventManagementComponent;
+use App\Http\Livewire\AdminSessionExamManagementComponent;
 use App\Http\Livewire\AdminSessionFeesManagementComponent;
 use App\Http\Livewire\AdminSessionShopManagementComponent;
 use App\Http\Livewire\AdminStudentcrRecordComponent;
@@ -114,6 +115,7 @@ Route::group(
         Route::get('session/event-management', AdminSessionEventManagementComponent::class)->name('admin.session-event-management');
         Route::get('session/fees-management', AdminSessionFeesManagementComponent::class)->name('admin.session-fees-management');
         Route::get('session/shop-management', AdminSessionShopManagementComponent::class)->name('admin.session-shop-management');
+        Route::get('session/exam-management', AdminSessionExamManagementComponent::class)->name('admin.session-exam-management');
 
 
 

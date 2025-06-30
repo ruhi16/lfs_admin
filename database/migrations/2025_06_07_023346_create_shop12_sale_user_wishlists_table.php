@@ -24,7 +24,7 @@ class CreateShop12SaleUserWishlistsTable extends Migration
             $table->date('removed_at')->nullable();
 
             $table->boolean('is_active')->default(false);
-            $table->integer('owner_id');
+            $table->integer('owner_id')->default(0)->nullable();
             $table->timestamps();
         });
     }
