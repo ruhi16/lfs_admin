@@ -12,7 +12,12 @@ class AdminSessionFeesManagementCollectionComponent extends Component
     public $isReceiptVisible = false, $receiptStudentcrId, $receiptFeeMandateId, $receiptFeeMandateDateId;
     public $receiptStudentcr, $receiptFeeMandate, $receiptFeeMandateDate; 
 
+    public $mandateFeeMonthly;
+
+
     public function mount($sessionId = null, $myclassId = null){
+        $sessionId = \App\Models\Session::currentlyActive()->id; // For testing purposes, you can set this to a specific session ID
+        // $myclassId = 1; // For testing purposes, you can set this to a specific class ID
 
 
         $this->isReceiptVisible = false;
@@ -35,9 +40,15 @@ class AdminSessionFeesManagementCollectionComponent extends Component
             //           ->where('is_special', false); // Assuming you want only non-special mandates
             // }])
             // ->get();
-        $this->studentcrs = $this->myclasses->where('id', $myclassId)->first()->studentcrs ?? collect();
-        
-        
+        $this->studentcrs = $this->myclasses->find($myclassId)->studentcrs ?? collect();
+        $this->mandateFeeMonthly = $this->myclasses->find($myclassId)->mandates()
+            // ->where('is_active', true)
+            // ->where('is_special', false) // Assuming you want only non-special mandates
+            ->get();
+
+            // dd($this->mandateFeeMonthly );
+
+
         // dd($this->myclasses);
         // dd($this->studentcrs);
 

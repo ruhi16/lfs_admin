@@ -4,6 +4,15 @@ namespace App\Http\Livewire;
 
 
 
+
+
+
+
+
+
+
+
+
 use Livewire\Component;
 
 class AdminSessionFeesManagementComponent extends Component{
@@ -17,6 +26,12 @@ class AdminSessionFeesManagementComponent extends Component{
     public function mount($myclassId = null){
         $this->myclasses = \App\Models\Myclass::all();
         
+        if ($myclassId) {
+            $this->activeMyclassId = $myclassId;
+        }else{
+            $this->activeMyclassId = 1; // Default to the first class, or you can set it to a specific class ID
+        }
+
     }
 
     public function setActiveMyclass($myclassId)

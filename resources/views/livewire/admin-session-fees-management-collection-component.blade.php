@@ -10,6 +10,7 @@
 
             <div class="bg-slate-100 h-max-screen flex-1 p-4 rounded-md">
                 <h1 class="text-4xl font-bold text-left my-4">Fee Collection Status</h1>
+                
                 <div>
                     @if (session()->has('message'))
                     <div class="alert alert-success">
