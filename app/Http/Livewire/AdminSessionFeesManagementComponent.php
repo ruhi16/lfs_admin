@@ -2,17 +2,6 @@
 
 namespace App\Http\Livewire;
 
-
-
-
-
-
-
-
-
-
-
-
 use Livewire\Component;
 
 class AdminSessionFeesManagementComponent extends Component{

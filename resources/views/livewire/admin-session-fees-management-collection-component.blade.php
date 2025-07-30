@@ -40,7 +40,7 @@
                         <tr class="border-b border-gray-300">
                             <td class="px-3 py-2">{{ $studentcr->id }}</td>
                             <td class="px-3 py-2 font-semibold text-gray-600">{{ $studentcr->studentdb->name ?? 'x' }}</td>
-                            <td class="px-3 py-2">{{ $studentcr->section->name }}-{{ $studentcr->roll_no }}</td>
+                            <td class="px-3 py-2">{{ $studentcr->section->name ?? 'x'}}-{{ $studentcr->roll_no ?? 'x' }}</td>
                             <td class="px-3 py-2">
                                 {{-- {{ json_encode($myclasses->where('id', $studentcr->myclass_id)->first()->mandates->first()->mandateDates ) }} --}}
                                 @php 

@@ -91,6 +91,7 @@ class AdminSessionFeesManagementCollectionComponent extends Component
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
+            // dd($feeCollection);
 
             // Collect the corresponding fee_structure data
             $feeStructures = \App\Models\FeeStructure::where('myclass_id', $mandateFee->myclass_id)
@@ -172,7 +173,7 @@ class AdminSessionFeesManagementCollectionComponent extends Component
                 // dd($this->receiptFeeMandateId, $this->receiptFeeMandateDateId, $this->receiptStudentcrId);
 
             }
-
+            session()->flash('fee_collection_message', "Fees collected for student ID: $studentcrId for mandate ID: $mandateFeeMonthlyId and schedule ID: $mandateFeeMonthlyDateId");
             // dd($feeCollection);
         }catch(\Exception $e){
             session()->flash('fee_collection_message', "Error collecting fees for student ID: $studentcrId. Error: " . $e->getMessage());
